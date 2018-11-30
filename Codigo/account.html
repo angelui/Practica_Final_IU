@@ -21,13 +21,12 @@
     <div class="popupNotVisible" id="popup"> <!--Pop up-->
         <div id="popup-container">
             <a id="popup-close" href="javascript:;" onclick="changePopUpStatus(this);">X</a>
-            <h4 id="popup-name">Login</h4>
-            <p id="popup-user">Usuario</p>
-            <input id="usernameLog" class="inputL" type="text" placeholder="Nombre de usuario" required/>
-            <p id="popup-pass">Contraseña</p>
-            <input id="usernameLog" class="inputL" type="text" placeholder="Contraseña" required/>
-            <button id="login">Login</button>
-
+            <img id="popup-img" src="image/default.png" alt="Foto hotel">
+            <h4 id="popup-name"></h4>
+            <a id="popup-webDir">Sitio web</a>
+            <p id="popup-tlfno">Tlfno: </p>
+            <p id="popup-econ">Clase económica: </p>
+            <p id="popup-description"></p>
         </div>
     </div>
 
@@ -42,7 +41,7 @@
                 </ul>
             <a class="headMenuOptions2">Cuenta</a>      <!--Login/Registro . Info Personal/Anadir Hoteles/Cerrar Sesion-->
                 <ul id="downMenuUnlogged" class="downMenu">
-                    <li><a href="javascript:;" onclick="changePopUpStatus(this);"><h5>Login</h5></a></li>
+                    <li><a href="#"><h5>Login</h5></a></li>
                     <li><a href="#"><h5>Registro</h5></a></li>
                 </ul>
                 <ul id="downMenuLogged" class="downMenu">
