@@ -155,7 +155,8 @@ header{
 
 #piedepag{
     padding: 10px;
-    margin-top: 15px;
+    position: absolute;
+    bottom: 5px;
     text-align: center;
     color: black;
 }
