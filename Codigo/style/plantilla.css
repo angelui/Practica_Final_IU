@@ -1,0 +1,326 @@
+/*-----------------------Interfaces de Usuario-------------------------*/
+/*---------------------Angel Luis Alonso Blazquez----------------------*/
+/*---------------------Kevin Santiago Diaz Delgado---------------------*/
+/*------------------------Marcos Arroyo Ruiz---------------------------*/
+/*--------------------100363923|100363919|100293563--------------------*/
+
+a{
+    font-family: 'Poppins', sans-serif;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+h5{
+    color: rgb(0, 0, 0);
+}
+
+h5:hover{
+    color: rgb(85, 85, 85);
+}
+
+body{
+    min-width: 840px;
+}
+
+input{
+    float: left;
+    font-family: 'Poppins', sans-serif;
+    padding: 5px;
+    border-width: thin;
+    border-color: rgba(85, 85, 85, 0.25);
+    border-radius: 5px;
+    margin-left: 1%;
+}
+
+button{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    padding: 5px;
+    border-width: thin;
+    border-color: rgba(85, 85, 85, 0.25);
+    border-radius: 5px;
+    background-color: rgb(113, 135, 233);
+    cursor: pointer;
+}
+
+/* Header */
+
+header{
+    margin-left: 2%;
+}
+
+#logo{
+    z-index: 2;
+    position: fixed;
+    top: 2%;
+    width: 233px;
+    height: 70px;
+    float: left;
+}
+
+.headMenu {
+    display: flex;
+    position: fixed;
+    z-index: 2;
+    top: 4%;
+    right: 3%;
+    float: right;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    list-style-type: none;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-color: rgba(85, 85, 85, 0.25);
+    background-color: rgb(252, 252, 252);
+}
+
+.headMenuOptions, .headMenuOptions2 {
+    float: left;
+    text-align: center;
+    padding-right: 15px;
+}
+
+.headMenuOptions{
+    cursor: pointer;
+}
+
+.headMenuOptions:hover{
+    color: rgb(85, 85, 85);
+}
+
+.headMenuOptions2{
+    cursor: context-menu;
+}
+
+.downMenu{
+    display: none;
+    float: left;
+    padding-left: 0.75%;
+    padding-right: 2.5%;
+    list-style-type: none;
+}
+
+#menuIcon{
+    display: none;
+}
+
+#box{
+        position: fixed;
+        top: 0;
+        height: 150px;
+        width: 100%;
+        z-index: 0;
+        background-color: rgb(255, 255, 255);
+    }
+
+/* Browser */
+#browser{
+    position: fixed;
+    z-index: 0;
+    top: 100px;
+    width: 100%;
+    margin-left: 2%;
+}
+
+.inputD{
+    padding: 4.2px;
+}
+
+.inputN{
+    width: 40px;
+}
+
+.icon{
+    display: block;
+    float: left;
+    width: 27px;
+    margin-top: 2px;
+    margin-left: 0.5%;
+    opacity: 0.9;
+}
+
+#search{
+    margin-left: 2%;
+}
+
+/* Main content */
+
+#mainContent{
+    position: absolute;
+    top: 6000px;
+}
+
+/*Pie de pagina*/
+
+#piedepag{
+    padding: 10px;
+    margin-top: 15px;
+    text-align: center;
+    color: black;
+}
+
+#iconos{
+    justify-content: center;
+    display: flex;
+}
+.bright{
+    border-right: black ridge;
+    padding-right: 2px;
+    padding-left: 2px;
+    
+}
+
+#bright{
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+/***************************Versión Tablet****************************/
+
+@media only screen and (max-width:768px){
+
+    /* Header */
+
+    #box{
+        position: fixed;
+        top: 0;
+        height: 98px;
+        width: 100%;
+        z-index: 1;
+        background-color: rgb(255, 255, 255);
+    }
+
+    #menuIcon{
+        display: none;
+    }
+
+    /* Browser */
+
+    #browser{
+        position: absolute;
+    }
+
+    button{
+        width: 90%;
+    }
+
+    .inputD, .inputN{
+        width: 40%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+    }
+
+    #rooms, #leftDate{
+        float: right;
+        margin-right: 8%;
+    }
+
+    #location{
+        width: 88.6%;
+        margin-left: 2%;
+    }
+
+    .icon{
+        display: none;
+    }
+
+}
+
+/***************************Versión Móvil****************************/
+
+@media only screen and (max-width:600px){
+
+    #browser, .headMenu{
+        display: none;
+    }
+
+    /* Header */
+
+    #logo{
+        width: 200px;
+        height: 60px;
+    }
+
+    #menuIcon{
+        display: block;
+        width: 30px;
+        height: 30px;
+        float: right;
+        z-index: 2;
+        position: fixed;
+        right: 15px;
+        top: 25px;
+        cursor: pointer;
+    }
+
+}
+
+/***************************Pop-up Button****************************/
+
+#popup-button{
+    position: absolute;
+    right: 50%;
+    top: 40%;
+}
+
+/***************************Pop-up****************************/
+
+.popupNotVisible{
+    display: none;
+    opacity: 0;
+    margin-top: 0px;
+}
+
+.popupVisible {
+    display: block;
+    background-color: rgba(0,0,0,0.8);
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 999;
+}
+
+ #popup-container {
+    position: relative;
+    margin:7% auto;
+    padding:35px 15px;
+    min-height: 20%;
+    background-color: #eae7e7;
+    color: #111111;
+    border-radius: 10px;
+    width:50%;
+}
+
+ #popup-close {
+    position: absolute;
+    top:3px;
+    right:3px;
+    border-radius: 10px;
+    background-color: #111111;
+    padding:7px 10px;
+    font-size: 20px;
+    text-decoration: none;
+    line-height: 1;
+    color:#f9f8eb;
+}
+
+ #popup-img{
+    width: 30%;
+    height: 30%;
+    margin: 15px;
+    border-radius: 10px;
+    float: left;
+}
+
+ #popup-tlfno{
+    font-weight: 600;
+}
+
+ #popup-econ{
+     font-weight: 600;
+}
+ 

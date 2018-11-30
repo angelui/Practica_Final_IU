@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-----------------------Interfaces de Usuario------------------------->
+<!---------------------Angel Luis Alonso Blazquez---------------------->
+<!---------------------Kevin Santiago Diaz Delgado--------------------->
+<!------------------------Marcos Arroyo Ruiz--------------------------->
+<!--------------------100363923|100363919|100293563-------------------->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hotels' Stuff</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style/home.css" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script/home.js"></script>
+</head>
+<body>
+    <header>
+        <a href=""><img id="logo" src="img/logotransparente.png" alt="logo"></a>
+        <img id="menuIcon" src="img/menuicon.jpg" alt="menu">
+        <div class="headMenu">
+            <a class="headMenuOptions2">Idioma</a>      <!--Español/English-->
+                <ul id="downMenuLanguage" class="downMenu">
+                    <li><a href="#"><h5>Español</h5></a></li>
+                    <li><a href="#"><h5>English</h5></a></li>
+                </ul>
+            <a class="headMenuOptions2">Cuenta</a>      <!--Login/Registro . Info Personal/Anadir Hoteles/Cerrar Sesion-->
+                <ul id="downMenuUnlogged" class="downMenu">
+                    <li><a href="#"><h5>Login</h5></a></li>
+                    <li><a href="#"><h5>Registro</h5></a></li>
+                </ul>
+                <ul id="downMenuLogged" class="downMenu">
+                    <li><a href="#"><h5>Info Personal</h5></a></li>
+                    <li><a href="#"><h5>Cerrar Sesión</h5></a></li>
+                </ul>
+                <ul id="downMenuHost" class="downMenu">
+                    <li><a href="#"><h5>Info Personal</h5></a></li>
+                    <li><a href="#"><h5>Añadir Hotel</h5></a></li>
+                    <li><a href="#"><h5>Cerrar Sesión</h5></a></li>
+                </ul>
+            <a class="headMenuOptions" href="#">Mis reservas</a>
+            <a class="headMenuOptions" href="#">Ayuda</a>        <!--Preguntas frecuentes-->
+        </div>
+
+    </header>
+
+    <div id="mainContent">
+        <form id="browser">
+            <h3>Busca entre millones de ofertas<br></h3>
+            <input id="location" type="text" placeholder="Destino" required/>
+            <input id="arriveDate" class="inputD" type="date" required/>
+            <input id="leftDate" class="inputD" type="date" required/>
+            <input id="guests" class="inputN" type="number" placeholder="Nº de personas" required/>
+            <input id="rooms" class="inputN" type="number" placeholder="Habitaciones" required/>
+            <button id="search">Buscar</button>
+        </form>
+    </div> 
+    
+    <footer>
+        
+    </footer>
+    
+</body>
+</html> 
