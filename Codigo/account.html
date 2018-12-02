@@ -21,12 +21,14 @@
     <div class="popupNotVisible" id="popup"> <!--Pop up-->
         <div id="popup-container">
             <a id="popup-close" href="javascript:;" onclick="changePopUpStatus(this);">X</a>
-            <img id="popup-img" src="image/default.png" alt="Foto hotel">
-            <h4 id="popup-name"></h4>
-            <a id="popup-webDir">Sitio web</a>
-            <p id="popup-tlfno">Tlfno: </p>
-            <p id="popup-econ">Clase económica: </p>
-            <p id="popup-description"></p>
+
+            <h4 id="popup-name" class="popTitle">Login</h4>
+            <p id="popup-user" class="popText">Usuario</p>
+            <input id="usernameLog" class="inputL" type="text" placeholder="Nombre de usuario" required/>
+            <p id="popup-pass" class="popText">Contraseña</p>
+            <input id="usernameLog" class="inputL" type="text" placeholder="Contraseña" required/>
+            <button id="loginButton">Login</button>
+
         </div>
     </div>
 
@@ -41,7 +43,7 @@
                 </ul>
             <a class="headMenuOptions2">Cuenta</a>      <!--Login/Registro . Info Personal/Anadir Hoteles/Cerrar Sesion-->
                 <ul id="downMenuUnlogged" class="downMenu">
-                    <li><a href="#"><h5>Login</h5></a></li>
+                    <li><a href="javascript:;" onclick="changePopUpStatus(this);"><h5>Login</h5></a></li>
                     <li><a href="#"><h5>Registro</h5></a></li>
                 </ul>
                 <ul id="downMenuLogged" class="downMenu">
@@ -57,10 +59,6 @@
             <a class="headMenuOptions" href="#">Ayuda</a>        <!--Preguntas frecuentes-->
         </div>
     </header>
-
-    <div id="box">
-        <button id="popup-button" onclick="changePopUpStatus(this);">Pop-Up</button>
-    </div>
 
     <nav id="browser">
         <input id="location" type="text" placeholder="Ej: Murcia" required/>
