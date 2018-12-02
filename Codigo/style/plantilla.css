@@ -289,7 +289,7 @@ header{
     margin:7% auto;
     padding:35px 15px;
     min-height: 20%;
-    background-color: #eae7e7;
+    background-color: #fffbfb;
     color: #111111;
     border-radius: 10px;
     width:50%;
@@ -300,21 +300,21 @@ header{
     top:3px;
     right:3px;
     border-radius: 10px;
-    background-color: #111111;
+    background-color: rgb(113, 135, 233);
     padding:7px 10px;
     font-size: 20px;
     text-decoration: none;
     line-height: 1;
     color:#f9f8eb;
 }
-
+/*
  #popup-img{
     width: 30%;
     height: 30%;
     margin: 15px;
     border-radius: 10px;
     float: left;
-}
+}*/
 
  #popup-tlfno{
     font-weight: 600;
@@ -322,5 +322,22 @@ header{
 
  #popup-econ{
      font-weight: 600;
+}
+
+.popTitle{
+    margin-left: 45%;
+    margin-top: 2%;
+    font-size: 1.5em;
+}
+
+.inputL{
+    float: none;
+    width: 95%;
+}
+
+#loginButton{
+    width: 97%;
+    margin: 5% 1%;
+    margin-bottom: 0%;
 }
  
