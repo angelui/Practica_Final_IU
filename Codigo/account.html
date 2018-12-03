@@ -10,12 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Hotels' Stuff</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style/plantilla.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/account.css" />
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--link para los iconos del footer-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="script/plantilla.js"></script>
+    <script src="script/account.js"></script>
 </head>
 <body>
     <div class="popupNotVisible" id="popup"> <!--Pop up-->
@@ -33,7 +33,7 @@
     </div>
 
     <header>
-        <a href=""><img id="logo" src="img/logo.png" alt="logo"></a>
+        <a href="home.html"><img id="logo" src="img/logo.png" alt="logo"></a>
         <img id="menuIcon" src="img/menuicon.jpg" alt="menu">
         <div class="headMenu">
             <a class="headMenuOptions2">Idioma</a>      <!--Español/English-->
@@ -44,35 +44,91 @@
             <a class="headMenuOptions2">Cuenta</a>      <!--Login/Registro . Info Personal/Anadir Hoteles/Cerrar Sesion-->
                 <ul id="downMenuUnlogged" class="downMenu">
                     <li><a href="javascript:;" onclick="changePopUpStatus(this);"><h5>Login</h5></a></li>
-                    <li><a href="#"><h5>Registro</h5></a></li>
+                    <li><a href="javascript:;" onclick="show('register');"><h5>Registro</h5></a></li>
                 </ul>
                 <ul id="downMenuLogged" class="downMenu">
-                    <li><a href="#"><h5>Info Personal</h5></a></li>
-                    <li><a href="#"><h5>Cerrar Sesión</h5></a></li>
+                    <li><a href="javascript:;" onclick="show('persInfForm');"><h5>Info Personal</h5></a></li>
+                    <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
                 </ul>
                 <ul id="downMenuHost" class="downMenu">
-                    <li><a href="#"><h5>Info Personal</h5></a></li>
-                    <li><a href="#"><h5>Añadir Hotel</h5></a></li>
-                    <li><a href="#"><h5>Cerrar Sesión</h5></a></li>
+                    <li><a href="javascript:;" onclick="show('persInfForm');"><h5>Info Personal</h5></a></li>
+                    <li><a href="javascript:;" onclick="show('addHost');"><h5>Añadir Hotel</h5></a></li>
+                    <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
                 </ul>
             <a class="headMenuOptions" href="#">Mis reservas</a>
             <a class="headMenuOptions" href="#">Ayuda</a>        <!--Preguntas frecuentes-->
         </div>
     </header>
 
-    <nav id="browser">
-        <input id="location" type="text" placeholder="Ej: Murcia" required/>
-        <input id="arriveDate" class="inputD" type="date" required/>
-        <input id="leftDate" class="inputD" type="date" required/>
-        <input id="guests" class="inputN" type="number" placeholder="Ej: 3" required/>
-        <img class="icon" src="https://image.freepik.com/free-icon/users-group_318-48680.jpg" alt="person icon">
-        <input id="rooms" class="inputN" type="number" placeholder="Ej: 1" required/>
-        <img class="icon" src="https://image.freepik.com/free-icon/closed-door-with-border-silhouette_318-48772.jpg" alt="room icon">
-        <button id="search">Buscar</button>
-    </nav>
+    <div id="box">
+    </div>
 
     <div id="mainContent">
-        <p>hola</p>
+        <form id="persInfForm">
+                <fieldset>
+                    <legend><h3>Información Personal</h3></legend>
+
+                    <input id="nameInf" class="inputD" type="text" placeholder="Nombre" required/>
+                    <input id="surnameInf" class="inputN" type="text" placeholder="Apellidos" required/>
+
+                    <input id="emailInf" class="inputAll" type="email" placeholder="Correo Electrónico" required/>
+
+                    <input id="addressInf" class="inputAll" type="text" placeholder="Dirección" required/>
+                    <input id="phoneInf" class="inputD" type="text" placeholder="Teléfono"/>
+
+                    <input id="birthdateInf" class="inputN" type="date" placeholder="Fecha de nacimiento" required/>
+
+                    <button class="normalButton" type="button" onclick="show('persInfFormAdv')">Opciones avanzadas</button>
+                    <button class="normalButton" type="button" onclick="putPersonalInf()">Cancelar</button>
+                    <button class="okButton" type="button" onclick="editAccount()">Aceptar Cambios</button>
+                </fieldset>
+            </form>
+
+            <form id="persInfFormAdv">
+                <fieldset>
+                    <legend><h3>Información Personal Avanzada</h3></legend>
+
+                    <input id="usernameInf" class="inputD" type="text" placeholder="Nombre de usuario" required/>
+                    <input id="passwordInf" class="inputN" type="password" placeholder="Contraseña" required/>
+                    <input id="imgInf" class="inputAll" type="url" placeholder="Imagen de perfil"/>
+
+                    <button class="normalButton" type="button" onclick="show('persInfForm')">Opciones básicas</button>
+                    <button class="normalButton" type="button" onclick="putPersonalInfAdv()">Cancelar</button>
+                    <button class="okButton" type="button" onclick="editAccountAdv()">Aceptar Cambios</button>
+                    <button class="blackButton" type="button" onclick="deleteAccount()">Borrar cuenta</button>
+                </fieldset>
+            </form>
+        </div>
+
+        <form id="addHost">
+            <fieldset>
+                <legend><h3>Añadir Alojamiento</h3></legend>
+
+                <input type="text">
+
+                <button class="okButton" type="button" onclick="editAccountAdv()">Añadir</button>
+            </fieldset>
+        </form>
+
+        <form id="register">
+                <fieldset>
+                    <legend><h3>Registro</h3></legend>
+
+                    <input id="usernameInf" class="inputD" type="text" placeholder="Nombre de usuario" required/>
+                    <input id="passwordInf" class="inputN" type="password" placeholder="Contraseña" required/>
+                    <input id="imgInf" class="inputAll" type="url" placeholder="Imagen de perfil"/>
+
+                    <input id="nameInf" class="inputD" type="text" placeholder="Nombre" required/>
+                    <input id="surnameInf" class="inputN" type="text" placeholder="Apellidos" required/>
+                    <input id="emailInf" class="inputAll" type="email" placeholder="Correo Electrónico" required/>
+                    <input id="addressInf" class="inputAll" type="text" placeholder="Dirección" required/>
+                    <input id="phoneInf" class="inputD" type="text" placeholder="Teléfono"/>
+                    <input id="birthdateInf" class="inputN" type="date" placeholder="Fecha de nacimiento" required/>
+                    <p id="checkboxRegText"> He leído y acepto las Condiciones de uso <input type="checkbox" required/></p>
+
+                    <button class="okButton" type="button" onclick="register()">Registro</button>
+                </fieldset>
+            </form>
     </div> 
     
     <footer id="piedepag">

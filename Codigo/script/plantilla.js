@@ -4,13 +4,26 @@
 /*------------------------Marcos Arroyo Ruiz---------------------------*/
 /*--------------------100363923|100363919|100293563--------------------*/
 
+var logged = 0; // 0 = unloggued // 1 = loggued // 2 = host account //
+
 $(document).ready(function(){   //jQuery
 
     $('.headMenu').hover(showMenu);
 
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
-        $('#downMenuUnlogged').slideToggle();
+        
+        switch (logged){
+            case 0:
+                $('#downMenuUnlogged').slideToggle();
+                break;
+            case 1:
+                $('#downMenuLogged').slideToggle();
+                break;
+            case 2:
+                $('#downMenuHost').slideToggle();
+                break;
+        }
     }
     
 });
