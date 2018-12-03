@@ -53,6 +53,11 @@ button{
     width: 99%;
 }
 
+button:hover{
+    color: rgb(39, 39, 39);
+    background-color: rgb(162, 174, 226);
+}
+
 /* Header */
 
 header{

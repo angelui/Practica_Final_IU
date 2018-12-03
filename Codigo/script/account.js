@@ -12,7 +12,7 @@ $(document).ready(function(){   //jQuery
 
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
-        
+
         switch (logged){
             case 0:
                 $('#downMenuUnlogged').slideToggle();
@@ -88,4 +88,11 @@ function changePopUpStatus(element, i){
         popup.classList = "popupNotVisible";
         popupVisible = false;
     } 
+}
+
+function show(toshow){
+    document.getElementById("persInfForm").style.display = "none";
+    document.getElementById("persInfFormAdv").style.display = "none";
+    document.getElementById("addHost").style.display = "none";
+    document.getElementById(toshow).style.display = "block";
 }
