@@ -33,7 +33,7 @@
     </div>
 
     <header>
-        <a href=""><img id="logo" src="img/logo.png" alt="logo"></a>
+        <a href="home.html"><img id="logo" src="img/logo.png" alt="logo"></a>
         <img id="menuIcon" src="img/menuicon.jpg" alt="menu">
         <div class="headMenu">
             <a class="headMenuOptions2">Idioma</a>      <!--Español/English-->
@@ -44,21 +44,24 @@
             <a class="headMenuOptions2">Cuenta</a>      <!--Login/Registro . Info Personal/Anadir Hoteles/Cerrar Sesion-->
                 <ul id="downMenuUnlogged" class="downMenu">
                     <li><a href="javascript:;" onclick="changePopUpStatus(this);"><h5>Login</h5></a></li>
-                    <li><a href="#"><h5>Registro</h5></a></li>
+                    <li><a href="javascript:;" onclick="show('register');"><h5>Registro</h5></a></li>
                 </ul>
                 <ul id="downMenuLogged" class="downMenu">
                     <li><a href="javascript:;" onclick="show('persInfForm');"><h5>Info Personal</h5></a></li>
-                    <li><a href="#"><h5>Cerrar Sesión</h5></a></li>
+                    <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
                 </ul>
                 <ul id="downMenuHost" class="downMenu">
                     <li><a href="javascript:;" onclick="show('persInfForm');"><h5>Info Personal</h5></a></li>
                     <li><a href="javascript:;" onclick="show('addHost');"><h5>Añadir Hotel</h5></a></li>
-                    <li><a href="#"><h5>Cerrar Sesión</h5></a></li>
+                    <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
                 </ul>
             <a class="headMenuOptions" href="#">Mis reservas</a>
             <a class="headMenuOptions" href="#">Ayuda</a>        <!--Preguntas frecuentes-->
         </div>
     </header>
+
+    <div id="box">
+    </div>
 
     <div id="mainContent">
         <form id="persInfForm">
@@ -80,9 +83,10 @@
                     <button class="okButton" type="button" onclick="editAccount()">Aceptar Cambios</button>
                 </fieldset>
             </form>
+
             <form id="persInfFormAdv">
                 <fieldset>
-                    <legend><h3>Información Personal</h3></legend>
+                    <legend><h3>Información Personal Avanzada</h3></legend>
 
                     <input id="usernameInf" class="inputD" type="text" placeholder="Nombre de usuario" required/>
                     <input id="passwordInf" class="inputN" type="password" placeholder="Contraseña" required/>
@@ -105,6 +109,26 @@
                 <button class="okButton" type="button" onclick="editAccountAdv()">Añadir</button>
             </fieldset>
         </form>
+
+        <form id="register">
+                <fieldset>
+                    <legend><h3>Registro</h3></legend>
+
+                    <input id="usernameInf" class="inputD" type="text" placeholder="Nombre de usuario" required/>
+                    <input id="passwordInf" class="inputN" type="password" placeholder="Contraseña" required/>
+                    <input id="imgInf" class="inputAll" type="url" placeholder="Imagen de perfil"/>
+
+                    <input id="nameInf" class="inputD" type="text" placeholder="Nombre" required/>
+                    <input id="surnameInf" class="inputN" type="text" placeholder="Apellidos" required/>
+                    <input id="emailInf" class="inputAll" type="email" placeholder="Correo Electrónico" required/>
+                    <input id="addressInf" class="inputAll" type="text" placeholder="Dirección" required/>
+                    <input id="phoneInf" class="inputD" type="text" placeholder="Teléfono"/>
+                    <input id="birthdateInf" class="inputN" type="date" placeholder="Fecha de nacimiento" required/>
+                    <p id="checkboxRegText"> He leído y acepto las Condiciones de uso <input type="checkbox" required/></p>
+
+                    <button class="okButton" type="button" onclick="register()">Registro</button>
+                </fieldset>
+            </form>
     </div> 
     
     <footer id="piedepag">
