@@ -173,8 +173,8 @@ h3{
     display: none;
 }
 
-#checkboxRegText{
-    width: 100%;
+#register{
+    display: none;
 }
 
 /*Pie de pagina*/

@@ -94,6 +94,7 @@ function show(toshow){
     document.getElementById("persInfForm").style.display = "none";
     document.getElementById("persInfFormAdv").style.display = "none";
     document.getElementById("addHost").style.display = "none";
+    document.getElementById("register").style.display = "none";
     document.getElementById(toshow).style.display = "block";
 }
 
