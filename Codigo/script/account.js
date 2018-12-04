@@ -102,3 +102,97 @@ function endSession(){
     logged = 0;
     window.location.href = "home.html";
 }
+
+function errPass(pass){ // Comprobacion pass
+    var err = "";
+    var i;
+    if(document.getElementById(pass).value.length > 7){ //Comprobacion longitud pass
+        err = "La contraseña debe de tener como máximo 8 caracteres";
+    }
+    else{
+        err = "";
+    }
+
+    for(i = 0; i < document.getElementById(pass).value.length; i++){ //Comprobacion letras [a-z] y dígitos [0-9]
+        if((document.getElementById(pass).value.charCodeAt(i) > 47 && document.getElementById(pass).value.charCodeAt(i) < 58)  || (document.getElementById(pass).value.charCodeAt(i) > 96 && document.getElementById(pass).value.charCodeAt(i) < 123)){
+           
+        }
+        else{
+            err = "Los caracteres permitidos son letras [a-z] y dígitos [0-9]"
+        }
+    }
+    if(pass == "passwordReg"){
+        document.getElementById("errorPassword").innerHTML = err;
+    }
+    return err;
+}
+
+function regStorage(){
+    var error = 0;
+
+    if(document.getElementById('usernameReg').value == ""){
+        alert("El campo Nombre de usuario debe estar completo");
+    }
+
+    if(document.getElementById('passwordReg').value == ""){
+        alert("El campo Contraseña debe estar completo");
+        error++;
+    }
+    if(errPass('passwordReg') != ""){
+        alert("Contraseña no válida");
+        error++;
+    }
+    if(document.getElementById('nameReg').value == ""){
+        alert("El campo Nombre debe estar completo");
+        error++;
+    }
+    if(document.getElementById('surnameReg').value == ""){
+        alert("El campo Apellidos debe estar completo");
+        error++;
+    }
+    if(document.getElementById('emailReg').value == ""){
+        alert("El campo Correo debe estar completo");
+        error++;
+    }
+    if(document.getElementById('birthdateReg').value == ""){
+        alert("El campo Fecha de nacimiento debe estar completo");
+        error++;
+    }
+    if(document.getElementById('addressReg').value == ""){
+        alert("El campo Dirección debe estar completo");
+        error++;
+    }
+    if(!document.getElementById('checkboxReg').checked){
+        alert("Debes aceptar las condiciones de uso");
+        error++;
+    }
+
+    /*if(document.getElementById('usernameReg').value == getFromCookie('username') && error==0){
+        if(document.getElementById('usernameReg').value != ""){
+            alert("Nombre de usuario ya en uso. Inténtelo con otro diferente");
+        }
+        error++;
+    }
+    if(document.getElementById('emailReg').value == getFromCookie('email') && error==0){
+        if(document.getElementById('emailReg').value != ""){
+            alert("Cuenta ya registrada con ese correo. Inténtelo de nuevo con otra cuenta de correo");
+        }
+        error++;
+    }*/
+    
+    if(error == 0){
+
+        var register = {
+        username: document.getElementById('usernameReg').value,
+        password: document.getElementById('passwordReg').value,
+        img: document.getElementById('imgReg').value,
+        name: document.getElementById('nameReg').value,
+        surname: document.getElementById('surnameReg').value,
+        email: document.getElementById('emailReg').value,
+        address: document.getElementById('addressReg').value,
+        phone: document.getElementById('phoneReg').value,
+        birthdate: document.getElementById('birthdateReg').value
+        }
+        console.log(register);
+    }
+}

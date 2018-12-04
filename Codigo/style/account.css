@@ -177,6 +177,17 @@ h3{
     display: none;
 }
 
+#errorPassword{
+    margin-left: 1%;
+    color: red;
+}
+
+#checkboxRegText{
+    margin-top: 0%;
+    width: 100%;
+    float: left;
+}
+
 /*Pie de pagina*/
 
 #piedepag{
