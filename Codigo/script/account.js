@@ -5,6 +5,7 @@
 /*--------------------100363923|100363919|100293563--------------------*/
 
 var logged = 2; // 0 = unloggued // 1 = loggued // 2 = host account //
+var users = [];
 
 $(document).ready(function(){   //jQuery
 
@@ -167,18 +168,25 @@ function regStorage(){
         error++;
     }
 
-    /*if(document.getElementById('usernameReg').value == getFromCookie('username') && error==0){
-        if(document.getElementById('usernameReg').value != ""){
-            alert("Nombre de usuario ya en uso. Inténtelo con otro diferente");
+    if(error==0){
+            
+        if(searchStorage('username') == 1){
+            if(document.getElementById('usernameReg').value != ""){
+                alert("Nombre de usuario ya en uso. Inténtelo con otro diferente");
+            }
+            error++;
         }
-        error++;
     }
-    if(document.getElementById('emailReg').value == getFromCookie('email') && error==0){
-        if(document.getElementById('emailReg').value != ""){
-            alert("Cuenta ya registrada con ese correo. Inténtelo de nuevo con otra cuenta de correo");
+
+    if(error==0){
+    
+        if(searchStorage('email') == 1){
+            if(document.getElementById('emailReg').value != ""){
+                alert("Cuenta ya registrada con ese correo. Inténtelo de nuevo con otra cuenta de correo");
+            }
+            error++;
         }
-        error++;
-    }*/
+    }
     
     if(error == 0){
 
@@ -193,6 +201,29 @@ function regStorage(){
         phone: document.getElementById('phoneReg').value,
         birthdate: document.getElementById('birthdateReg').value
         }
-        console.log(register);
+        localStorage.setItem(users[users.length], JSON.stringify(register));
+        console.log(localStorage.length);
+        console.log(users.length);
+        var data = JSON.parse(localStorage.getItem(users[0]));
+        console.log(data.username);
+        data = JSON.parse(localStorage.getItem(users[2]));
+        console.log(data.username);
     }
+}
+
+function searchStorage(key){
+    var data;
+    var err = 0;
+    console.log(key);
+    console.log(users.length);
+    for(var i=0; i < users.length; i++){
+        data = JSON.parse(localStorage.getItem(users[i]));
+        console.log(data.key);
+        console.log(document.getElementById(key).value);
+        if(data.key == document.getElementById(key).value){
+            return err = 1;
+        }
+    }
+
+    return err;
 }

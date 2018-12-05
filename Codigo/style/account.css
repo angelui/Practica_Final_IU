@@ -117,7 +117,7 @@ header{
 #box{
         position: fixed;
         top: 0;
-        height: 150px;
+        height: 120px;
         width: 100%;
         z-index: 1;
         background-color: rgb(255, 255, 255);
@@ -165,7 +165,7 @@ h3{
     background-color: rgb(253, 0, 0);
 }
 
-#persInfFormAdv{
+#persInfFormAdv, #persInfForm{
     display: none;
 }
 
@@ -173,9 +173,9 @@ h3{
     display: none;
 }
 
-#register{
+/*#register{
     display: none;
-}
+}*/
 
 #errorPassword{
     margin-left: 1%;
@@ -242,7 +242,7 @@ h3{
 		width: 100%;	
 	}
 		
-	.inputD, .inputN{
+	.inputD, .inputN, .inputAll{
 		width: 98%;
 		margin-bottom: 3%;
 		float:left;
