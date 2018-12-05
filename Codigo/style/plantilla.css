@@ -43,6 +43,11 @@ button{
     cursor: pointer;
 }
 
+button:hover{
+    color: rgb(39, 39, 39);
+    background-color: rgb(162, 174, 226);
+}
+
 /* Header */
 
 header{
@@ -147,8 +152,7 @@ header{
 /* Main content */
 
 #mainContent{
-    position: absolute;
-    top: 6000px;
+    margin-top: 150px;
 }
 
 /*Pie de pagina*/
