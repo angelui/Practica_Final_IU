@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Resultados</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style/home.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/results.css" />
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,7 +18,7 @@
 </head>
 <body>
     <header>
-        <a href=""><img id="logo" src="img/logotransparente.png" alt="logo"></a>
+        <a href=""><img id="logo" src="img/logo.png" alt="logo"></a>
         <img id="menuIcon" src="img/menuicon.jpg" alt="menu">
         <div class="headMenu">
             <a class="headMenuOptions2">Idioma</a>      <!--Español/English-->
@@ -45,9 +45,9 @@
         </div>
 
     </header>
-    <!--
+    
     <div id="mainContent">
-        <form id="browser">
+       <!-- <form id="browser">
             <h3>Busca entre millones de ofertas<br></h3>
             <input id="location" type="text" placeholder="Destino" required/>
             <input id="arriveDate" class="inputD" type="date" required/>
@@ -55,11 +55,34 @@
             <input id="guests" class="inputN" type="number" placeholder="Nº de personas" required/>
             <input id="rooms" class="inputN" type="number" placeholder="Habitaciones" required/>
             <button id="search">Buscar</button>
-        </form>
+        </form>-->
+        <div id="results-container">
+            <div class="results">
+                <img class="result-image" src="img/default.jpg">
+                <p class="result-title">Hotel por defecto</p>
+                <p class="result-price">69€ noche</p>
+            </div>
+            <div class="results">
+                <img class="result-image" src="img/default.jpg">
+                <p class="result-title">Hotel por defecto</p>
+                <p class="result-price">69€ noche</p>
+            </div>
+            <div class="results">
+                <img class="result-image" src="img/default.jpg">
+                <p class="result-title">Hotel por defecto</p>
+                <p class="result-price">69€ noche</p>
+            </div>
+        </div>
     </div> 
-    -->
-    <footer>
-        
+    
+    <footer id="piedepag">
+        <div id="iconos">
+            <div class="bright"><a href="https://www.instagram.com/?hl=es"><i class="fa fa-instagram" style="font-size:48px;color:black"></i></a></div>
+            <div class="bright"><a href="https://www.facebook.com"><i class="fa fa-facebook-square" style="font-size:48px;color:black"></i></a></div>
+            <div class="bright"><a href="https://twitter.com"><i class="fa fa-twitter-square" style="font-size:48px;color:black"></i></a></div>
+            <div id="bright"><a href="https://es.linkedin.com"><i class="fa fa-linkedin-square" style="font-size:48px;color:black"></i></a></div>
+        </div>
+        <p>Copyright ® 2018. Todos los derechos reservados</p>
     </footer>
     
 </body>
