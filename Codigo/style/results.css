@@ -1,0 +1,277 @@
+/*-----------------------Interfaces de Usuario-------------------------*/
+/*---------------------Angel Luis Alonso Blazquez----------------------*/
+/*---------------------Kevin Santiago Diaz Delgado---------------------*/
+/*------------------------Marcos Arroyo Ruiz---------------------------*/
+/*--------------------100363923|100363919|100293563--------------------*/
+
+a{
+    font-family: 'Poppins', sans-serif;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+h5{
+    color: rgb(0, 0, 0);
+}
+
+h5:hover{
+    color: rgb(85, 85, 85);
+}
+
+h3, h4, p{
+    font-family: 'Poppins', sans-serif;
+    color: rgb(22, 22, 22);
+    margin-left: 1%;
+}
+
+h5:hover{
+    color: rgb(85, 85, 85);
+}
+
+body{
+    z-index: -1;
+}
+
+input{
+    font-family: 'Poppins', sans-serif;
+    padding: 5px;
+    border-width: thin;
+    border-color: rgba(85, 85, 85, 0.25);
+    border-radius: 5px;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+
+button{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    padding: 5px;
+    border-width: thin;
+    border-color: rgba(85, 85, 85, 0.25);
+    border-radius: 5px;
+    background-color: rgb(113, 135, 233);
+    cursor: pointer;
+    width: 99%;
+}
+
+/* Header */
+
+header{
+    margin-left: 2%;
+}
+
+#logo{
+    position: absolute;
+    top: 2%;
+    width: 233px;
+    height: 70px;
+    float: left;
+}
+
+.headMenu {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    top: 4%;
+    right: 3%;
+    float: right;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    list-style-type: none;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-color: rgba(85, 85, 85, 0.25);
+}
+
+.headMenuOptions, .headMenuOptions2 {
+    float: left;
+    text-align: center;
+    padding-right: 15px;
+}
+
+.headMenuOptions{
+    cursor: pointer;
+}
+
+.headMenuOptions:hover{
+    color: rgb(85, 85, 85);
+}
+
+.headMenuOptions2{
+    cursor: context-menu;
+}
+
+.downMenu{
+    display: none;
+    float: left;
+    padding-left: 0.75%;
+    padding-right: 2.5%;
+    list-style-type: none;
+}
+
+#menuIcon{
+    display: none;
+}
+
+/* Browser */
+
+.inputD{
+    padding: 4.2px;
+}
+
+.inputN{
+    float: right;
+}
+
+.inputD, .inputN{
+    width: 20%;
+    margin-bottom: 3%;
+}
+
+#search{
+    margin-left: 1%;
+}
+
+#location{
+    width: 98%;
+}
+
+/* Main Content */
+
+#mainContent{
+    margin-top: 15%;
+    width: 80%;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-top: 2%;
+    padding-bottom: 4%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(228, 228, 228, 0.7);
+    border-style: solid;
+    border-width: thin;
+    border-color: rgba(85, 85, 85, 0.25);
+}
+
+/* Result container */
+
+#results-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.results{
+    background-color: rgba(218, 63, 63, 0);
+    width: 25%;
+}
+
+.result-image, .result-title, .result-price{
+    margin-left: 10%;
+}
+
+.result-image{
+    margin-top: 5%;
+    width: 80%;
+}
+
+.result-price{
+    margin-bottom: 5%;
+}
+
+/*Pie de pagina*/
+
+#piedepag{
+    padding: 10px;
+    margin-top: 15px;
+    text-align: center;
+    color: black;
+}
+
+#iconos{
+    justify-content: center;
+    display: flex;
+}
+.bright{
+    border-right: black ridge;
+    padding-right: 2px;
+    padding-left: 2px;
+    
+}
+
+#bright{
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+/***************************Versión Tablet****************************/
+
+@media only screen and (max-width:768px){
+	
+	/* Header */
+	
+	#menuIcon{
+        display: none;
+    }
+
+	/* Browser */
+	
+	button{
+		width: 100%;	
+	}
+		
+	.inputD, .inputN{
+		width: 98%;
+		margin-bottom: 3%;
+		float:left;
+	}
+	
+	body{
+		background-size: auto;
+    }
+    
+    /* Results Container */
+
+    .result-title, .result-price{
+        font-size: 80%;
+    }
+}
+
+/***************************Versión Móvil****************************/
+
+@media only screen and (max-width:600px){
+	
+	/* Header */
+	
+	.headMenu{
+        display: none;
+    }
+	
+	#logo{
+        width: 200px;
+        height: 60px;
+    }
+
+    #menuIcon{
+        display: block;
+        width: 30px;
+        height: 30px;
+        float: right;
+        z-index: 2;
+        position: fixed;
+        right: 15px;
+        top: 25px;
+        cursor: pointer;
+    }
+	
+	#mainContent{
+		margin-top: 24%;
+    }
+    
+    /* Results Container */
+
+    .result-title, .result-price{
+        font-size: 80%;
+    }
+}
