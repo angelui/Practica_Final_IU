@@ -190,7 +190,7 @@ function regStorage(){
     
     if(error == 0){
 
-        var register = {
+        users[users.length] = {
         username: document.getElementById('usernameReg').value,
         password: document.getElementById('passwordReg').value,
         img: document.getElementById('imgReg').value,
@@ -201,26 +201,29 @@ function regStorage(){
         phone: document.getElementById('phoneReg').value,
         birthdate: document.getElementById('birthdateReg').value
         }
-        localStorage.setItem(users[users.length], JSON.stringify(register));
+
+        console.log(users[users.length-1]);
+        localStorage.setItem('users', JSON.stringify(users));
         console.log(localStorage.length);
         console.log(users.length);
-        var data = JSON.parse(localStorage.getItem(users[0]));
-        console.log(data.username);
-        data = JSON.parse(localStorage.getItem(users[2]));
-        console.log(data.username);
+        var data = [];
+        data = JSON.parse(localStorage.getItem('users'));
+        console.log(data[users.length-1].username);
+        
+        console.log("FIN");
     }
 }
 
 function searchStorage(key){
-    var data;
-    var err = 0;
+    var data = [];
+    var err = 0, key2 = key + 'Reg';
     console.log(key);
     console.log(users.length);
     for(var i=0; i < users.length; i++){
-        data = JSON.parse(localStorage.getItem(users[i]));
-        console.log(data.key);
-        console.log(document.getElementById(key).value);
-        if(data.key == document.getElementById(key).value){
+        data = JSON.parse(localStorage.getItem('users'));
+        console.log(data[i].key);
+        console.log(document.getElementById(key2).value);
+        if(data[i].key == document.getElementById(key2).value){
             return err = 1;
         }
     }
