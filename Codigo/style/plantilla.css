@@ -20,6 +20,7 @@ h5:hover{
 
 body{
     min-width: 840px;
+    position: relative;
 }
 
 input{
@@ -157,11 +158,12 @@ header{
 
 /*Pie de pagina*/
 
-#piedepag{
-    padding: 10px;
-    margin-top: 15px;
+footer{
     text-align: center;
-    color: black;
+    bottom: 0px;
+    width: 100%;
+    margin-top: 80px;
+    position: inherit;
 }
 
 #iconos{
