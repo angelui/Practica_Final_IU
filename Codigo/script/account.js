@@ -5,7 +5,7 @@
 /*--------------------100363923|100363919|100293563--------------------*/
 
 var logged = 2; // 0 = unloggued // 1 = loggued // 2 = host account //
-var users = [];
+var users = [], hosts = [];
 
 $(document).ready(function(){   //jQuery
 
@@ -170,7 +170,7 @@ function regStorage(){
 
     if(error==0){
             
-        if(searchStorage('username') == 1){
+        if(searchStorage('username', 'users') == 1){
             if(document.getElementById('usernameReg').value != ""){
                 alert("Nombre de usuario ya en uso. Inténtelo con otro diferente");
             }
@@ -180,7 +180,7 @@ function regStorage(){
 
     if(error==0){
     
-        if(searchStorage('email') == 1){
+        if(searchStorage('email', 'users') == 1){
             if(document.getElementById('emailReg').value != ""){
                 alert("Cuenta ya registrada con ese correo. Inténtelo de nuevo con otra cuenta de correo");
             }
@@ -199,7 +199,8 @@ function regStorage(){
         email: document.getElementById('emailReg').value,
         address: document.getElementById('addressReg').value,
         phone: document.getElementById('phoneReg').value,
-        birthdate: document.getElementById('birthdateReg').value
+        birthdate: document.getElementById('birthdateReg').value,
+        logged: document.getElementById('loggedReg').value
         }
 
         console.log(users[users.length-1]);
@@ -214,13 +215,24 @@ function regStorage(){
     }
 }
 
-function searchStorage(key){
+function regHostStorage(){
+
+    if(document.getElementById('hostPrice').value < 0){
+        alert("Precio no válido");
+    }
+    else{
+
+    }
+
+}
+
+function searchStorage(key, from){
     var data = [];
     var err = 0, key2 = key + 'Reg';
     console.log(key);
     console.log(users.length);
     for(var i=0; i < users.length; i++){
-        data = JSON.parse(localStorage.getItem('users'));
+        data = JSON.parse(localStorage.getItem(from));
         console.log(data[i].key);
         console.log(document.getElementById(key2).value);
         if(data[i].key == document.getElementById(key2).value){
