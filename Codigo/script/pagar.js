@@ -28,4 +28,5 @@ $(document).ready(function(){   //jQuery
     
 });
 
+
 /*falta hacer la funcion de pagar y que ponga el mensaje de exito*/
