@@ -43,16 +43,15 @@
             <a class="headMenuOptions2">Cuenta</a>      <!--Login/Registro . Info Personal/Anadir Hoteles/Cerrar Sesion-->
                 <ul id="downMenuUnlogged" class="downMenu">
                     <li><a href="javascript:;" onclick="changePopUpStatus(this);"><h5>Login</h5></a></li>
-                    <li><a href="#"><h5>Registro</h5></a></li>
+                    <li><a href="account.html"><h5>Registro</h5></a></li>
                 </ul>
                 <ul id="downMenuLogged" class="downMenu">
-                    <li><a href="#"><h5>Info Personal</h5></a></li>
-                    <li><a href="#"><h5>Cerrar Sesión</h5></a></li>
+                    <li><a href="account.html"><h5>Info Personal</h5></a></li>
+                    <li><a href="" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
                 </ul>
                 <ul id="downMenuHost" class="downMenu">
-                    <li><a href="#"><h5>Info Personal</h5></a></li>
-                    <li><a href="#"><h5>Añadir Hotel</h5></a></li>
-                    <li><a href="#"><h5>Cerrar Sesión</h5></a></li>
+                    <li><a href="account.html"><h5>Mi Cuenta</h5></a></li>
+                    <li><a href="" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
                 </ul>
             <a class="headMenuOptions" href="#">Mis reservas</a>
             <a class="headMenuOptions" href="#">Ayuda</a>        <!--Preguntas frecuentes-->

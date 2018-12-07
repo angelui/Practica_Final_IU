@@ -3,8 +3,12 @@
 /*---------------------Kevin Santiago Diaz Delgado---------------------*/
 /*------------------------Marcos Arroyo Ruiz---------------------------*/
 /*--------------------100363923|100363919|100293563--------------------*/
-
-var logged = 0; // 0 = unloggued // 1 = loggued // 2 = host account //
+if(confirm("tu primera vez aqui")){
+    var globalVariables = {
+        logged: 2 // 0 = unloggued // 1 = loggued // 2 = host account //
+    }
+    localStorage.setItem('globalVariables', JSON.stringify(globalVariables))
+}
 
 $(document).ready(function(){   //jQuery
 
@@ -13,7 +17,7 @@ $(document).ready(function(){   //jQuery
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
         
-        switch (logged){
+        switch (JSON.parse(localStorage.getItem('globalVariables')).logged){
             case 0:
                 $('#downMenuUnlogged').slideToggle();
                 break;
@@ -88,4 +92,12 @@ function changePopUpStatus(element, i){
         popup.classList = "popupNotVisible";
         popupVisible = false;
     } 
+}
+
+function endSession(){
+    var globalVariable = {
+        logged: JSON.parse(localStorage.getItem('globalVariables')).logged = 0
+    }
+    localStorage.setItem('globalVariables', JSON.stringify(globalVariables))
+    window.location.href = "home.html";
 }
