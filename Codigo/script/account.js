@@ -58,6 +58,7 @@ function choose(){
             show('persInfForm');
             break;
     }
+    showInf();
 }
 
 /* Pop-up */
@@ -168,7 +169,7 @@ function regStorage(){
 
     if(error==0){
             
-        if(searchStorage('username', 'users') == 1){
+        if(searchStorage('username', 'users', 'Reg') == 1){
             if(document.getElementById('usernameReg').value != ""){
                 alert("Nombre de usuario ya en uso. Inténtelo con otro diferente");
             }
@@ -178,7 +179,7 @@ function regStorage(){
 
     if(error==0){
     
-        if(searchStorage('email', 'users') == 1){
+        if(searchStorage('email', 'users', 'Reg') == 1){
             if(document.getElementById('emailReg').value != ""){
                 alert("Cuenta ya registrada con ese correo. Inténtelo de nuevo con otra cuenta de correo");
             }
@@ -236,7 +237,9 @@ function regHostStorage(){
             hostName: document.getElementById('hostNameReg').value,
             hostDescription: document.getElementById('hostDescriptionReg').value,
             hostPrice: document.getElementById('hostPriceReg').value,
-            hostImg: document.getElementById('hostImgReg').value,
+            hostImg1: document.getElementById('hostImg1Reg').value,
+            hostImg2: document.getElementById('hostImg2Reg').value,
+            hostImg3: document.getElementById('hostImg3Reg').value,
             hostAddress: document.getElementById('hostAddressReg').value
         }
         localStorage.setItem('hosts', JSON.stringify(data));
@@ -247,15 +250,15 @@ function regHostStorage(){
 
 /* Search in Local Storage */
 
-function searchStorage(key, from){
-    var data = [], err = 0, key2 = key + 'Reg';
+function searchStorage(key, from, keyS){
+    var data = [], err = 0, key2 = key + keyS;
     data = JSON.parse(localStorage.getItem(from));
 
     if(from == 'users'){
         if(key == 'username'){
             for(var i=0; i < data.length; i++){
                 if(data[i].username == document.getElementById(key2).value){
-                    return err = 1;
+                    err++;
                 }
             }
         }
@@ -263,7 +266,7 @@ function searchStorage(key, from){
         if(key == 'email'){
             for(var i=0; i < data.length; i++){
                 if(data[i].email == document.getElementById(key2).value){
-                    return err = 1;
+                    err++;
                 }
             }
         }
@@ -273,13 +276,121 @@ function searchStorage(key, from){
         if(key == 'hostName'){
             for(var i=0; i < data.length; i++){
                 if(data[i].name == document.getElementById(key2).value){
-                    return err = 1;
+                    err++;
                 }
             }
         }
     }
 
     return err;
+}
+
+/* Change form button */
+
+function changeForm(toForm){
+    show(toForm);
+    showInf();
+}
+
+/* Add basic info */
+
+function showInf(){
+    var data = [], glbVars = [];
+    data = JSON.parse(localStorage.getItem('users'));
+    glbVars = JSON.parse(localStorage.getItem('globalVariables'));
+
+    for(var i=0; i < data.length; i++){
+        if(data[i].username == glbVars.user){
+
+            document.getElementById('usernameInf').value = data[i].username;
+            document.getElementById('passwordInf').value = data[i].password;
+            document.getElementById('imgInf').value = data[i].img;
+            document.getElementById('nameInf').value = data[i].name;
+            document.getElementById('surnameInf').value = data[i].surname;
+            document.getElementById('emailInf').value = data[i].email;
+            document.getElementById('addressInf').value = data[i].address;
+            document.getElementById('phoneInf').value = data[i].phone;
+            document.getElementById('birthdateInf').value = data[i].birthdate;
+
+            i = data.length;
+        }
+    }
+}
+
+/* Change user account variables */
+
+function updateInf(){
+    var error = 0;
+    if(searchStorage('email', 'users', 'Inf') > 1 || document.getElementById('emailInf').value == ""){
+        if(document.getElementById('emailInf').value != ""){
+            alert("Cuenta ya registrada con ese correo. Inténtelo de nuevo con otra cuenta de correo");
+        }
+        else{
+            alert("Campo Email no válido");
+        }
+        error++;
+    }
+    
+    if(error == 0){
+        var data = [], glbVars = [];
+        data = JSON.parse(localStorage.getItem('users'));
+        glbVars = JSON.parse(localStorage.getItem('globalVariables'));
+
+        for(var i=0; i < data.length; i++){
+            if(data[i].username == glbVars.user){
+
+                data[i].name = document.getElementById('nameInf').value;
+                data[i].surname = document.getElementById('surnameInf').value;
+                data[i].email = document.getElementById('emailInf').value;
+                data[i].address = document.getElementById('addressInf').value;
+                data[i].phone = document.getElementById('phoneInf').value;
+                data[i].birthdate = document.getElementById('birthdateInf').value;
+                
+                localStorage.setItem('users', JSON.stringify(data));
+                alert("Actualizado con éxito");
+                i = data.length;
+            }
+        }
+    }
+}
+
+function updateInfAdv(){
+    var error = 0;
+    if(searchStorage('username', 'users', 'Inf') > 1 || document.getElementById('usernameInf').value == ""){
+        if(document.getElementById('usernameInf').value != ""){
+            alert("Cuenta ya registrada con ese nombre se usuario. Inténtelo de nuevo con otro");
+        }
+        else{
+            alert("Campo Nombre de usuario no válido");
+        }
+        error++;
+    }
+    
+    if(error == 0){
+        var data = [], glbVars = [];
+        data = JSON.parse(localStorage.getItem('users'));
+        glbVars = JSON.parse(localStorage.getItem('globalVariables'));
+
+        for(var i=0; i < data.length; i++){
+            if(data[i].username == glbVars.user){
+
+                data[i].username = document.getElementById('usernameInf').value;
+                data[i].password = document.getElementById('passwordInf').value;
+                data[i].img = document.getElementById('imgInf').value;
+
+                localStorage.setItem('users', JSON.stringify(data));
+
+                var globalVariables = {
+                    logged: glbVars.logged,
+                    user: document.getElementById('usernameInf').value
+                }
+                localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+
+                alert("Actualizado con éxito");
+                i = data.length;
+            }
+        }
+    }
 }
 
 /* Addicional functions */
@@ -318,6 +429,18 @@ function show(toshow){ // Change MainContent display
     document.getElementById("addHost").style.display = "none";
     document.getElementById("register").style.display = "none";
     document.getElementById(toshow).style.display = "block";
+}
+
+function showH(){ // Change MainContent display
+    if(JSON.parse(localStorage.getItem('globalVariables')).logged == 2){
+        document.getElementById("persInfForm").style.display = "none";
+        document.getElementById("persInfFormAdv").style.display = "none";
+        document.getElementById("register").style.display = "none";
+        document.getElementById("addHost").style.display = "block";
+    }
+    else{
+        alert('Acción no permitida');
+    }
 }
 
 function endSession(){ // Logout

@@ -77,9 +77,9 @@
 
                     <input id="birthdateInf" class="inputN" type="date" placeholder="Fecha de nacimiento" required/>
 
-                    <button class="normalButton" type="button" onclick="show('persInfFormAdv')">Opciones avanzadas</button>
-                    <button class="normalButton" type="button" onclick="putPersonalInf()">Cancelar</button>
-                    <button class="okButton" type="button" onclick="editAccount()">Aceptar Cambios</button>
+                    <button class="normalButton" type="button" onclick="changeForm('persInfFormAdv')">Opciones avanzadas</button>
+                    <button class="okButton" type="button" onclick="updateInf()">Aceptar Cambios</button>
+                    <button class="blackButton" type="button" onclick="show('addHost')">Añadir Alojamiento</button>
                 </fieldset>
             </form>
 
@@ -91,9 +91,9 @@
                     <input id="passwordInf" class="inputN" type="password" placeholder="Contraseña" required/>
                     <input id="imgInf" class="inputAll" type="url" placeholder="Imagen de perfil"/>
 
-                    <button class="normalButton" type="button" onclick="show('persInfForm')">Opciones básicas</button>
-                    <button class="normalButton" type="button" onclick="putPersonalInfAdv()">Cancelar</button>
-                    <button class="okButton" type="button" onclick="editAccountAdv()">Aceptar Cambios</button>
+                    <button class="normalButton" type="button" onclick="changeForm('persInfForm')">Opciones básicas</button>
+                    <button class="okButton" type="button" onclick="updateInfAdv()">Aceptar Cambios</button>
+                    <button class="blackButton" type="button" onclick="showH()">Añadir Alojamiento</button>
                 </fieldset>
             </form>
         </div>
@@ -105,9 +105,12 @@
                 <input id="hostNameReg" class="inputAll" type="text" placeholder="Nombre del alojamiento" required/>
                 <input id="hostDescriptionReg" class="inputAll" type="text" placeholder="Descripción" required/>
                 <input id="hostPriceReg" class="inputAll" type="number" placeholder="Precio por noche" required/>
-                <input id="hostImgReg" class="inputAll" type="url" placeholder="Imagen del alojamiento" required/>
+                <input id="hostImg1Reg" class="inputAll" type="url" placeholder="Imagen del alojamiento (Principal)" required/>
+                <input id="hostImg2Reg" class="inputAll" type="url" placeholder="Imagen del alojamiento" required/>
+                <input id="hostImg3Reg" class="inputAll" type="url" placeholder="Imagen del alojamiento" required/>
                 <input id="hostAddressReg" class="inputAll" type="text" placeholder="Dirección" required/>
 
+                <button class="blackButton" type="button" onclick="show('persInfForm')">Cancelar</button>
                 <button class="okButton" type="button" onclick="regHostStorage()">Añadir</button>
             </fieldset>
         </form>
