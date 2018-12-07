@@ -4,17 +4,16 @@
 /*------------------------Marcos Arroyo Ruiz---------------------------*/
 /*--------------------100363923|100363919|100293563--------------------*/
 
-var logged = 2; // 0 = unloggued // 1 = loggued // 2 = host account //
-var users = [], hosts = [];
-
 $(document).ready(function(){   //jQuery
 
+    glbVars();
+    choose();
     $('.headMenu').hover(showMenu);
 
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
 
-        switch (logged){
+        switch (JSON.parse(localStorage.getItem('globalVariables')).logged){
             case 0:
                 $('#downMenuUnlogged').slideToggle();
                 break;
@@ -28,6 +27,40 @@ $(document).ready(function(){   //jQuery
     }
     
 });
+
+/* Global Variables in Local Storage */
+
+function glbVars(){
+    if(localStorage.length == 0){
+        var users = [], hosts = [];
+        var globalVariables = {
+            logged: 0, // 0 = unloggued // 1 = loggued // 2 = host account //
+            user: 'none'
+        }
+        localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('hosts', JSON.stringify(hosts));
+    }
+}
+
+/* Choose method */
+
+function choose(){
+
+    switch (JSON.parse(localStorage.getItem('globalVariables')).logged){
+        case 0:
+            show('register');
+            break;
+        case 1:
+            show('persInfForm');
+            break;
+        case 2:
+            show('persInfForm');
+            break;
+    }
+}
+
+/* Pop-up */
 
 var popupVisible = false;
 
@@ -91,42 +124,7 @@ function changePopUpStatus(element, i){
     } 
 }
 
-function show(toshow){
-    document.getElementById("persInfForm").style.display = "none";
-    document.getElementById("persInfFormAdv").style.display = "none";
-    document.getElementById("addHost").style.display = "none";
-    document.getElementById("register").style.display = "none";
-    document.getElementById(toshow).style.display = "block";
-}
-
-function endSession(){
-    logged = 0;
-    window.location.href = "home.html";
-}
-
-function errPass(pass){ // Comprobacion pass
-    var err = "";
-    var i;
-    if(document.getElementById(pass).value.length > 7){ //Comprobacion longitud pass
-        err = "La contraseña debe de tener como máximo 8 caracteres";
-    }
-    else{
-        err = "";
-    }
-
-    for(i = 0; i < document.getElementById(pass).value.length; i++){ //Comprobacion letras [a-z] y dígitos [0-9]
-        if((document.getElementById(pass).value.charCodeAt(i) > 47 && document.getElementById(pass).value.charCodeAt(i) < 58)  || (document.getElementById(pass).value.charCodeAt(i) > 96 && document.getElementById(pass).value.charCodeAt(i) < 123)){
-           
-        }
-        else{
-            err = "Los caracteres permitidos son letras [a-z] y dígitos [0-9]"
-        }
-    }
-    if(pass == "passwordReg"){
-        document.getElementById("errorPassword").innerHTML = err;
-    }
-    return err;
-}
+/* Register in Local Storage */
 
 function regStorage(){
     var error = 0;
@@ -189,8 +187,10 @@ function regStorage(){
     }
     
     if(error == 0){
+        var data = [];
+        data = JSON.parse(localStorage.getItem('users'));
 
-        users[users.length] = {
+        data[data.length] = {
             username: document.getElementById('usernameReg').value,
             password: document.getElementById('passwordReg').value,
             img: document.getElementById('imgReg').value,
@@ -202,8 +202,14 @@ function regStorage(){
             birthdate: document.getElementById('birthdateReg').value,
             type: document.getElementById('loggedReg').value
         }
+        localStorage.setItem('users', JSON.stringify(data));
 
-        localStorage.setItem('users', JSON.stringify(users));
+        var globalVariables = {
+            logged: document.getElementById('loggedReg').value,
+            user: document.getElementById('usernameReg')
+        }
+        localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+        window.location.href = "home.html";
     }
 }
 
@@ -223,23 +229,23 @@ function regHostStorage(){
     }
     
     if(error == 0){
-        hosts[hosts.length] = {
+        var data = [];
+        data = JSON.parse(localStorage.getItem('users'));
+
+        data[data.length] = {
             hostName: document.getElementById('hostNameReg').value,
             hostDescription: document.getElementById('hostDescriptionReg').value,
             hostPrice: document.getElementById('hostPriceReg').value,
             hostImg: document.getElementById('hostImgReg').value,
             hostAddress: document.getElementById('hostAddressReg').value
         }
-        localStorage.setItem('hosts', JSON.stringify(hosts));
+        localStorage.setItem('hosts', JSON.stringify(data));
+        alert('Alojamiento añadido con éxito');
     }
 
 }
 
-function clearStorage(){
-    localStorage.clear();
-    users = [];
-    hosts = [];
-}
+/* Search in Local Storage */
 
 function searchStorage(key, from){
     var data = [], err = 0, key2 = key + 'Reg';
@@ -247,7 +253,7 @@ function searchStorage(key, from){
 
     if(from == 'users'){
         if(key == 'username'){
-            for(var i=0; i < users.length; i++){
+            for(var i=0; i < data.length; i++){
                 if(data[i].username == document.getElementById(key2).value){
                     return err = 1;
                 }
@@ -255,7 +261,7 @@ function searchStorage(key, from){
         }
 
         if(key == 'email'){
-            for(var i=0; i < users.length; i++){
+            for(var i=0; i < data.length; i++){
                 if(data[i].email == document.getElementById(key2).value){
                     return err = 1;
                 }
@@ -265,7 +271,7 @@ function searchStorage(key, from){
 
     if(from == 'hosts'){
         if(key == 'hostName'){
-            for(var i=0; i < hosts.length; i++){
+            for(var i=0; i < data.length; i++){
                 if(data[i].name == document.getElementById(key2).value){
                     return err = 1;
                 }
@@ -276,21 +282,49 @@ function searchStorage(key, from){
     return err;
 }
 
-/*function searchStorage(key, from){
-    var data = [];
-    data = JSON.parse(localStorage.getItem(from));
-    var err = 0, key2 = key + 'Reg';
-    console.log(key);
-    for(var i=0; i < users.length; i++){
-        console.log('ITERATION: ' + i);
-        console.log(data);
-        console.log(data[i].key);
-        console.log(data[i].username);
-        console.log(document.getElementById(key2).value);
-        if(data[i].key == document.getElementById(key2).value){
-            return err = 1;
-        }
+/* Addicional functions */
+
+function errPass(pass){ // Check pass
+    var err = "";
+    var i;
+    if(document.getElementById(pass).value.length > 7){ //Comprobacion longitud pass
+        err = "La contraseña debe de tener como máximo 8 caracteres";
+    }
+    else{
+        err = "";
     }
 
+    for(i = 0; i < document.getElementById(pass).value.length; i++){ //Comprobacion letras [a-z] y dígitos [0-9]
+        if((document.getElementById(pass).value.charCodeAt(i) > 47 && document.getElementById(pass).value.charCodeAt(i) < 58)  || (document.getElementById(pass).value.charCodeAt(i) > 96 && document.getElementById(pass).value.charCodeAt(i) < 123)){
+           
+        }
+        else{
+            err = "Los caracteres permitidos son letras [a-z] y dígitos [0-9]"
+        }
+    }
+    if(pass == "passwordReg"){
+        document.getElementById("errorPassword").innerHTML = err;
+    }
     return err;
-}*/
+}
+
+function clearStorage(){ // Clear LS
+    localStorage.clear();
+}
+
+function show(toshow){ // Change MainContent display
+    document.getElementById("persInfForm").style.display = "none";
+    document.getElementById("persInfFormAdv").style.display = "none";
+    document.getElementById("addHost").style.display = "none";
+    document.getElementById("register").style.display = "none";
+    document.getElementById(toshow).style.display = "block";
+}
+
+function endSession(){ // Logout
+    var globalVariables = {
+        logged: 0,
+        user: 'none'
+    }
+    localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+    window.location.href = "home.html";
+}

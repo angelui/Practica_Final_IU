@@ -33,28 +33,26 @@
     </div>
 
     <header>
-        <a href="home.html"><img id="logo" src="img/logo.png" alt="logo"></a>
+        <a href="home.html"><img id="logo" src="img/logotransparente.png" alt="logo"></a>
         <img id="menuIcon" src="img/menuicon.jpg" alt="menu">
         <div class="headMenu">
             <a class="headMenuOptions2">Idioma</a>      <!--Español/English-->
                 <ul id="downMenuLanguage" class="downMenu">
-                    <li><a href="#"><h5>Español</h5></a></li>
+                    <li><a href="javascript:;" onclick="clearStorage();"><h5>Español</h5></a></li>
                     <li><a href="#"><h5>English</h5></a></li>
                 </ul>
             <a class="headMenuOptions2">Cuenta</a>      <!--Login/Registro . Info Personal/Anadir Hoteles/Cerrar Sesion-->
                 <ul id="downMenuUnlogged" class="downMenu">
                     <li><a href="javascript:;" onclick="changePopUpStatus(this);"><h5>Login</h5></a></li>
-                    <li><a href="javascript:;" onclick="show('register');"><h5>Registro</h5></a></li>
+                    <li><a href="account.html"><h5>Registro</h5></a></li>
                 </ul>
                 <ul id="downMenuLogged" class="downMenu">
-                    <li><a href="javascript:;" onclick="show('persInfForm');"><h5>Info Personal</h5></a></li>
+                    <li><a href="account.html"><h5>Info Personal</h5></a></li>
                     <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
                 </ul>
                 <ul id="downMenuHost" class="downMenu">
-                    <ul id="downMenuHost" class="downMenu">
-                        <li><a href="#"><h5>Mi Cuenta</h5></a></li>
-                        <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
-                    </ul>
+                    <li><a href="account.html"><h5>Mi Cuenta</h5></a></li>
+                    <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
                 </ul>
             <a class="headMenuOptions" href="#">Mis reservas</a>
             <a class="headMenuOptions" href="#">Ayuda</a>        <!--Preguntas frecuentes-->
@@ -136,7 +134,6 @@
                     <p id="checkboxRegText"> He leído y acepto las Condiciones de uso <input id="checkboxReg" type="checkbox" required/></p>
 
                     <button class="okButton" type="button" onclick="regStorage()">Registro</button>
-                    <button class="okButton" type="button" onclick="clearStorage()">Clear</button>
                 </fieldset>
             </form>
     </div> 

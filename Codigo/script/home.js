@@ -3,20 +3,15 @@
 /*---------------------Kevin Santiago Diaz Delgado---------------------*/
 /*------------------------Marcos Arroyo Ruiz---------------------------*/
 /*--------------------100363923|100363919|100293563--------------------*/
-if(confirm("tu primera vez aqui")){
-    var globalVariables = {
-        logged: 2 // 0 = unloggued // 1 = loggued // 2 = host account //
-    }
-    localStorage.setItem('globalVariables', JSON.stringify(globalVariables))
-}
 
 $(document).ready(function(){   //jQuery
 
+    glbVars();
     $('.headMenu').hover(showMenu);
 
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
-        
+
         switch (JSON.parse(localStorage.getItem('globalVariables')).logged){
             case 0:
                 $('#downMenuUnlogged').slideToggle();
@@ -31,6 +26,23 @@ $(document).ready(function(){   //jQuery
     }
     
 });
+
+function clearStorage(){
+    localStorage.clear();
+}
+
+function glbVars(){
+    if(localStorage.length == 0){
+        var users = [], hosts = [];
+        var globalVariables = {
+            logged: 0, // 0 = unloggued // 1 = loggued // 2 = host account //
+            user: 'none'
+        }
+        localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('hosts', JSON.stringify(hosts));
+    }
+}
 
 var popupVisible = false;
 
@@ -95,9 +107,10 @@ function changePopUpStatus(element, i){
 }
 
 function endSession(){
-    var globalVariable = {
-        logged: JSON.parse(localStorage.getItem('globalVariables')).logged = 0
+    var globalVariables = {
+        logged: 0,
+        user: 'none'
     }
-    localStorage.setItem('globalVariables', JSON.stringify(globalVariables))
+    localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
     window.location.href = "home.html";
 }
