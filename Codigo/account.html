@@ -104,9 +104,11 @@
             <fieldset>
                 <legend><h3>Añadir Alojamiento</h3></legend>
 
-                <input id="hostName" class="inputAll" type="text" placeholder="Nombre del alojamiento" required/>
-                <input id="hostDescription" class="inputAll" type="text" placeholder="Descripción" required/>
-                <input id="hostPrice" class="inputAll" type="text" placeholder="Precio por noche" required/>
+                <input id="hostNameReg" class="inputAll" type="text" placeholder="Nombre del alojamiento" required/>
+                <input id="hostDescriptionReg" class="inputAll" type="text" placeholder="Descripción" required/>
+                <input id="hostPriceReg" class="inputAll" type="number" placeholder="Precio por noche" required/>
+                <input id="hostImgReg" class="inputAll" type="url" placeholder="Imagen del alojamiento" required/>
+                <input id="hostAddressReg" class="inputAll" type="text" placeholder="Dirección" required/>
 
                 <button class="okButton" type="button" onclick="regHostStorage()">Añadir</button>
             </fieldset>
@@ -134,6 +136,7 @@
                     <p id="checkboxRegText"> He leído y acepto las Condiciones de uso <input id="checkboxReg" type="checkbox" required/></p>
 
                     <button class="okButton" type="button" onclick="regStorage()">Registro</button>
+                    <button class="okButton" type="button" onclick="clearStorage()">Clear</button>
                 </fieldset>
             </form>
     </div> 

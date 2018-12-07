@@ -191,49 +191,101 @@ function regStorage(){
     if(error == 0){
 
         users[users.length] = {
-        username: document.getElementById('usernameReg').value,
-        password: document.getElementById('passwordReg').value,
-        img: document.getElementById('imgReg').value,
-        name: document.getElementById('nameReg').value,
-        surname: document.getElementById('surnameReg').value,
-        email: document.getElementById('emailReg').value,
-        address: document.getElementById('addressReg').value,
-        phone: document.getElementById('phoneReg').value,
-        birthdate: document.getElementById('birthdateReg').value,
-        logged: document.getElementById('loggedReg').value
+            username: document.getElementById('usernameReg').value,
+            password: document.getElementById('passwordReg').value,
+            img: document.getElementById('imgReg').value,
+            name: document.getElementById('nameReg').value,
+            surname: document.getElementById('surnameReg').value,
+            email: document.getElementById('emailReg').value,
+            address: document.getElementById('addressReg').value,
+            phone: document.getElementById('phoneReg').value,
+            birthdate: document.getElementById('birthdateReg').value,
+            type: document.getElementById('loggedReg').value
         }
 
-        console.log(users[users.length-1]);
         localStorage.setItem('users', JSON.stringify(users));
-        console.log(localStorage.length);
-        console.log(users.length);
-        var data = [];
-        data = JSON.parse(localStorage.getItem('users'));
-        console.log(data[users.length-1].username);
-        
-        console.log("FIN");
     }
 }
 
 function regHostStorage(){
+    var error = 0;
 
     if(document.getElementById('hostPrice').value < 0){
         alert("Precio no válido");
+        error++;
     }
-    else{
 
+    if(error == 0){
+        if(regHostStorage('hostName', 'hosts') == 1){
+            alert("Nombre ya registrado, inténtelo con otro");
+            error++;
+        }
+    }
+    
+    if(error == 0){
+        hosts[hosts.length] = {
+            hostName: document.getElementById('hostNameReg').value,
+            hostDescription: document.getElementById('hostDescriptionReg').value,
+            hostPrice: document.getElementById('hostPriceReg').value,
+            hostImg: document.getElementById('hostImgReg').value,
+            hostAddress: document.getElementById('hostAddressReg').value
+        }
+        localStorage.setItem('hosts', JSON.stringify(hosts));
     }
 
 }
 
+function clearStorage(){
+    localStorage.clear();
+    users = [];
+    hosts = [];
+}
+
 function searchStorage(key, from){
+    var data = [], err = 0, key2 = key + 'Reg';
+    data = JSON.parse(localStorage.getItem(from));
+
+    if(from == 'users'){
+        if(key == 'username'){
+            for(var i=0; i < users.length; i++){
+                if(data[i].username == document.getElementById(key2).value){
+                    return err = 1;
+                }
+            }
+        }
+
+        if(key == 'email'){
+            for(var i=0; i < users.length; i++){
+                if(data[i].email == document.getElementById(key2).value){
+                    return err = 1;
+                }
+            }
+        }
+    }
+
+    if(from == 'hosts'){
+        if(key == 'hostName'){
+            for(var i=0; i < hosts.length; i++){
+                if(data[i].name == document.getElementById(key2).value){
+                    return err = 1;
+                }
+            }
+        }
+    }
+
+    return err;
+}
+
+/*function searchStorage(key, from){
     var data = [];
+    data = JSON.parse(localStorage.getItem(from));
     var err = 0, key2 = key + 'Reg';
     console.log(key);
-    console.log(users.length);
     for(var i=0; i < users.length; i++){
-        data = JSON.parse(localStorage.getItem(from));
+        console.log('ITERATION: ' + i);
+        console.log(data);
         console.log(data[i].key);
+        console.log(data[i].username);
         console.log(document.getElementById(key2).value);
         if(data[i].key == document.getElementById(key2).value){
             return err = 1;
@@ -241,4 +293,4 @@ function searchStorage(key, from){
     }
 
     return err;
-}
+}*/

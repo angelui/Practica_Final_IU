@@ -172,15 +172,7 @@ h3{
     background-color: rgb(253, 0, 0);
 }
 
-#persInfFormAdv{
-    display: none;
-}
-
-#addHost{
-    display: none;
-}
-
-#register{
+#persInfFormAdv, #addHost, #register{
     display: none;
 }
 
