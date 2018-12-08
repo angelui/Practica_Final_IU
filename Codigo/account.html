@@ -64,43 +64,42 @@
 
     <div id="mainContent">
         <form id="persInfForm">
-                <fieldset>
-                    <legend><h3>Información Personal</h3></legend>
+            <fieldset>
+                <h3>Información Personal</h3>
 
-                    <input id="nameInf" class="inputD" type="text" placeholder="Nombre" required/>
-                    <input id="surnameInf" class="inputN" type="text" placeholder="Apellidos" required/>
+                <input id="nameInf" class="inputD" type="text" placeholder="Nombre" required/>
+                <input id="surnameInf" class="inputN" type="text" placeholder="Apellidos" required/>
 
-                    <input id="emailInf" class="inputAll" type="email" placeholder="Correo Electrónico" required/>
+                <input id="emailInf" class="inputAll" type="email" placeholder="Correo Electrónico" required/>
 
-                    <input id="addressInf" class="inputAll" type="text" placeholder="Dirección" required/>
-                    <input id="phoneInf" class="inputD" type="text" placeholder="Teléfono"/>
+                <input id="addressInf" class="inputAll" type="text" placeholder="Dirección" required/>
+                <input id="phoneInf" class="inputD" type="text" placeholder="Teléfono"/>
 
-                    <input id="birthdateInf" class="inputN" type="date" placeholder="Fecha de nacimiento" required/>
+                <input id="birthdateInf" class="inputN" type="date" required/>
 
-                    <button class="normalButton" type="button" onclick="changeForm('persInfFormAdv')">Opciones avanzadas</button>
-                    <button class="okButton" type="button" onclick="updateInf()">Aceptar Cambios</button>
-                    <button class="blackButton" type="button" onclick="show('addHost')">Añadir Alojamiento</button>
-                </fieldset>
-            </form>
+                <button class="normalButton" type="button" onclick="changeForm('persInfFormAdv')">Opciones avanzadas</button>
+                <button class="okButton" type="button" onclick="updateInf()">Aceptar Cambios</button>
+                <button class="blackButton" type="button" onclick="showH()">Añadir Alojamiento</button>
+            </fieldset>
+        </form>
 
-            <form id="persInfFormAdv">
-                <fieldset>
-                    <legend><h3>Información Personal Avanzada</h3></legend>
+        <form id="persInfFormAdv">
+            <fieldset>
+                <h3>Información Personal Avanzada</h3>
 
-                    <input id="usernameInf" class="inputD" type="text" placeholder="Nombre de usuario" required/>
-                    <input id="passwordInf" class="inputN" type="password" placeholder="Contraseña" required/>
-                    <input id="imgInf" class="inputAll" type="url" placeholder="Imagen de perfil"/>
+                <input id="usernameInf" class="inputD" type="text" placeholder="Nombre de usuario" required/>
+                <input id="passwordInf" class="inputN" type="password" placeholder="Contraseña" required/>
+                <input id="imgInf" class="inputAll" type="url" placeholder="Imagen de perfil"/>
 
-                    <button class="normalButton" type="button" onclick="changeForm('persInfForm')">Opciones básicas</button>
-                    <button class="okButton" type="button" onclick="updateInfAdv()">Aceptar Cambios</button>
-                    <button class="blackButton" type="button" onclick="showH()">Añadir Alojamiento</button>
-                </fieldset>
-            </form>
-        </div>
+                <button class="normalButton" type="button" onclick="changeForm('persInfForm')">Opciones básicas</button>
+                <button class="okButton" type="button" onclick="updateInfAdv()">Aceptar Cambios</button>
+                <button class="blackButton" type="button" onclick="showH()">Añadir Alojamiento</button>
+            </fieldset>
+        </form>
 
         <form id="addHost">
             <fieldset>
-                <legend><h3>Añadir Alojamiento</h3></legend>
+                <h3>Añadir Alojamiento</h3>
 
                 <input id="hostNameReg" class="inputAll" type="text" placeholder="Nombre del alojamiento" required/>
                 <input id="hostDescriptionReg" class="inputAll" type="text" placeholder="Descripción" required/>
@@ -109,6 +108,7 @@
                 <input id="hostImg2Reg" class="inputAll" type="url" placeholder="Imagen del alojamiento" required/>
                 <input id="hostImg3Reg" class="inputAll" type="url" placeholder="Imagen del alojamiento" required/>
                 <input id="hostAddressReg" class="inputAll" type="text" placeholder="Dirección" required/>
+                <input id="hostAddressHtmlReg" class="inputAll" type="text" placeholder="Dirección (html)" required/>
 
                 <button class="blackButton" type="button" onclick="show('persInfForm')">Cancelar</button>
                 <button class="okButton" type="button" onclick="regHostStorage()">Añadir</button>
@@ -116,29 +116,30 @@
         </form>
 
         <form id="register">
-                <fieldset>
-                    <legend><h3>Registro</h3></legend>
+            <fieldset>
+                <h3>Registro</h3>
 
-                    <input id="usernameReg" class="inputD" type="text" placeholder="Nombre de usuario" required/>
-                    <input id="passwordReg" class="inputN" type="password" onchange="errPass('passwordReg')" placeholder="Contraseña" required/>
-                    <p id="errorPassword"></p>
-                    <input id="imgReg" class="inputAll" type="url" placeholder="Imagen de perfil"/>
+                <input id="usernameReg" class="inputD" type="text" placeholder="Nombre de usuario*" required/>
+                <input id="passwordReg" class="inputN" type="password" onchange="errPass('passwordReg')" placeholder="Contraseña*" required/>
+                <p id="errorPassword"></p>
+                <input id="imgReg" class="inputAll" type="url" placeholder="Imagen de perfil"/>
 
-                    <input id="nameReg" class="inputD" type="text" placeholder="Nombre" required/>
-                    <input id="surnameReg" class="inputN" type="text" placeholder="Apellidos" required/>
-                    <input id="emailReg" class="inputAll" type="email" placeholder="Correo Electrónico" required/>
-                    <input id="addressReg" class="inputAll" type="text" placeholder="Dirección" required/>
-                    <input id="phoneReg" class="inputD" type="text" placeholder="Teléfono"/>
-                    <input id="birthdateReg" class="inputN" type="date" placeholder="Fecha de nacimiento" required/>
-                    <select id="loggedReg" class="optionMenu">
-                        <option value="1">Usuario</option>
-                        <option value="2">Host</option>
-                    </select>
-                    <p id="checkboxRegText"> He leído y acepto las Condiciones de uso <input id="checkboxReg" type="checkbox" required/></p>
+                <input id="nameReg" class="inputD" type="text" placeholder="Nombre*" required/>
+                <input id="surnameReg" class="inputN" type="text" placeholder="Apellidos*" required/>
+                <input id="emailReg" class="inputAll" type="email" placeholder="Correo Electrónico*" required/>
+                <input id="addressReg" class="inputAll" type="text" placeholder="Dirección*" required/>
+                <input id="phoneReg" class="inputD" type="text" placeholder="Teléfono"/>
+                <input id="birthdateReg" class="inputN" type="date" required/>
+                <select id="loggedReg" class="optionMenu">
+                    <option value="1">Usuario</option>
+                    <option value="2">Host</option>
+                </select>
+                <p id="checkboxRegText"> He leído y acepto las Condiciones de uso <input id="checkboxReg" type="checkbox" required/></p>
+                <p class="pSecondary"><br> Los valores con * son obligatorios.</p>
 
-                    <button class="okButton" type="button" onclick="regStorage()">Registro</button>
-                </fieldset>
-            </form>
+                <button class="okButton" type="button" onclick="regStorage()">Registro</button>
+            </fieldset>
+        </form>
     </div> 
     
     <footer id="piedepag">

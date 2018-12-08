@@ -78,6 +78,7 @@ function login(){
             i = data.length;
         }
     }
+    alert("Login incorrecto");
 }
 
 /* Pop-up */
@@ -86,53 +87,6 @@ var popupVisible = false;
 
 function changePopUpStatus(element, i){
     var popup = document.getElementById("popup");
-    var popupContainer = document.getElementById("popup-container");
-    var caller = element;
-    var callerClass = element.className;
-    var index = i;
-    /*
-    if(callerClass.localeCompare("lastOptitle") == 1){
-        var image = document.getElementById("popup-img");
-        var name = document.getElementById("popup-name");
-        var webDir = document.getElementById("popup-webDir");
-        var description = document.getElementById("popup-description");
-        var imgSrc = caller.previousElementSibling.src;
-        var descSrc = caller.nextElementSibling.innerHTML;
-        var txtArray = caller.innerHTML.split("<br><br>");
-        var contact = document.getElementById("popup-tlfno");
-        var econClass = document.getElementById("popup-econ");
-        
-        image.src = imgSrc;
-        image.alt = txtArray[0];
-        description.innerHTML = descSrc;
-        if(index == 0){
-            webDir.href = "https://www.marinabaysands.com";
-            name.innerHTML = txtArray[0].concat("<br><br>","10 Bayfront Avenue, ", txtArray[1]);
-            contact.innerHTML = "Tlfno: +65 6688 8888";
-            econClass.innerHTML = "Clase económica: muy alta";
-        } 
-        else if(index == 1){
-            webDir.href = "https://www.espanol.marriott.com/hotels/travel/madwi-the-westin-palace-madrid/";
-            name.innerHTML = txtArray[0].concat("<br><br>","Plaza de las Cortes, 7, 28014, ", txtArray[1]);
-            contact.innerHTML = "Tlfno: +34 913 60 80 00";
-            econClass.innerHTML = "Clase económica: alta";
-        }
-        else if(index == 2){
-            webDir.href = "http://hotelclarkbudapest.hu/";
-            name.innerHTML = txtArray[0].concat("<br><br>","1, Clark Ádám tér, 1013, ", txtArray[1]);
-            contact.innerHTML = "Tlfno: +36 20 515 2886";
-            econClass.innerHTML = "Clase económica: alta";
-        }
-        else if(index == 3){
-            webDir.href = "https://www.hotel-ariane.fr/es/";
-            name.innerHTML = txtArray[0].concat("<br><br>","35 rue de la Sablière, 75014, ", txtArray[1]);
-            contact.innerHTML = "Tlfno: +33 (0)1 45 45 67 13";
-            econClass.innerHTML = "Clase económica: alta";
-        }
-         
-        popup.classList = "popupVisible";
-        popupVisible = true;
-    }*/
 
     if(!popupVisible){
         popup.classList = "popupVisible";
@@ -236,13 +190,20 @@ function regStorage(){
 function regHostStorage(){
     var error = 0;
 
-    if(document.getElementById('hostPrice').value < 0){
-        alert("Precio no válido");
+    if(document.getElementById('hostNameReg').value == "" || document.getElementById('hostDescriptionReg').value == "" || document.getElementById('hostPriceReg').value == "" || document.getElementById('hostImg1Reg').value == "" || document.getElementById('hostImg2Reg').value == "" || document.getElementById('hostImg3Reg').value == "" || document.getElementById('hostAddressReg').value == "" || document.getElementById('hostAddressHtmlReg').value == ""){
+        alert("Debe rellenar todos los campos");
         error++;
     }
 
     if(error == 0){
-        if(regHostStorage('hostName', 'hosts') == 1){
+        if(document.getElementById('hostPriceReg').value < 0){
+            alert("Precio no válido");
+            error++;
+        }
+    }
+
+    if(error == 0){
+        if(searchStorage('hostName', 'hosts', 'Reg') > 0){
             alert("Nombre ya registrado, inténtelo con otro");
             error++;
         }
@@ -250,7 +211,7 @@ function regHostStorage(){
     
     if(error == 0){
         var data = [];
-        data = JSON.parse(localStorage.getItem('users'));
+        data = JSON.parse(localStorage.getItem('hosts'));
 
         data[data.length] = {
             hostName: document.getElementById('hostNameReg').value,
@@ -259,7 +220,8 @@ function regHostStorage(){
             hostImg1: document.getElementById('hostImg1Reg').value,
             hostImg2: document.getElementById('hostImg2Reg').value,
             hostImg3: document.getElementById('hostImg3Reg').value,
-            hostAddress: document.getElementById('hostAddressReg').value
+            hostAddress: document.getElementById('hostAddressReg').value,
+            hostAddressHtml: document.getElementById('hostAddressHtmlReg').value
         }
         localStorage.setItem('hosts', JSON.stringify(data));
         alert('Alojamiento añadido con éxito');
@@ -294,7 +256,7 @@ function searchStorage(key, from, keyS){
     if(from == 'hosts'){
         if(key == 'hostName'){
             for(var i=0; i < data.length; i++){
-                if(data[i].name == document.getElementById(key2).value){
+                if(data[i].hostName == document.getElementById(key2).value){
                     err++;
                 }
             }
