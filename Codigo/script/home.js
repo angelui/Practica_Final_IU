@@ -11,17 +11,16 @@ $(document).ready(function(){   //jQuery
 
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
+        var log = JSON.parse(localStorage.getItem('globalVariables')).logged;
 
-        switch (JSON.parse(localStorage.getItem('globalVariables')).logged){
-            case 0:
-                $('#downMenuUnlogged').slideToggle();
-                break;
-            case 1:
-                $('#downMenuLogged').slideToggle();
-                break;
-            case 2:
-                $('#downMenuHost').slideToggle();
-                break;
+        if(log == 0){
+            $('#downMenuUnlogged').slideToggle();
+        }
+        if(log == 1){
+            $('#downMenuLogged').slideToggle();
+        }
+        if(log == 2){
+            $('#downMenuHost').slideToggle();
         }
     }
     
@@ -36,11 +35,32 @@ function glbVars(){
         var users = [], hosts = [];
         var globalVariables = {
             logged: 0, // 0 = unloggued // 1 = loggued // 2 = host account //
-            user: 'none'
+            user: "none"
         }
         localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
         localStorage.setItem('users', JSON.stringify(users));
         localStorage.setItem('hosts', JSON.stringify(hosts));
+    }
+}
+
+/* Login */
+
+function login(){
+    var data = [];
+    data = JSON.parse(localStorage.getItem('users'));
+
+    for(var i=0; i < data.length; i++){
+        if(data[i].username == document.getElementById('usernameLog').value){
+            if(data[i].password == document.getElementById('passwordLog').value){
+                var globalVariables = {
+                    logged: data[i].type,
+                    user: data[i].username
+                }
+                localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+                window.location.href = "home.html";
+            }
+            i = data.length;
+        }
     }
 }
 

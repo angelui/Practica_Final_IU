@@ -12,17 +12,16 @@ $(document).ready(function(){   //jQuery
 
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
+        var log = JSON.parse(localStorage.getItem('globalVariables')).logged;
 
-        switch (JSON.parse(localStorage.getItem('globalVariables')).logged){
-            case 0:
-                $('#downMenuUnlogged').slideToggle();
-                break;
-            case 1:
-                $('#downMenuLogged').slideToggle();
-                break;
-            case 2:
-                $('#downMenuHost').slideToggle();
-                break;
+        if(log == 0){
+            $('#downMenuUnlogged').slideToggle();
+        }
+        if(log == 1){
+            $('#downMenuLogged').slideToggle();
+        }
+        if(log == 2){
+            $('#downMenuHost').slideToggle();
         }
     }
     
@@ -46,19 +45,39 @@ function glbVars(){
 /* Choose method */
 
 function choose(){
+    var log = JSON.parse(localStorage.getItem('globalVariables')).logged;
 
-    switch (JSON.parse(localStorage.getItem('globalVariables')).logged){
-        case 0:
-            show('register');
-            break;
-        case 1:
-            show('persInfForm');
-            break;
-        case 2:
-            show('persInfForm');
-            break;
+    if(log == 0){
+        show('register');
+    }
+    if(log == 1){
+        show('persInfForm');
+    }
+    if(log == 2){
+        show('persInfForm');
     }
     showInf();
+}
+
+/* Login */
+
+function login(){
+    var data = [];
+    data = JSON.parse(localStorage.getItem('users'));
+
+    for(var i=0; i < data.length; i++){
+        if(data[i].username == document.getElementById('usernameLog').value){
+            if(data[i].password == document.getElementById('passwordLog').value){
+                var globalVariables = {
+                    logged: data[i].type,
+                    user: data[i].username
+                }
+                localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+                window.location.href = "home.html";
+            }
+            i = data.length;
+        }
+    }
 }
 
 /* Pop-up */
@@ -170,7 +189,7 @@ function regStorage(){
     if(error==0){
             
         if(searchStorage('username', 'users', 'Reg') == 1){
-            if(document.getElementById('usernameReg').value != ""){
+            if(document.getElementById('usernameReg').value != "" || document.getElementById('usernameReg').value == "none"){
                 alert("Nombre de usuario ya en uso. Inténtelo con otro diferente");
             }
             error++;
@@ -207,7 +226,7 @@ function regStorage(){
 
         var globalVariables = {
             logged: document.getElementById('loggedReg').value,
-            user: document.getElementById('usernameReg')
+            user: document.getElementById('usernameReg').value
         }
         localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
         window.location.href = "home.html";
@@ -295,7 +314,7 @@ function changeForm(toForm){
 /* Add basic info */
 
 function showInf(){
-    var data = [], glbVars = [];
+    var data = [], glbVars;
     data = JSON.parse(localStorage.getItem('users'));
     glbVars = JSON.parse(localStorage.getItem('globalVariables'));
 
@@ -446,7 +465,7 @@ function showH(){ // Change MainContent display
 function endSession(){ // Logout
     var globalVariables = {
         logged: 0,
-        user: 'none'
+        user: "none"
     }
     localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
     window.location.href = "home.html";
