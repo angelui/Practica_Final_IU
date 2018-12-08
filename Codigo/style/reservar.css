@@ -381,9 +381,113 @@ footer{
     right: 40px;
 }
 
+/***********************Distriobucion reservar*******************/
+
+#cajaRoja{
+    border-color: red;
+    width: 99%;
+    height: 40%;
+    float: none;
+    margin: 1px;
+}
+
+.slideshow-container{
+    max-width: 1000px;
+    margin:auto;
+}
+.mySlides{
+    display: none;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Posicion boton netx */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.text{
+    color:#f2f2f2;
+    font-size:15px;
+    padding:8px 12px;
+    position:absolute;
+    bottom:8px;
+    width:100%;
+    text-align:center;
+}
+
+.numTxt{
+    color:#f2f2f2;
+    font-size:12px;
+    padding:8px 12px;
+    position:absolute;
+    top:0;
+}
+
+
+.fade{
+ -webkit-animation-name:fade;
+ -webkit-animation-duration:1.5s;
+ animation-name:fade;
+ animation-duration:1.5s;
+}
+
+@-webkit-keyframes fade{
+ from{opacity:.4}
+ to{opacity:1}
+}
+
+@keyframes fade{
+ from{opacity:.4}
+ to{opacity:1}
+}
 
 
 
+
+#cuadr{
+    display: flex;
+}
+#cajaNegra{
+    float: left;
+    width: 48%;
+    margin-left: 1px;
+    margin-right: 2px;
+}
+
+#cajaVerde{
+    border-color: green;
+    float: left;
+    width: 49%;
+    margin-right: 1px;
+    margin-left: 2px;
+}
+
+.recuadro{
+    border: solid 4px;
+}
 
 
 

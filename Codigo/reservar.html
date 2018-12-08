@@ -92,11 +92,63 @@
     </nav>
 
     <div id="mainContent">
-        
-        <button id="reservar" onclick="reservarPopup(this)">Reservar</button>
 
+        <div id="cajaRoja" class="recuadro">
+            <div class="slideshow-containerr">
+                
+                <div class="mySlides fade">
+                    <div class="numTxt">1/5</div>
+                    <img src="img/h1.jpg" alt="Imagen1" style="width:100%">
+                    <div class="text">Imagen 1</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numTxt">2/5</div>
+                    <img src="img/h2.jpg" alt="Imagen2" style="width:100%">
+                    <div class="text">Imagen 2</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numTxt">3/5</div>
+                    <img src="img/h3.jpg" alt="Imagen3" style="width:100%">
+                    <div class="text">Imagen 3</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numTxt">4/5</div>
+                    <img src="img/h4.jpg" alt="Imagen4" style="width:100%">
+                    <div class="text">Imagen 4</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numTxt">5/5</div>
+                    <img src="img/h5.jpg" alt="Imagen5" style="width:100%">
+                    <div class="text">Imagen 5</div>
+                </div>
+
+                <a class="prev" onclick="showSlides(-1)">&#10094;</a>
+                <a class="next" onclick="showSlides(1)">&#10095;</a>
+
+            </div>
+            
+        </div>    
+            <button onclick="showSlides(1)">imaagenes</button>
+        <div id="cuadr">
+            <div id="cajaNegra" class="recuadro">
+                <h2>opiniones</h2>
+               
+            </div>
+            
+            <div id="cajaVerde" class="recuadro">
+                <h2>reservas</h2>
+                <button id="reservar" onclick="reservarPopup(this)">Reservar</button>
+            </div>
+        </div>
+
+   
     </div> 
-    
+
+
     <footer>
         <div id="iconos">
             <div class="bright"><a href="https://www.instagram.com/?hl=es"><i class="fa fa-instagram" style="font-size: 38px;color:black"></i></a></div>
