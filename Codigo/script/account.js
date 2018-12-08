@@ -4,30 +4,83 @@
 /*------------------------Marcos Arroyo Ruiz---------------------------*/
 /*--------------------100363923|100363919|100293563--------------------*/
 
-var logged = 2; // 0 = unloggued // 1 = loggued // 2 = host account //
-var users = [], hosts = [];
-
 $(document).ready(function(){   //jQuery
 
+    glbVars();
+    choose();
     $('.headMenu').hover(showMenu);
 
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
+        var log = JSON.parse(localStorage.getItem('globalVariables')).logged;
 
-        switch (logged){
-            case 0:
-                $('#downMenuUnlogged').slideToggle();
-                break;
-            case 1:
-                $('#downMenuLogged').slideToggle();
-                break;
-            case 2:
-                $('#downMenuHost').slideToggle();
-                break;
+        if(log == 0){
+            $('#downMenuUnlogged').slideToggle();
+        }
+        if(log == 1){
+            $('#downMenuLogged').slideToggle();
+        }
+        if(log == 2){
+            $('#downMenuHost').slideToggle();
         }
     }
     
 });
+
+/* Global Variables in Local Storage */
+
+function glbVars(){
+    if(localStorage.length == 0){
+        var users = [], hosts = [];
+        var globalVariables = {
+            logged: 0, // 0 = unloggued // 1 = loggued // 2 = host account //
+            user: 'none'
+        }
+        localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('hosts', JSON.stringify(hosts));
+    }
+}
+
+/* Choose method */
+
+function choose(){
+    var log = JSON.parse(localStorage.getItem('globalVariables')).logged;
+
+    if(log == 0){
+        show('register');
+    }
+    if(log == 1){
+        show('persInfForm');
+    }
+    if(log == 2){
+        show('persInfForm');
+    }
+    showInf();
+}
+
+/* Login */
+
+function login(){
+    var data = [];
+    data = JSON.parse(localStorage.getItem('users'));
+
+    for(var i=0; i < data.length; i++){
+        if(data[i].username == document.getElementById('usernameLog').value){
+            if(data[i].password == document.getElementById('passwordLog').value){
+                var globalVariables = {
+                    logged: data[i].type,
+                    user: data[i].username
+                }
+                localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+                window.location.href = "home.html";
+            }
+            i = data.length;
+        }
+    }
+}
+
+/* Pop-up */
 
 var popupVisible = false;
 
@@ -91,42 +144,7 @@ function changePopUpStatus(element, i){
     } 
 }
 
-function show(toshow){
-    document.getElementById("persInfForm").style.display = "none";
-    document.getElementById("persInfFormAdv").style.display = "none";
-    document.getElementById("addHost").style.display = "none";
-    document.getElementById("register").style.display = "none";
-    document.getElementById(toshow).style.display = "block";
-}
-
-function endSession(){
-    logged = 0;
-    window.location.href = "home.html";
-}
-
-function errPass(pass){ // Comprobacion pass
-    var err = "";
-    var i;
-    if(document.getElementById(pass).value.length > 7){ //Comprobacion longitud pass
-        err = "La contraseña debe de tener como máximo 8 caracteres";
-    }
-    else{
-        err = "";
-    }
-
-    for(i = 0; i < document.getElementById(pass).value.length; i++){ //Comprobacion letras [a-z] y dígitos [0-9]
-        if((document.getElementById(pass).value.charCodeAt(i) > 47 && document.getElementById(pass).value.charCodeAt(i) < 58)  || (document.getElementById(pass).value.charCodeAt(i) > 96 && document.getElementById(pass).value.charCodeAt(i) < 123)){
-           
-        }
-        else{
-            err = "Los caracteres permitidos son letras [a-z] y dígitos [0-9]"
-        }
-    }
-    if(pass == "passwordReg"){
-        document.getElementById("errorPassword").innerHTML = err;
-    }
-    return err;
-}
+/* Register in Local Storage */
 
 function regStorage(){
     var error = 0;
@@ -170,8 +188,8 @@ function regStorage(){
 
     if(error==0){
             
-        if(searchStorage('username', 'users') == 1){
-            if(document.getElementById('usernameReg').value != ""){
+        if(searchStorage('username', 'users', 'Reg') == 1){
+            if(document.getElementById('usernameReg').value != "" || document.getElementById('usernameReg').value == "none"){
                 alert("Nombre de usuario ya en uso. Inténtelo con otro diferente");
             }
             error++;
@@ -180,7 +198,7 @@ function regStorage(){
 
     if(error==0){
     
-        if(searchStorage('email', 'users') == 1){
+        if(searchStorage('email', 'users', 'Reg') == 1){
             if(document.getElementById('emailReg').value != ""){
                 alert("Cuenta ya registrada con ese correo. Inténtelo de nuevo con otra cuenta de correo");
             }
@@ -189,8 +207,10 @@ function regStorage(){
     }
     
     if(error == 0){
+        var data = [];
+        data = JSON.parse(localStorage.getItem('users'));
 
-        users[users.length] = {
+        data[data.length] = {
             username: document.getElementById('usernameReg').value,
             password: document.getElementById('passwordReg').value,
             img: document.getElementById('imgReg').value,
@@ -202,8 +222,14 @@ function regStorage(){
             birthdate: document.getElementById('birthdateReg').value,
             type: document.getElementById('loggedReg').value
         }
+        localStorage.setItem('users', JSON.stringify(data));
 
-        localStorage.setItem('users', JSON.stringify(users));
+        var globalVariables = {
+            logged: document.getElementById('loggedReg').value,
+            user: document.getElementById('usernameReg').value
+        }
+        localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+        window.location.href = "home.html";
     }
 }
 
@@ -223,41 +249,43 @@ function regHostStorage(){
     }
     
     if(error == 0){
-        hosts[hosts.length] = {
+        var data = [];
+        data = JSON.parse(localStorage.getItem('users'));
+
+        data[data.length] = {
             hostName: document.getElementById('hostNameReg').value,
             hostDescription: document.getElementById('hostDescriptionReg').value,
             hostPrice: document.getElementById('hostPriceReg').value,
-            hostImg: document.getElementById('hostImgReg').value,
+            hostImg1: document.getElementById('hostImg1Reg').value,
+            hostImg2: document.getElementById('hostImg2Reg').value,
+            hostImg3: document.getElementById('hostImg3Reg').value,
             hostAddress: document.getElementById('hostAddressReg').value
         }
-        localStorage.setItem('hosts', JSON.stringify(hosts));
+        localStorage.setItem('hosts', JSON.stringify(data));
+        alert('Alojamiento añadido con éxito');
     }
 
 }
 
-function clearStorage(){
-    localStorage.clear();
-    users = [];
-    hosts = [];
-}
+/* Search in Local Storage */
 
-function searchStorage(key, from){
-    var data = [], err = 0, key2 = key + 'Reg';
+function searchStorage(key, from, keyS){
+    var data = [], err = 0, key2 = key + keyS;
     data = JSON.parse(localStorage.getItem(from));
 
     if(from == 'users'){
         if(key == 'username'){
-            for(var i=0; i < users.length; i++){
+            for(var i=0; i < data.length; i++){
                 if(data[i].username == document.getElementById(key2).value){
-                    return err = 1;
+                    err++;
                 }
             }
         }
 
         if(key == 'email'){
-            for(var i=0; i < users.length; i++){
+            for(var i=0; i < data.length; i++){
                 if(data[i].email == document.getElementById(key2).value){
-                    return err = 1;
+                    err++;
                 }
             }
         }
@@ -265,9 +293,9 @@ function searchStorage(key, from){
 
     if(from == 'hosts'){
         if(key == 'hostName'){
-            for(var i=0; i < hosts.length; i++){
+            for(var i=0; i < data.length; i++){
                 if(data[i].name == document.getElementById(key2).value){
-                    return err = 1;
+                    err++;
                 }
             }
         }
@@ -276,21 +304,169 @@ function searchStorage(key, from){
     return err;
 }
 
-/*function searchStorage(key, from){
-    var data = [];
-    data = JSON.parse(localStorage.getItem(from));
-    var err = 0, key2 = key + 'Reg';
-    console.log(key);
-    for(var i=0; i < users.length; i++){
-        console.log('ITERATION: ' + i);
-        console.log(data);
-        console.log(data[i].key);
-        console.log(data[i].username);
-        console.log(document.getElementById(key2).value);
-        if(data[i].key == document.getElementById(key2).value){
-            return err = 1;
+/* Change form button */
+
+function changeForm(toForm){
+    show(toForm);
+    showInf();
+}
+
+/* Add basic info */
+
+function showInf(){
+    var data = [], glbVars;
+    data = JSON.parse(localStorage.getItem('users'));
+    glbVars = JSON.parse(localStorage.getItem('globalVariables'));
+
+    for(var i=0; i < data.length; i++){
+        if(data[i].username == glbVars.user){
+
+            document.getElementById('usernameInf').value = data[i].username;
+            document.getElementById('passwordInf').value = data[i].password;
+            document.getElementById('imgInf').value = data[i].img;
+            document.getElementById('nameInf').value = data[i].name;
+            document.getElementById('surnameInf').value = data[i].surname;
+            document.getElementById('emailInf').value = data[i].email;
+            document.getElementById('addressInf').value = data[i].address;
+            document.getElementById('phoneInf').value = data[i].phone;
+            document.getElementById('birthdateInf').value = data[i].birthdate;
+
+            i = data.length;
         }
     }
+}
 
+/* Change user account variables */
+
+function updateInf(){
+    var error = 0;
+    if(searchStorage('email', 'users', 'Inf') > 1 || document.getElementById('emailInf').value == ""){
+        if(document.getElementById('emailInf').value != ""){
+            alert("Cuenta ya registrada con ese correo. Inténtelo de nuevo con otra cuenta de correo");
+        }
+        else{
+            alert("Campo Email no válido");
+        }
+        error++;
+    }
+    
+    if(error == 0){
+        var data = [], glbVars = [];
+        data = JSON.parse(localStorage.getItem('users'));
+        glbVars = JSON.parse(localStorage.getItem('globalVariables'));
+
+        for(var i=0; i < data.length; i++){
+            if(data[i].username == glbVars.user){
+
+                data[i].name = document.getElementById('nameInf').value;
+                data[i].surname = document.getElementById('surnameInf').value;
+                data[i].email = document.getElementById('emailInf').value;
+                data[i].address = document.getElementById('addressInf').value;
+                data[i].phone = document.getElementById('phoneInf').value;
+                data[i].birthdate = document.getElementById('birthdateInf').value;
+                
+                localStorage.setItem('users', JSON.stringify(data));
+                alert("Actualizado con éxito");
+                i = data.length;
+            }
+        }
+    }
+}
+
+function updateInfAdv(){
+    var error = 0;
+    if(searchStorage('username', 'users', 'Inf') > 1 || document.getElementById('usernameInf').value == ""){
+        if(document.getElementById('usernameInf').value != ""){
+            alert("Cuenta ya registrada con ese nombre se usuario. Inténtelo de nuevo con otro");
+        }
+        else{
+            alert("Campo Nombre de usuario no válido");
+        }
+        error++;
+    }
+    
+    if(error == 0){
+        var data = [], glbVars = [];
+        data = JSON.parse(localStorage.getItem('users'));
+        glbVars = JSON.parse(localStorage.getItem('globalVariables'));
+
+        for(var i=0; i < data.length; i++){
+            if(data[i].username == glbVars.user){
+
+                data[i].username = document.getElementById('usernameInf').value;
+                data[i].password = document.getElementById('passwordInf').value;
+                data[i].img = document.getElementById('imgInf').value;
+
+                localStorage.setItem('users', JSON.stringify(data));
+
+                var globalVariables = {
+                    logged: glbVars.logged,
+                    user: document.getElementById('usernameInf').value
+                }
+                localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+
+                alert("Actualizado con éxito");
+                i = data.length;
+            }
+        }
+    }
+}
+
+/* Addicional functions */
+
+function errPass(pass){ // Check pass
+    var err = "";
+    var i;
+    if(document.getElementById(pass).value.length > 7){ //Comprobacion longitud pass
+        err = "La contraseña debe de tener como máximo 8 caracteres";
+    }
+    else{
+        err = "";
+    }
+
+    for(i = 0; i < document.getElementById(pass).value.length; i++){ //Comprobacion letras [a-z] y dígitos [0-9]
+        if((document.getElementById(pass).value.charCodeAt(i) > 47 && document.getElementById(pass).value.charCodeAt(i) < 58)  || (document.getElementById(pass).value.charCodeAt(i) > 96 && document.getElementById(pass).value.charCodeAt(i) < 123)){
+           
+        }
+        else{
+            err = "Los caracteres permitidos son letras [a-z] y dígitos [0-9]"
+        }
+    }
+    if(pass == "passwordReg"){
+        document.getElementById("errorPassword").innerHTML = err;
+    }
     return err;
-}*/
+}
+
+function clearStorage(){ // Clear LS
+    localStorage.clear();
+}
+
+function show(toshow){ // Change MainContent display
+    document.getElementById("persInfForm").style.display = "none";
+    document.getElementById("persInfFormAdv").style.display = "none";
+    document.getElementById("addHost").style.display = "none";
+    document.getElementById("register").style.display = "none";
+    document.getElementById(toshow).style.display = "block";
+}
+
+function showH(){ // Change MainContent display
+    if(JSON.parse(localStorage.getItem('globalVariables')).logged == 2){
+        document.getElementById("persInfForm").style.display = "none";
+        document.getElementById("persInfFormAdv").style.display = "none";
+        document.getElementById("register").style.display = "none";
+        document.getElementById("addHost").style.display = "block";
+    }
+    else{
+        alert('Acción no permitida');
+    }
+}
+
+function endSession(){ // Logout
+    var globalVariables = {
+        logged: 0,
+        user: "none"
+    }
+    localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+    window.location.href = "home.html";
+}
