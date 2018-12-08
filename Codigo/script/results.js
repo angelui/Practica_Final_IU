@@ -26,16 +26,14 @@ $(document).ready(function(){   //jQuery
     
 });
 
-function clearStorage(){
-    localStorage.clear();
-}
+/* Global Variables in Local Storage */
 
 function glbVars(){
     if(localStorage.length == 0){
         var users = [], hosts = [];
         var globalVariables = {
             logged: 0, // 0 = unloggued // 1 = loggued // 2 = host account //
-            user: "none"
+            user: 'none'
         }
         localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
         localStorage.setItem('users', JSON.stringify(users));
@@ -65,6 +63,8 @@ function login(){
     alert("Login incorrecto");
 }
 
+/* Pop-up */
+
 var popupVisible = false;
 
 function changePopUpStatus(element, i){
@@ -80,15 +80,25 @@ function changePopUpStatus(element, i){
     } 
 }
 
-function endSession(){
+/* Addicional functions */
+
+function clearStorage(){ // Clear LS
+    localStorage.clear();
+}
+
+function show(toshow){ // Change MainContent display
+    document.getElementById(toshow).style.display = "block";
+}
+
+function endSession(){ // Logout
     var globalVariables = {
         logged: 0,
-        user: 'none'
+        user: "none"
     }
     localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
     window.location.href = "home.html";
 }
 
-function redirect(where){
+function redirect(where){ // Redirect
     window.location.href = where;
 }

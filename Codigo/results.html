@@ -10,11 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Hotels' Stuff</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style/home.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/results.css" />
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--link para los iconos del footer-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="script/home.js"></script>
+    <script src="script/results.js"></script>
 </head>
 <body>
     <div class="popupNotVisible" id="popup"> <!--Pop up-->
@@ -58,20 +59,48 @@
         </div>
     </header>
 
-    <div id="mainContent">
-        <form id="browser">
-            <h3>Busca entre millones de ofertas<br></h3>
-            <input id="location" type="text" placeholder="Destino" required/>
+    <div id="box">
+    </div>
+
+    <nav id="browser">
+            <input id="location" type="text" placeholder="Ej: Murcia" required/>
             <input id="arriveDate" class="inputD" type="date" required/>
             <input id="leftDate" class="inputD" type="date" required/>
-            <input id="guests" class="inputN" type="number" placeholder="Nº de personas" required/>
-            <input id="rooms" class="inputN" type="number" placeholder="Habitaciones" required/>
+            <input id="guests" class="inputN" type="number" placeholder="Ej: 3" required/>
+            <img class="icon" src="https://image.freepik.com/free-icon/users-group_318-48680.jpg" alt="person icon">
+            <input id="rooms" class="inputN" type="number" placeholder="Ej: 1" required/>
+            <img class="icon" src="https://image.freepik.com/free-icon/closed-door-with-border-silhouette_318-48772.jpg" alt="room icon">
             <button id="search" onclick="redirect('results.html')">Buscar</button>
-        </form>
+    </nav>
+
+    <div id="mainContent">
+        <div id="results-container">
+            <div class="results">
+                <img class="result-image" src="img/default.jpg">
+                <p class="result-title">Hotel por defecto</p>
+                <p class="result-price">69€ noche</p>
+            </div>
+            <div class="results">
+                <img class="result-image" src="img/default.jpg">
+                <p class="result-title">Hotel por defecto</p>
+                <p class="result-price">69€ noche</p>
+            </div>
+            <div class="results">
+                <img class="result-image" src="img/default.jpg">
+                <p class="result-title">Hotel por defecto</p>
+                <p class="result-price">69€ noche</p>
+            </div>
+        </div>
     </div> 
     
-    <footer>
-        
+    <footer id="piedepag">
+        <div id="iconos">
+            <div class="bright"><a href="https://www.instagram.com/?hl=es"><i class="fa fa-instagram" style="font-size:48px;color:black"></i></a></div>
+            <div class="bright"><a href="https://www.facebook.com"><i class="fa fa-facebook-square" style="font-size:48px;color:black"></i></a></div>
+            <div class="bright"><a href="https://twitter.com"><i class="fa fa-twitter-square" style="font-size:48px;color:black"></i></a></div>
+            <div id="bright"><a href="https://es.linkedin.com"><i class="fa fa-linkedin-square" style="font-size:48px;color:black"></i></a></div>
+        </div>
+        <p>Copyright ® 2018. Todos los derechos reservados</p>
     </footer>
     
 </body>

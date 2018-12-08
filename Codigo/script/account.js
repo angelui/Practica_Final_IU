@@ -174,7 +174,7 @@ function regStorage(){
             address: document.getElementById('addressReg').value,
             phone: document.getElementById('phoneReg').value,
             birthdate: document.getElementById('birthdateReg').value,
-            type: document.getElementById('loggedReg').value
+            type: document.getElementById('loggedReg').value,
         }
         localStorage.setItem('users', JSON.stringify(data));
 
