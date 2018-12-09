@@ -4,7 +4,7 @@
 /*------------------------Marcos Arroyo Ruiz---------------------------*/
 /*--------------------100363923|100363919|100293563--------------------*/
 
-a, h4, p, h3, option, select{
+a, p, h3, option, select{
     font-family: 'Poppins', sans-serif;
     color: rgb(0, 0, 0);
     text-decoration: none;
@@ -12,6 +12,12 @@ a, h4, p, h3, option, select{
 
 h3{
     margin-bottom: 0%;
+    cursor: pointer;
+}
+
+h4{
+    font-family: 'Poppins', sans-serif;
+    color: #3b3b3b;
 }
 
 h5{
@@ -133,6 +139,7 @@ header{
     margin-left: 1%;
     margin-top: 0%;
     cursor: pointer;
+    text-align: center;
 }
 
 /* Browser */
@@ -180,6 +187,7 @@ header{
     flex-wrap: wrap;
     justify-content: space-around;
     padding-bottom: 0%;
+    margin-top: 0%;
 }
 
 .results{
@@ -197,11 +205,39 @@ header{
 .result-image{
     margin-top: 10%;
     width: 80%;
+    margin-top: 4%;
 }
 
 .result-price{
     margin-top: 0%;
     margin-bottom: 5%;
+}
+
+#totalResults{
+    display: none;
+    text-align: center;
+}
+
+.result-address, #patron{
+    margin-top: 1%;
+    margin-bottom: 0%;
+}
+
+#patron{
+    margin-left: 2%;
+}
+
+.result-hPrice{
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+.totalR{
+    float: left;
+}
+
+img{
+    width: 30%;
 }
 
 /*Pie de pagina*/
@@ -287,6 +323,20 @@ header{
     
     .optionMenu{
         width: 100%;
+    }
+
+    img{
+        width: 60%;
+    }
+
+    #patron{
+        margin-top: 16%;
+        margin-bottom: 0%;
+        margin-left: 5%;
+    }
+
+    .result-title{
+        margin-top: 1%;
     }
 
     /* Main Content */

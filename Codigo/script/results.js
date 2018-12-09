@@ -7,34 +7,34 @@
 $(document).ready(function(){   //jQuery
 
     glbVars();
-    showHosts();
+    showHosts('ini');
     $('.headMenu').hover(showMenu);
 
-    $('#hostName0').click(function(){
+    /* First results */
+
+    $('.results').click(function(){
         var globalVariables = {
             logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
             user: JSON.parse(localStorage.getItem('globalVariables')).user,
-            host: '0'
+            host: this.id.substring(8,9)
         }
         localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
-        redirect('reserve.html');
+        console.log(this);
+        /*redirect('reserve.html');*/
     });
 
-    $('#hostName1').click(function(){
+    /* All results */
+
+    $('.pSecondary').click(function(){
+        showHosts('total');
+        show('totalResults');
+    });
+
+    $('.totalRName').click(function(){
         var globalVariables = {
             logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
             user: JSON.parse(localStorage.getItem('globalVariables')).user,
-            host: '1'
-        }
-        localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
-        redirect('reserve.html');
-    });
-
-    $('#hostName2').click(function(){
-        var globalVariables = {
-            logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
-            user: JSON.parse(localStorage.getItem('globalVariables')).user,
-            host: '2'
+            host: this.id.substring(8,9)
         }
         localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
         redirect('reserve.html');
@@ -148,18 +148,29 @@ function changePopUpStatus(element, i){
 
 /* Show hosts */
 
-function showHosts(){
-    var data = [], img = 'hostImg', name = 'hostName', price = 'hostPrice', img2, name2, price2;
+function showHosts(key){
+    var data = [];
     data = JSON.parse(localStorage.getItem('hosts'));
+    var img = 'hostImg', name = 'hostName', price = 'hostPrice', img2, name2, price2;
 
-    for(var i=0; i<3; i++){
-        img2 = img + i;
-        name2 = name + i;
-        price2 = price + i;
+    if(key == 'ini'){
 
-        document.getElementById(img2).src = data[i].hostImg1;
-        document.getElementById(name2).innerHTML = data[i].hostName;
-        document.getElementById(price2).innerHTML = data[i].hostPrice;
+        for(var i=0; i<3; i++){
+            img2 = img + i;
+            name2 = name + i;
+            price2 = price + i;
+
+            document.getElementById(img2).src = data[i].hostImg1;
+            document.getElementById(name2).innerHTML = data[i].hostName;
+            document.getElementById(price2).innerHTML = data[i].hostPrice;
+        }
+    }
+
+    else{
+        for(var i=0; i<data.length; i++){
+            name2 = name + 'T' + i;
+            $('#totalResults').append("<h3 id="+ name2 +" class=totalRName >"+ data[i].hostName +"<div class=totalR> </h3> <img src="+ data[i].hostImg1 +"> <p class=result-address>"+ data[i].hostAddress +"</p> <p class=result-hPrice>"+ data[i].hostPrice +"</p></div>");
+        }
     }
 }
 
@@ -170,6 +181,10 @@ function clearStorage(){ // Clear LS
 }
 
 function show(toshow){ // Change MainContent display
+    document.getElementById('results-container').style.display = "none";
+    document.getElementById('totalResults').style.display = "none";
+    document.getElementById('pSecondaryId').style.display = "none";
+    document.getElementById('patron').style.display = "none";
     document.getElementById(toshow).style.display = "block";
 }
 
