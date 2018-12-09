@@ -9,6 +9,8 @@ $(document).ready(function(){   //jQuery
     glbVars();
     $('.headMenu').hover(showMenu);
 
+    /* Menu */
+
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
         var log = JSON.parse(localStorage.getItem('globalVariables')).logged;

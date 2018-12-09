@@ -6,9 +6,11 @@
 
 $(document).ready(function(){   //jQuery
 
+    $('#phoneMenu').hide();
     glbVars();
     showHosts('ini');
     $('.headMenu').hover(showMenu);
+    $('#menuIcon').click(phoneMenuToggle);
 
     /* First results */
 
@@ -29,17 +31,6 @@ $(document).ready(function(){   //jQuery
         show('totalResults');
     });
 
-    $('.totalRName').click(function(){
-        console.log(123);
-        var globalVariables = {
-            logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
-            user: JSON.parse(localStorage.getItem('globalVariables')).user,
-            host: $(this).children().attr("id").substring(8,9)
-        }
-        localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
-        redirect('reserve.html');
-    });
-
     /* Menu */
 
     function showMenu(){
@@ -55,6 +46,29 @@ $(document).ready(function(){   //jQuery
         if(log == 2){
             $('#downMenuHost').slideToggle();
         }
+    }
+
+    /* Phone Menu */
+
+    function phoneMenuToggle(){
+        var log = JSON.parse(localStorage.getItem('globalVariables')).logged;
+
+        if(log == 0){
+            $('#menuP0').show();
+            $('#menuP1').hide();
+            $('#menuP2').hide();
+        }
+        if(log == 1){
+            $('#menuP0').hide();
+            $('#menuP1').show();
+            $('#menuP2').hide();
+        }
+        if(log == 2){
+            $('#menuP0').hide();
+            $('#menuP1').hide();
+            $('#menuP2').show();
+        }
+        $('#phoneMenu').slideToggle();
     }
     
 });
@@ -155,7 +169,7 @@ function showHosts(key){
     data = JSON.parse(localStorage.getItem('hosts'));
     var img = 'hostImg', name = 'hostName', price = 'hostPrice', img2, name2, price2;
 
-    if(key == 'ini'){
+    if(key == 'ini'){ /* Show patron Hosts */
 
         for(var i=0; i<3; i++){
             img2 = img + i;
@@ -168,12 +182,25 @@ function showHosts(key){
         }
     }
 
-    else{
+    else{ /* Show searched Hosts */
         for(var i=0; i<data.length; i++){
             name2 = name + 'T' + i;
-            $('#totalResults').append("<h3 id="+ name2 +" class=totalRName >"+ data[i].hostName +"<div class=totalR> </h3> <img src="+ data[i].hostImg1 +"> <p class=result-address>"+ data[i].hostAddress +"</p> <p class=result-hPrice>"+ data[i].hostPrice +"</p></div>");
+            $('#totalResults').append("<h3 id="+ name2 +" class=totalRName onclick=goReserve(this)>"+ data[i].hostName +"<div class=totalR> </h3> <img src="+ data[i].hostImg1 +"> <p class=result-address>"+ data[i].hostAddress +"</p> <p class=result-hPrice>"+ data[i].hostPrice +"</p></div>");
         }
     }
+}
+
+/* All results */
+
+function goReserve(obj) {
+    var globalVariables = {
+        logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
+        user: JSON.parse(localStorage.getItem('globalVariables')).user,
+        host: obj.id.substring(9,10)
+    }
+    localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+    redirect('reserve.html');
+    
 }
 
 /* Addicional functions */

@@ -6,9 +6,13 @@
 
 $(document).ready(function(){   //jQuery
 
+    $('#phoneMenu').hide();
     glbVars();
     showHost();
     $('.headMenu').hover(showMenu);
+    $('#menuIcon').click(phoneMenuToggle);
+
+    /* Menu */
 
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
@@ -23,6 +27,29 @@ $(document).ready(function(){   //jQuery
         if(log == 2){
             $('#downMenuHost').slideToggle();
         }
+    }
+
+    /* Phone Menu */
+
+    function phoneMenuToggle(){
+        var log = JSON.parse(localStorage.getItem('globalVariables')).logged;
+
+        if(log == 0){
+            $('#menuP0').show();
+            $('#menuP1').hide();
+            $('#menuP2').hide();
+        }
+        if(log == 1){
+            $('#menuP0').hide();
+            $('#menuP1').show();
+            $('#menuP2').hide();
+        }
+        if(log == 2){
+            $('#menuP0').hide();
+            $('#menuP1').hide();
+            $('#menuP2').show();
+        }
+        $('#phoneMenu').slideToggle();
     }
     
 });
@@ -182,6 +209,11 @@ function pay(){ // Reserve button
         redirect('pay.html');
     }
     else{
-        alert('Debes iniciar sesión o registrarte para poder reservar un alojamiento');
+        if(JSON.parse(localStorage.getItem('globalVariables')).logged != 0){
+            alert('Debes iniciar sesión o registrarte para poder reservar un alojamiento');
+        }
+        else{
+            alert('Debes rellenar todos los campos');
+        }
     }
 }

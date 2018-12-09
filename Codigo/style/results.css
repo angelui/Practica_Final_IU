@@ -10,6 +10,13 @@ a, p, h3, option, select{
     text-decoration: none;
 }
 
+ul, li{
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    list-style-type: none;
+}
+
 h3{
     margin-bottom: 0%;
     cursor: pointer;
@@ -240,6 +247,12 @@ img{
     width: 30%;
 }
 
+/* Phone Menu */
+
+#phoneMenu{
+    display: 'none';
+}
+
 /*Pie de pagina*/
 
 #piedepag{
@@ -283,7 +296,7 @@ img{
     #box{
         position: fixed;
         top: 0;
-        height: 98px;
+        height: 100px;
         width: 100%;
         z-index: 1;
         background-color: rgb(255, 255, 255);
@@ -345,6 +358,12 @@ img{
         margin-top: 100px;
     }
 
+    /* Phone Menu */
+
+    #phoneMenu{
+        display: 'none';
+    }
+
 }
 
 /***************************Versión Móvil****************************/
@@ -372,6 +391,18 @@ img{
         right: 15px;
         top: 25px;
         cursor: pointer;
+    }
+
+    /* Phone Menu */
+
+    #phoneMenu{
+        display: 'none';
+        position: fixed;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(255, 255, 255);
+        text-align: center;
     }
 
 }
@@ -418,14 +449,6 @@ img{
     line-height: 1;
     color:#f9f8eb;
 }
-/*
- #popup-img{
-    width: 30%;
-    height: 30%;
-    margin: 15px;
-    border-radius: 10px;
-    float: left;
-}*/
 
 .popTitle{
     margin-left: 45%;
