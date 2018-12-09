@@ -6,8 +6,30 @@
 
 $(document).ready(function(){   //jQuery
 
+    $('#phoneMenu').hide();
     glbVars();
+    showHosts('ini');
     $('.headMenu').hover(showMenu);
+    $('#menuIcon').click(phoneMenuToggle);
+
+    /* First results */
+
+    $('.results').click(function(){
+        var globalVariables = {
+            logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
+            user: JSON.parse(localStorage.getItem('globalVariables')).user,
+            host: $(this).children().attr("id").substring(7,8)
+        }
+        localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+        redirect('reserve.html');
+    });
+
+    /* All results */
+
+    $('.pSecondary').click(function(){
+        showHosts('total');
+        show('totalResults');
+    });
 
     /* Menu */
 
@@ -25,12 +47,33 @@ $(document).ready(function(){   //jQuery
             $('#downMenuHost').slideToggle();
         }
     }
+
+    /* Phone Menu */
+
+    function phoneMenuToggle(){
+        var log = JSON.parse(localStorage.getItem('globalVariables')).logged;
+
+        if(log == 0){
+            $('#menuP0').show();
+            $('#menuP1').hide();
+            $('#menuP2').hide();
+        }
+        if(log == 1){
+            $('#menuP0').hide();
+            $('#menuP1').show();
+            $('#menuP2').hide();
+        }
+        if(log == 2){
+            $('#menuP0').hide();
+            $('#menuP1').hide();
+            $('#menuP2').show();
+        }
+        $('#phoneMenu').slideToggle();
+    }
     
 });
 
-function clearStorage(){
-    localStorage.clear();
-}
+/* Global Variables in Local Storage */
 
 function glbVars(){
     if(localStorage.length == 0){
@@ -102,6 +145,8 @@ function login(){
     if(found < 1){alert("Login incorrecto");}
 }
 
+/* Pop-up */
+
 var popupVisible = false;
 
 function changePopUpStatus(element, i){
@@ -117,7 +162,62 @@ function changePopUpStatus(element, i){
     } 
 }
 
-function endSession(){
+/* Show hosts */
+
+function showHosts(key){
+    var data = [];
+    data = JSON.parse(localStorage.getItem('hosts'));
+    var img = 'hostImg', name = 'hostName', price = 'hostPrice', img2, name2, price2;
+
+    if(key == 'ini'){ /* Show patron Hosts */
+
+        for(var i=0; i<3; i++){
+            img2 = img + i;
+            name2 = name + i;
+            price2 = price + i;
+
+            document.getElementById(img2).src = data[i].hostImg1;
+            document.getElementById(name2).innerHTML = data[i].hostName;
+            document.getElementById(price2).innerHTML = data[i].hostPrice;
+        }
+    }
+
+    else{ /* Show searched Hosts */
+        for(var i=0; i<data.length; i++){
+            name2 = name + 'T' + i;
+            $('#totalResults').append("<h3 id="+ name2 +" class=totalRName onclick=goReserve(this)>"+ data[i].hostName +"<div class=totalR> </h3> <img src="+ data[i].hostImg1 +"> <p class=result-address>"+ data[i].hostAddress +"</p> <p class=result-hPrice>"+ data[i].hostPrice +"</p></div>");
+        }
+    }
+}
+
+/* All results */
+
+function goReserve(obj) {
+    var globalVariables = {
+        logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
+        user: JSON.parse(localStorage.getItem('globalVariables')).user,
+        host: obj.id.substring(9,10)
+    }
+    localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+    redirect('reserve.html');
+    
+}
+
+/* Addicional functions */
+
+function clearStorage(){ // Clear LS
+    localStorage.clear();
+}
+
+function show(toshow){ // Change MainContent display
+    document.getElementById('results-container').style.display = "none";
+    document.getElementById('totalResults').style.display = "none";
+    document.getElementById('pSecondaryId').style.display = "none";
+    document.getElementById('patron').style.display = "none";
+    document.getElementById(toshow).style.display = "block";
+}
+
+function endSession(){ // Logout
     var globalVariables = {
         logged: 0,
         user: 'none',
@@ -127,6 +227,6 @@ function endSession(){
     window.location.href = "home.html";
 }
 
-function redirect(where){
+function redirect(where){ // Redirect
     window.location.href = where;
 }

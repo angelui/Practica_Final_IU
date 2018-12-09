@@ -8,14 +8,14 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hotels' Stuff: Resultados de Búsqueda</title>
+    <title>Hotels' Stuff: Pago</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style/results.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/pay.css" /><!-- añadir style/-->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--link para los iconos del footer-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="script/results.js"></script>
+    <script src="script/pay.js"></script><!-- añadir script/-->
 </head>
 <body>
     <div class="popupNotVisible" id="popup"> <!--Pop up-->
@@ -84,52 +84,85 @@
     <div id="box">
     </div>
 
-    <nav id="browser">
-            <input id="location" type="text" placeholder="Ej: Murcia" required/>
-            <input id="arriveDate" class="inputD" type="date" required/>
-            <input id="leftDate" class="inputD" type="date" required/>
-            <input id="guests" class="inputN" type="number" placeholder="Ej: 3" required/>
-            <img class="icon" src="https://image.freepik.com/free-icon/users-group_318-48680.jpg" alt="person icon">
-            <input id="rooms" class="inputN" type="number" placeholder="Ej: 1" required/>
-            <img class="icon" src="https://image.freepik.com/free-icon/closed-door-with-border-silhouette_318-48772.jpg" alt="room icon">
-            <button id="search" onclick="redirect('results.html')">Buscar</button>
-    </nav>
-
     <div id="mainContent">
-        <h4 id="patron">Resultados patrocinados</h4>
-        <div id="results-container">
-            <div class="results">
-                <img id="hostImg0" class="result-image" src="img/default.jpg" alt="img host 3">
-                <h3 id="hostName0" class="result-title">Hotel por defecto</h3>
-                <p id="hostPrice0" class="result-price">69€ noche</p>
-            </div>
-            <div class="results">
-                <img id="hostImg1" class="result-image" src="img/default.jpg" alt="img host 1">
-                <h3 id="hostName1" class="result-title">Hotel por defecto</h3>
-                <p id="hostPrice1" class="result-price">69€ noche</p>
-            </div>
-            <div class="results">
-                <img id="hostImg2" class="result-image" src="img/default.jpg" alt="img host 2">
-                <h3 id="hostName2" class="result-title">Hotel por defecto</h3>
-                <p id="hostPrice2" class="result-price">69€ noche</p>
+        <div id="pay">
+            <h1>PseudoPay</h1>
+            <p class="pSecondary">El pago seguro</p>
+            <div id="pagar">
+                <form id="pagarForm">
+                    <h3>Metodo de Pago</h3>
+
+                    <fieldset>
+                        <h4>Número de Tarjeta</h4>
+                        <input type="number" id="numTarjeta-1" class="inputCardNumber" placeholder="0000"/>
+                        <input type="number" id="numTarjeta-2" class="inputCardNumber" placeholder="0000"/>
+                        <input type="number" id="numTarjeta-3" class="inputCardNumber" placeholder="0000"/>
+                        <input type="number" id="numTarjeta-4" class="inputCardNumber" placeholder="0000"/>
+                    </fieldset>
+                    <fieldset>
+                        <h4>Nombre y Apellido</h4>
+                        <input type="text" id="nombreYApellido" class="inputAll" placeholder="Ej: Juan Ruíz">
+                    </fieldset>
+                    <fieldset class="fieldset-fechaExp">
+                        <h4>Fecha de Caducidad</h4>
+                        <div class="select">
+                            <select id="mes-expiracion">
+                                <option>01</option>
+                                <option>02</option>
+                                <option>03</option>
+                                <option>04</option>
+                                <option>05</option>
+                                <option>06</option>
+                                <option>07</option>
+                                <option>08</option>
+                                <option>09</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                            </select>
+                        </div>
+                        <div class="select">
+                            <select id="año-expiracion">
+                                <option>2019</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                                <option>2022</option>
+                                <option>2023</option>
+                                <option>2024</option>
+                                <option>2025</option>
+                                <option>2026</option>
+                                <option>2027</option>
+                                <option>2028</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <input id="ccv" class="inputAll" type="number" placeholder="CCV" required/>
+                    </fieldset>
+                    <fieldset>
+                        <button class="reserveButton" type="button" onclick="payButton()">Pagar</button>
+                    </fieldset>
+                </form>
             </div>
         </div>
-        <p id="pSecondaryId" class="pSecondary">Ver todos los resultados</p>
 
-        <div id="totalResults">
-            <h4>Resultados de la búsqueda</h4>
+        <div id="paid">
+            <h2>PAGO REALIZADO CON ÉXITO</h2>
+            <button class="reserveButton" onclick="redirect('home.html')">Aceptar</button>
         </div>
     </div> 
-    
-    <footer id="piedepag">
+
+    <footer>
         <div id="iconos">
-            <div class="bright"><a href="https://www.instagram.com/?hl=es"><i class="fa fa-instagram" style="font-size:48px;color:black"></i></a></div>
-            <div class="bright"><a href="https://www.facebook.com"><i class="fa fa-facebook-square" style="font-size:48px;color:black"></i></a></div>
-            <div class="bright"><a href="https://twitter.com"><i class="fa fa-twitter-square" style="font-size:48px;color:black"></i></a></div>
-            <div id="bright"><a href="https://es.linkedin.com"><i class="fa fa-linkedin-square" style="font-size:48px;color:black"></i></a></div>
+            <div class="bright"><a href="https://www.instagram.com/?hl=es"><i class="fa fa-instagram" style="font-size: 38px;color:black"></i></a></div>
+            <div class="bright"><a href="https://www.facebook.com"><i class="fa fa-facebook-square" style="font-size: 38px;color:black"></i></a></div>
+            <div class="bright"><a href="https://twitter.com"><i class="fa fa-twitter-square" style="font-size: 38px;color:black"></i></a></div>
+            <div id="bright"><a href="https://es.linkedin.com"><i class="fa fa-linkedin-square" style="font-size: 38px;color:black"></i></a></div>
         </div>
         <p>Copyright ® 2018. Todos los derechos reservados</p>
     </footer>
     
 </body>
-</html> 
+</html>
+

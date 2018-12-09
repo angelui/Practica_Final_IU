@@ -4,7 +4,7 @@
 /*------------------------Marcos Arroyo Ruiz---------------------------*/
 /*--------------------100363923|100363919|100293563--------------------*/
 
-a, p, h3, option, select{
+a, h4, p, h3, h1, option, select, label{
     font-family: 'Poppins', sans-serif;
     color: rgb(0, 0, 0);
     text-decoration: none;
@@ -17,27 +17,35 @@ ul, li{
     list-style-type: none;
 }
 
-h3{
-    margin-bottom: 0%;
-    cursor: pointer;
+h2{
+    font-family: 'Poppins', sans-serif;
+    color: rgb(12, 126, 18);
+}
+
+h1, h2{
+    font-size: 2em;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 h4{
-    font-family: 'Poppins', sans-serif;
-    color: #3b3b3b;
+    font-size: 0.9em;
 }
 
 h5{
     color: rgb(0, 0, 0);
 }
 
-h5:hover, h3:hover{
+h5:hover{
     color: rgb(85, 85, 85);
 }
 
 body{
     min-width: 840px;
+    margin: 0;
+    margin-bottom: 40px;
 }
+
 
 input{
     float: left;
@@ -63,10 +71,6 @@ button{
 button:hover{
     color: rgb(39, 39, 39);
     background-color: rgb(162, 174, 226);
-}
-
-fieldset{
-    border: none;
 }
 
 /* Header */
@@ -134,117 +138,96 @@ header{
 #box{
     position: fixed;
     top: 0;
-    height: 150px;
+    height: 100px;
     width: 100%;
-    z-index: 1;
+    z-index: 0;
     background-color: rgb(255, 255, 255);
 }
 
 .pSecondary{
     color: gray;
-    font-size: 1em;
+    font-size: 0.75em;
     margin-left: 1%;
     margin-top: 0%;
-    cursor: pointer;
-    text-align: center;
-}
-
-/* Browser */
-
-#browser{
-    position: fixed;
-    z-index: 1;
-    top: 100px;
-    width: 100%;
-    margin-left: 2%;
-}
-
-.inputD{
-    padding: 4.2px;
-}
-
-.inputN{
-    width: 40px;
-}
-
-.icon{
-    display: block;
-    float: left;
-    width: 27px;
-    margin-top: 2px;
-    margin-left: 0.5%;
-    opacity: 0.9;
-}
-
-#search{
-    margin-left: 2%;
+    margin-bottom: 0%;
 }
 
 /* Main content */
 
 #mainContent{
     margin-top: 150px;
-    text-align: center;
 }
 
-/* Result container */
-
-#results-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding-bottom: 0%;
-    margin-top: 0%;
+h1, h3, h2, .pSecondary{
+    text-align:center;
 }
 
-.results{
-    width: 25%;
+/* Pay form */
+
+#pagar{
+    margin:0% auto;
+    padding:35px 15px;
+    min-height: 20%;
+    color: #111111;
+    border-radius: 10px;
+    width:50%;
 }
 
-.result-title{
-    cursor: pointer;
+#pagarForm{
+    margin:0% auto;
+    padding:15px 15px;
+    min-height: 20%;
+    color: #111111;
+    border-radius: 10px;
+    border: solid;
+    width:80%;
 }
 
-.result-image, .result-title, .result-price{
-    margin-left: 10%;
+
+.inputCardNumber {
+        width: 15%;
+        display: inline-block;
+        margin-right: 8px;
 }
 
-.result-image{
-    margin-top: 10%;
-    width: 80%;
-    margin-top: 4%;
+fieldset {
+    border: none;
+    padding: 0;
+    padding: 10px 0;
+    clear: both;
 }
 
-.result-price{
-    margin-top: 0%;
-    margin-bottom: 5%;
+label {
+      display: block;
+      font-size: 15px;
+      color: hsla(0, 0, 0, .6);
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-family: Inconsolata;
 }
 
-#totalResults{
-    display: none;
-    text-align: center;
-}
-
-.result-address, #patron{
-    margin-top: 1%;
-    margin-bottom: 0%;
-}
-
-#patron{
-    margin-left: 2%;
-}
-
-.result-hPrice{
-    margin-top: 0%;
-    margin-bottom: 0%;
-}
-
-.totalR{
+.select {
     float: left;
+    font-family: 'Poppins', sans-serif;
+    padding: 5px;
+    border-width: thin;
+    border-color: rgba(85, 85, 85, 0.25);
+    border-radius: 5px;
+    margin-left: 1%;
 }
 
-img{
-    width: 30%;
+.reserveButton{
+    width: 98%;
+    margin-left: 1%;
+}
+
+.inputAll{
+    width: 95%;
+	margin-bottom: 2%;
+}
+
+#paid{
+    display: none;
 }
 
 /* Phone Menu */
@@ -253,24 +236,24 @@ img{
     display: 'none';
 }
 
-/*Pie de pagina*/
-
-#piedepag{
-    padding: 10px;
-    margin-top: 15px;
+/* Footer */
+footer{
     text-align: center;
-    color: black;
+    position: initial;
+    bottom: 0px;
+    width: 100%;
+    margin-top: 60px;
 }
 
 #iconos{
     justify-content: center;
     display: flex;
 }
+
 .bright{
     border-right: black ridge;
     padding-right: 2px;
-    padding-left: 2px;
-    
+    padding-left: 2px;    
 }
 
 #bright{
@@ -287,75 +270,38 @@ img{
     }
 
     /* Header */
-    #browser{
-        position: relative;
-        margin-bottom: 1%;
-        z-index: 0;
-    }
 
     #box{
         position: fixed;
         top: 0;
-        height: 100px;
+        height: 98px;
         width: 100%;
         z-index: 1;
         background-color: rgb(255, 255, 255);
     }
 
-    #search, .inputD, .inputN, .inputAll, #location, header, #browser{
-        margin-left: 0%;
-    }
-
-    #menuIcon, .icon{
+    #menuIcon{
         display: none;
     }
 
-    /* Browser */
-
-    #results-container{
-        display: block;
-        padding-bottom: 2%;
-    }
-    
-    .results{
-        width: 50%;
-        margin: auto;
-    }
-
-    /* Main Content */
-
     button{
-        width: 100%;
-	}
-		
-	.inputD, .inputN, .inputAll, #location{
-		width: 98%;
+        width: 90%;
+    }
+
+    .inputAll{
+		width: 96%;
 		margin-bottom: 3%;
 		float:left;
     }
-    
-    .optionMenu{
+
+    /* Pay form */
+
+    #pagarForm{
         width: 100%;
     }
 
-    img{
-        width: 60%;
-    }
-
-    #patron{
-        margin-top: 16%;
-        margin-bottom: 0%;
-        margin-left: 5%;
-    }
-
-    .result-title{
-        margin-top: 1%;
-    }
-
-    /* Main Content */
-
-    #mainContent{
-        margin-top: 100px;
+    .reserveButton{
+        width: 99%;
     }
 
     /* Phone Menu */
@@ -370,7 +316,7 @@ img{
 
 @media only screen and (max-width:600px){
 
-    #browser, .headMenu{
+    .headMenu{
         display: none;
     }
 
@@ -393,6 +339,17 @@ img{
         cursor: pointer;
     }
 
+    /* Pay form */
+
+    #pagar{
+        width: 80%;
+        margin: 0%;
+    }
+
+    .inputAll{
+        width: 96%;
+    }
+
     /* Phone Menu */
 
     #phoneMenu{
@@ -404,7 +361,6 @@ img{
         background-color: rgb(255, 255, 255);
         text-align: center;
     }
-
 }
 
 /***************************Pop-up****************************/
@@ -437,6 +393,19 @@ img{
     width:50%;
 }
 
+#container {
+    position: relative;
+    margin:7% auto;
+    padding:35px 15px;
+    min-height: 20%;
+    background-color: #fffbfb;
+    color: #111111;
+    border-radius: 10px;
+    width:50%;
+    text-align: center;
+    overflow: hidden;
+}
+
  #popup-close {
     position: absolute;
     top:3px;
@@ -466,4 +435,3 @@ img{
     margin: 5% 1%;
     margin-bottom: 0%;
 }
- 

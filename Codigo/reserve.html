@@ -8,14 +8,14 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hotels' Stuff: Cuenta</title>
+    <title>Hotels' Stuff: Reserva</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style/account.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/reserve.css" />
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--link para los iconos del footer-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="script/account.js"></script>
+    <script src="script/reserve.js"></script>
 </head>
 <body>
     <div class="popupNotVisible" id="popup"> <!--Pop up-->
@@ -84,84 +84,53 @@
     <div id="box">
     </div>
 
+    <nav id="browser">
+            <input id="location" type="text" placeholder="Ej: Murcia" required/>
+            <input id="arriveDate" class="inputD" type="date" required/>
+            <input id="leftDate" class="inputD" type="date" required/>
+            <input id="guests" class="inputN" type="number" placeholder="Ej: 3" required/>
+            <img class="icon" src="https://image.freepik.com/free-icon/users-group_318-48680.jpg" alt="person icon">
+            <input id="rooms" class="inputN" type="number" placeholder="Ej: 1" required/>
+            <img class="icon" src="https://image.freepik.com/free-icon/closed-door-with-border-silhouette_318-48772.jpg" alt="room icon">
+            <button id="search" onclick="redirect('results.html')">Buscar</button>
+    </nav>
+
     <div id="mainContent">
-        <form id="persInfForm">
-            <fieldset>
-                <h3>Información Personal</h3>
+        <h1 id="name">Murcialand</h1>
+        <div class="slideshow-container">
+            
+            <div class="mySlides fade">
+                <img id="img1" class="imgSlide" src="img/h1.jpg" alt="Imagen1">
+            </div>
 
-                <input id="nameInf" class="inputD" type="text" placeholder="Nombre" required/>
-                <input id="surnameInf" class="inputN" type="text" placeholder="Apellidos" required/>
+            <div class="mySlides fade">
+                <img id="img2" class="imgSlide" src="img/h2.jpg" alt="Imagen2">
+            </div>
 
-                <input id="emailInf" class="inputAll" type="email" placeholder="Correo Electrónico" required/>
+            <div class="mySlides fade">
+                <img id="img3" class="imgSlide" src="img/h3.jpg" alt="Imagen3">
+            </div>
 
-                <input id="addressInf" class="inputAll" type="text" placeholder="Dirección" required/>
-                <input id="phoneInf" class="inputD" type="text" placeholder="Teléfono"/>
+        </div>
 
-                <input id="birthdateInf" class="inputN" type="date" required/>
+        <div id="generalInfo">
+            <div id="description">
+                <h3>Descripción del Alojamiento</h3>
+                <p id="pDescription">El hotel NH Amistad Murcia cuenta, con categoría de 4 estrellas, ofrece una ubicación ideal en una de las áreas de negocios, comerciales y de entretenimiento más importante de la ciudad de Murcia. Está a solo 100m de la avenida principal Gran Vía. El histórico casco antiguo se encuentra a solo cinco minutos a pie. Allí encontrarás una gran variedad de bares, restaurantes y tascas que sirven deliciosas tapas caseras.</p>
+                <h3>Localización</h3>
+                <iframe id="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50317.670317148564!2d-1.1621948949680851!3d37.98052720877252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6381f8d5928c7f%3A0xd627129b38c4ab9a!2sMurcia!5e0!3m2!1ses!2ses!4v1544309449158" width="100%" height="450px" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
 
-                <button class="normalButton" type="button" onclick="changeForm('persInfFormAdv')">Opciones avanzadas</button>
-                <button class="okButton" type="button" onclick="updateInf()">Aceptar Cambios</button>
-                <button class="blackButton" type="button" onclick="showH()">Añadir Alojamiento</button>
-            </fieldset>
-        </form>
-
-        <form id="persInfFormAdv">
-            <fieldset>
-                <h3>Información Personal Avanzada</h3>
-
-                <input id="usernameInf" class="inputD" type="text" placeholder="Nombre de usuario" required/>
-                <input id="passwordInf" class="inputN" type="password" placeholder="Contraseña" required/>
-                <input id="imgInf" class="inputAll" type="url" placeholder="Imagen de perfil"/>
-
-                <button class="normalButton" type="button" onclick="changeForm('persInfForm')">Opciones básicas</button>
-                <button class="okButton" type="button" onclick="updateInfAdv()">Aceptar Cambios</button>
-                <button class="blackButton" type="button" onclick="showH()">Añadir Alojamiento</button>
-            </fieldset>
-        </form>
-
-        <form id="addHost">
-            <fieldset>
-                <h3>Añadir Alojamiento</h3>
-
-                <input id="hostNameReg" class="inputAll" type="text" placeholder="Nombre del alojamiento" required/>
-                <input id="hostDescriptionReg" class="inputAll" type="text" placeholder="Descripción" required/>
-                <input id="hostPriceReg" class="inputAll" type="text" placeholder="Precio ejemplo: 67€ por noche" required/>
-                <input id="hostImg1Reg" class="inputAll" type="url" placeholder="Imagen del alojamiento (Principal)" required/>
-                <input id="hostImg2Reg" class="inputAll" type="url" placeholder="Imagen del alojamiento" required/>
-                <input id="hostImg3Reg" class="inputAll" type="url" placeholder="Imagen del alojamiento" required/>
-                <input id="hostAddressReg" class="inputAll" type="text" placeholder="Dirección" required/>
-                <input id="hostAddressHtmlReg" class="inputAll" type="text" placeholder="Dirección (html)" required/>
-
-                <button class="blackButton" type="button" onclick="show('persInfForm')">Cancelar</button>
-                <button class="okButton" type="button" onclick="regHostStorage()">Añadir</button>
-            </fieldset>
-        </form>
-
-        <form id="register">
-            <fieldset>
-                <h3>Registro</h3>
-
-                <input id="usernameReg" class="inputD" type="text" placeholder="Nombre de usuario*" required/>
-                <input id="passwordReg" class="inputN" type="password" onchange="errPass('passwordReg')" placeholder="Contraseña*" required/>
-                <p id="errorPassword"></p>
-                <input id="imgReg" class="inputAll" type="url" placeholder="Imagen de perfil"/>
-
-                <input id="nameReg" class="inputD" type="text" placeholder="Nombre*" required/>
-                <input id="surnameReg" class="inputN" type="text" placeholder="Apellidos*" required/>
-                <input id="emailReg" class="inputAll" type="email" placeholder="Correo Electrónico*" required/>
-                <input id="addressReg" class="inputAll" type="text" placeholder="Dirección*" required/>
-                <input id="phoneReg" class="inputD" type="text" placeholder="Teléfono"/>
-                <input id="birthdateReg" class="inputN" type="date" required/>
-                <select id="loggedReg" class="optionMenu">
-                    <option value="1">Usuario</option>
-                    <option value="2">Host</option>
-                </select>
-                <p id="checkboxRegText"> He leído y acepto las Condiciones de uso <input id="checkboxReg" type="checkbox" required/></p>
-                <p class="pSecondary"><br> Los valores con * son obligatorios.</p>
-
-                <button class="okButton" type="button" onclick="regStorage()">Registro</button>
-            </fieldset>
-        </form>
+            <div id="reserve">
+                <h3>Reserva ahora</h3>
+                <p id="price">Precio por noche:</p>
+                <p>Fecha de llegada:</p>
+                <input id="arriveDate2" class="inputAll" type="date" required/>
+                <p>Fecha de salida:</p>
+                <input id="leftDate2" class="inputAll" type="date" required/>
+                <button id="reserveButton" onclick="pay()">Reservar ahora</button>
+            </div>
+        </div>
     </div> 
     
     <footer id="piedepag">

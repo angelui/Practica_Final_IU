@@ -6,8 +6,11 @@
 
 $(document).ready(function(){   //jQuery
 
+    $('#phoneMenu').hide();
     glbVars();
+    showHost();
     $('.headMenu').hover(showMenu);
+    $('#menuIcon').click(phoneMenuToggle);
 
     /* Menu */
 
@@ -25,12 +28,33 @@ $(document).ready(function(){   //jQuery
             $('#downMenuHost').slideToggle();
         }
     }
+
+    /* Phone Menu */
+
+    function phoneMenuToggle(){
+        var log = JSON.parse(localStorage.getItem('globalVariables')).logged;
+
+        if(log == 0){
+            $('#menuP0').show();
+            $('#menuP1').hide();
+            $('#menuP2').hide();
+        }
+        if(log == 1){
+            $('#menuP0').hide();
+            $('#menuP1').show();
+            $('#menuP2').hide();
+        }
+        if(log == 2){
+            $('#menuP0').hide();
+            $('#menuP1').hide();
+            $('#menuP2').show();
+        }
+        $('#phoneMenu').slideToggle();
+    }
     
 });
 
-function clearStorage(){
-    localStorage.clear();
-}
+/* Global Variables in Local Storage */
 
 function glbVars(){
     if(localStorage.length == 0){
@@ -102,6 +126,8 @@ function login(){
     if(found < 1){alert("Login incorrecto");}
 }
 
+/* Pop-up */
+
 var popupVisible = false;
 
 function changePopUpStatus(element, i){
@@ -117,7 +143,54 @@ function changePopUpStatus(element, i){
     } 
 }
 
-function endSession(){
+/* Slide */
+
+window.addEventListener('load', function() {
+
+    var slideIndex = 0;
+    showSlides();
+    function showSlides() {
+       var i;
+       var slides = document.getElementsByClassName("mySlides");
+       for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+       }
+       slideIndex++;
+       if(slideIndex > slides.length) {slideIndex = 1}
+       slides[slideIndex-1].style.display = "block";
+       setTimeout(showSlides,5000);
+    }
+
+});
+
+/* Show host */
+
+function showHost(){
+    var data = [], glbVars;
+    data = JSON.parse(localStorage.getItem('hosts'));
+    glbVars = JSON.parse(localStorage.getItem('globalVariables'));
+    var i = glbVars.host;
+
+    document.getElementById('name').innerHTML = data[i].hostName;
+    document.getElementById('img1').src = data[i].hostImg1;
+    document.getElementById('img2').src = data[i].hostImg2;
+    document.getElementById('img3').src = data[i].hostImg3;
+    document.getElementById('pDescription').innerHTML = data[i].hostDescription;
+    document.getElementById('maps').src = data[i].hostAddressHtml;
+    document.getElementById('price').innerHTML = 'Precio: ' + data[i].hostPrice;
+}
+
+/* Addicional functions */
+
+function clearStorage(){ // Clear LS
+    localStorage.clear();
+}
+
+function show(toshow){ // Change MainContent display
+    document.getElementById(toshow).style.display = "block";
+}
+
+function endSession(){ // Logout
     var globalVariables = {
         logged: 0,
         user: 'none',
@@ -127,6 +200,20 @@ function endSession(){
     window.location.href = "home.html";
 }
 
-function redirect(where){
+function redirect(where){ // Redirect
     window.location.href = where;
+}
+
+function pay(){ // Reserve button
+    if(JSON.parse(localStorage.getItem('globalVariables')).logged != 0 && document.getElementById('arriveDate2').value != "" && document.getElementById('leftDate2').value != ""){
+        redirect('pay.html');
+    }
+    else{
+        if(JSON.parse(localStorage.getItem('globalVariables')).logged != 0){
+            alert('Debes iniciar sesión o registrarte para poder reservar un alojamiento');
+        }
+        else{
+            alert('Debes rellenar todos los campos');
+        }
+    }
 }

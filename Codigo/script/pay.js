@@ -6,8 +6,10 @@
 
 $(document).ready(function(){   //jQuery
 
+    $('#phoneMenu').hide();
     glbVars();
     $('.headMenu').hover(showMenu);
+    $('#menuIcon').click(phoneMenuToggle);
 
     /* Menu */
 
@@ -25,12 +27,33 @@ $(document).ready(function(){   //jQuery
             $('#downMenuHost').slideToggle();
         }
     }
+
+    /* Phone Menu */
+
+    function phoneMenuToggle(){
+        var log = JSON.parse(localStorage.getItem('globalVariables')).logged;
+
+        if(log == 0){
+            $('#menuP0').show();
+            $('#menuP1').hide();
+            $('#menuP2').hide();
+        }
+        if(log == 1){
+            $('#menuP0').hide();
+            $('#menuP1').show();
+            $('#menuP2').hide();
+        }
+        if(log == 2){
+            $('#menuP0').hide();
+            $('#menuP1').hide();
+            $('#menuP2').show();
+        }
+        $('#phoneMenu').slideToggle();
+    }
     
 });
 
-function clearStorage(){
-    localStorage.clear();
-}
+/* Global Variables in Local Storage */
 
 function glbVars(){
     if(localStorage.length == 0){
@@ -102,6 +125,8 @@ function login(){
     if(found < 1){alert("Login incorrecto");}
 }
 
+/* Pop-up */
+
 var popupVisible = false;
 
 function changePopUpStatus(element, i){
@@ -117,7 +142,18 @@ function changePopUpStatus(element, i){
     } 
 }
 
-function endSession(){
+/* Addicional functions */
+
+function clearStorage(){ // Clear LS
+    localStorage.clear();
+}
+
+function show(){ // Change MainContent display
+    document.getElementById('pay').style.display = "none";
+    document.getElementById('paid').style.display = "block";
+}
+
+function endSession(){ // Logout
     var globalVariables = {
         logged: 0,
         user: 'none',
@@ -127,6 +163,28 @@ function endSession(){
     window.location.href = "home.html";
 }
 
-function redirect(where){
+function redirect(where){ // Redirect
     window.location.href = where;
+}
+
+function payButton(){ // Save reserve
+    if(document.getElementById('numTarjeta-1').value == "" || document.getElementById('numTarjeta-2').value == "" || document.getElementById('numTarjeta-3').value == "" || document.getElementById('numTarjeta-4').value == "" || document.getElementById('nombreYApellido').value == "" || document.getElementById('ccv').value == ""){
+        alert('Rellene todos los campos antes de continuar')
+    }
+    else{
+        var data = [], glbVars, reservesArray = [];
+        data = JSON.parse(localStorage.getItem('users'));
+        glbVars = JSON.parse(localStorage.getItem('globalVariables'));
+
+        for(var i=0; i<data.length; i++){
+            if(data[i].username == glbVars.user)
+            reservesArray = data[i].reserves;
+            reservesArray[reservesArray.length] = glbVars.host;
+            data[i].reserves = reservesArray;
+
+            localStorage.setItem('users', JSON.stringify(data));
+        }
+
+        show();
+    }
 }
