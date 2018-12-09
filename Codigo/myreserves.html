@@ -10,12 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Hotels' Stuff</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style/results.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/myreserves.css" />
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--link para los iconos del footer-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="script/results.js"></script>
+    <script src="script/myreserves.js"></script>
 </head>
 <body>
     <div class="popupNotVisible" id="popup"> <!--Pop up-->
@@ -74,24 +74,14 @@
     </nav>
 
     <div id="mainContent">
-        <div id="results-container">
-            <div class="results">
-                <img id="hostImg0" class="result-image" src="img/default.jpg" alt="img host 3">
-                <h3 id="hostName0" class="result-title">Hotel por defecto</h3>
-                <p id="hostPrice0" class="result-price">69€ noche</p>
-            </div>
-            <div class="results">
-                <img id="hostImg1" class="result-image" src="img/default.jpg" alt="img host 1">
-                <h3 id="hostName1" class="result-title">Hotel por defecto</h3>
-                <p id="hostPrice1" class="result-price">69€ noche</p>
-            </div>
-            <div class="results">
-                <img id="hostImg2" class="result-image" src="img/default.jpg" alt="img host 2">
-                <h3 id="hostName2" class="result-title">Hotel por defecto</h3>
-                <p id="hostPrice2" class="result-price">69€ noche</p>
-            </div>
+        <h3>Mis Reservas</h3>
+        <div id="infoRes">
+
         </div>
-        <p class="pSecondary">Ver todos los resultados</p>
+        
+        <div id="error">
+            <p class="pSecondary">Para poder acceder a esta sección has de iniciar sesión o registrarte</p>
+        </div>
     </div> 
     
     <footer id="piedepag">

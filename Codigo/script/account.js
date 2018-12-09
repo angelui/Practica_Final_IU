@@ -196,7 +196,7 @@ function regStorage(){
     }
     
     if(error == 0){
-        var data = [];
+        var data = [], reservesArray = [];
         data = JSON.parse(localStorage.getItem('users'));
 
         data[data.length] = {
@@ -210,6 +210,7 @@ function regStorage(){
             phone: document.getElementById('phoneReg').value,
             birthdate: document.getElementById('birthdateReg').value,
             type: document.getElementById('loggedReg').value,
+            reserves: reservesArray
         }
         localStorage.setItem('users', JSON.stringify(data));
 

@@ -115,26 +115,6 @@ function changePopUpStatus(element, i){
     } 
 }
 
-/* Slide */
-
-window.addEventListener('load', function() {
-
-    var slideIndex = 0;
-    showSlides();
-    function showSlides() {
-       var i;
-       var slides = document.getElementsByClassName("mySlides");
-       for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-       }
-       slideIndex++;
-       if(slideIndex > slides.length) {slideIndex = 1}
-       slides[slideIndex-1].style.display = "block";
-       setTimeout(showSlides,5000);
-    }
-
-});
-
 /* Addicional functions */
 
 function clearStorage(){ // Clear LS
@@ -160,11 +140,24 @@ function redirect(where){ // Redirect
     window.location.href = where;
 }
 
-function payButton(){
+function payButton(){ // Save reserve
     if(document.getElementById('numTarjeta-1').value == "" || document.getElementById('numTarjeta-2').value == "" || document.getElementById('numTarjeta-3').value == "" || document.getElementById('numTarjeta-4').value == "" || document.getElementById('nombreYApellido').value == "" || document.getElementById('ccv').value == ""){
         alert('Rellene todos los campos antes de continuar')
     }
     else{
+        var data = [], glbVars, reservesArray = [];
+        data = JSON.parse(localStorage.getItem('users'));
+        glbVars = JSON.parse(localStorage.getItem('globalVariables'));
+
+        for(var i=0; i<data.length; i++){
+            if(data[i].username == glbVars.user)
+            reservesArray = data[i].reserves;
+            reservesArray[reservesArray.length] = glbVars.host;
+            data[i].reserves = reservesArray;
+
+            localStorage.setItem('users', JSON.stringify(data));
+        }
+
         show();
     }
 }

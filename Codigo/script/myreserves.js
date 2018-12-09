@@ -7,7 +7,7 @@
 $(document).ready(function(){   //jQuery
 
     glbVars();
-    showHost();
+    choose();
     $('.headMenu').hover(showMenu);
 
     function showMenu(){
@@ -116,41 +116,38 @@ function changePopUpStatus(element, i){
     } 
 }
 
-/* Slide */
+/* Choose main content */
 
-window.addEventListener('load', function() {
-
-    var slideIndex = 0;
-    showSlides();
-    function showSlides() {
-       var i;
-       var slides = document.getElementsByClassName("mySlides");
-       for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-       }
-       slideIndex++;
-       if(slideIndex > slides.length) {slideIndex = 1}
-       slides[slideIndex-1].style.display = "block";
-       setTimeout(showSlides,5000);
-    }
-
-});
-
-/* Show host */
-
-function showHost(){
-    var data = [], glbVars;
-    data = JSON.parse(localStorage.getItem('hosts'));
+function choose(){
+    var data = [], glbVars = [], hosts = [];
     glbVars = JSON.parse(localStorage.getItem('globalVariables'));
-    var i = glbVars.host;
+    data = JSON.parse(localStorage.getItem('users'));
+    hosts = JSON.parse(localStorage.getItem('hosts'));
 
-    document.getElementById('name').innerHTML = data[i].hostName;
-    document.getElementById('img1').src = data[i].hostImg1;
-    document.getElementById('img2').src = data[i].hostImg2;
-    document.getElementById('img3').src = data[i].hostImg3;
-    document.getElementById('pDescription').innerHTML = data[i].hostDescription;
-    document.getElementById('maps').src = data[i].hostAddressHtml;
-    document.getElementById('price').innerHTML = 'Precio: ' + data[i].hostPrice;
+    if(glbVars.logged == 0){
+        show('error');
+    }
+    else{
+        show('infoRes');
+        for(var i=0; i < data.length; i++){
+            if(data[i].username == glbVars.user){
+                if(data[i].reserves.length == 0){
+                    $('#infoRes').append("<p class=pSecondary>No tienes reservas aún</p>");
+                }
+                else{
+                    for(var j=0; j<data[i].reserves.length; j++){
+                        $('#infoRes').append("<h4>"+ hosts[data[i].reserves[j]].hostName +"</h4>");
+                        $('#infoRes').append("<img src="+ hosts[data[i].reserves[j]].hostImg1 +">");
+                        $('#infoRes').append("<p>"+ hosts[data[i].reserves[j]].hostAddress +"</p>");
+                        $('#infoRes').append("<p>"+ hosts[data[i].reserves[j]].hostDescription +"</p>");
+                        $('#infoRes').append("<p>"+ hosts[data[i].reserves[j]].hostPrice +"</p>");
+                    }
+                }
+
+                i = data.length;
+            }
+        }
+    }
 }
 
 /* Addicional functions */
@@ -160,6 +157,8 @@ function clearStorage(){ // Clear LS
 }
 
 function show(toshow){ // Change MainContent display
+    document.getElementById('infoRes').style.display = "none";
+    document.getElementById('error').style.display = "none";
     document.getElementById(toshow).style.display = "block";
 }
 
@@ -175,13 +174,4 @@ function endSession(){ // Logout
 
 function redirect(where){ // Redirect
     window.location.href = where;
-}
-
-function pay(){ // Reserve button
-    if(JSON.parse(localStorage.getItem('globalVariables')).logged != 0 && document.getElementById('arriveDate2').value != "" && document.getElementById('leftDate2').value != ""){
-        redirect('pay.html');
-    }
-    else{
-        alert('Debes iniciar sesión o registrarte para poder reservar un alojamiento');
-    }
 }
