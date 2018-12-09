@@ -7,7 +7,38 @@
 $(document).ready(function(){   //jQuery
 
     glbVars();
+    showHosts();
     $('.headMenu').hover(showMenu);
+
+    $('#hostName0').click(function(){
+        var globalVariables = {
+            logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
+            user: JSON.parse(localStorage.getItem('globalVariables')).user,
+            host: '0'
+        }
+        localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+        redirect('reserve.html');
+    });
+
+    $('#hostName1').click(function(){
+        var globalVariables = {
+            logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
+            user: JSON.parse(localStorage.getItem('globalVariables')).user,
+            host: '1'
+        }
+        localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+        redirect('reserve.html');
+    });
+
+    $('#hostName2').click(function(){
+        var globalVariables = {
+            logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
+            user: JSON.parse(localStorage.getItem('globalVariables')).user,
+            host: '2'
+        }
+        localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
+        redirect('reserve.html');
+    });
 
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
@@ -26,9 +57,7 @@ $(document).ready(function(){   //jQuery
     
 });
 
-function clearStorage(){
-    localStorage.clear();
-}
+/* Global Variables in Local Storage */
 
 function glbVars(){
     if(localStorage.length == 0){
@@ -100,6 +129,8 @@ function login(){
     if(found < 1){alert("Login incorrecto");}
 }
 
+/* Pop-up */
+
 var popupVisible = false;
 
 function changePopUpStatus(element, i){
@@ -115,7 +146,34 @@ function changePopUpStatus(element, i){
     } 
 }
 
-function endSession(){
+/* Show hosts */
+
+function showHosts(){
+    var data = [], img = 'hostImg', name = 'hostName', price = 'hostPrice', img2, name2, price2;
+    data = JSON.parse(localStorage.getItem('hosts'));
+
+    for(var i=0; i<3; i++){
+        img2 = img + i;
+        name2 = name + i;
+        price2 = price + i;
+
+        document.getElementById(img2).src = data[i].hostImg1;
+        document.getElementById(name2).innerHTML = data[i].hostName;
+        document.getElementById(price2).innerHTML = data[i].hostPrice;
+    }
+}
+
+/* Addicional functions */
+
+function clearStorage(){ // Clear LS
+    localStorage.clear();
+}
+
+function show(toshow){ // Change MainContent display
+    document.getElementById(toshow).style.display = "block";
+}
+
+function endSession(){ // Logout
     var globalVariables = {
         logged: 0,
         user: 'none',
@@ -125,6 +183,6 @@ function endSession(){
     window.location.href = "home.html";
 }
 
-function redirect(where){
+function redirect(where){ // Redirect
     window.location.href = where;
 }

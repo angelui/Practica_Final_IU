@@ -26,9 +26,7 @@ $(document).ready(function(){   //jQuery
     
 });
 
-function clearStorage(){
-    localStorage.clear();
-}
+/* Global Variables in Local Storage */
 
 function glbVars(){
     if(localStorage.length == 0){
@@ -100,6 +98,8 @@ function login(){
     if(found < 1){alert("Login incorrecto");}
 }
 
+/* Pop-up */
+
 var popupVisible = false;
 
 function changePopUpStatus(element, i){
@@ -115,7 +115,38 @@ function changePopUpStatus(element, i){
     } 
 }
 
-function endSession(){
+/* Slide */
+
+window.addEventListener('load', function() {
+
+    var slideIndex = 0;
+    showSlides();
+    function showSlides() {
+       var i;
+       var slides = document.getElementsByClassName("mySlides");
+       for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+       }
+       slideIndex++;
+       if(slideIndex > slides.length) {slideIndex = 1}
+       slides[slideIndex-1].style.display = "block";
+       setTimeout(showSlides,5000);
+    }
+
+});
+
+/* Addicional functions */
+
+function clearStorage(){ // Clear LS
+    localStorage.clear();
+}
+
+function show(){ // Change MainContent display
+    document.getElementById('pay').style.display = "none";
+    document.getElementById('paid').style.display = "block";
+}
+
+function endSession(){ // Logout
     var globalVariables = {
         logged: 0,
         user: 'none',
@@ -125,6 +156,15 @@ function endSession(){
     window.location.href = "home.html";
 }
 
-function redirect(where){
+function redirect(where){ // Redirect
     window.location.href = where;
+}
+
+function payButton(){
+    if(document.getElementById('numTarjeta-1').value == "" || document.getElementById('numTarjeta-2').value == "" || document.getElementById('numTarjeta-3').value == "" || document.getElementById('numTarjeta-4').value == "" || document.getElementById('nombreYApellido').value == "" || document.getElementById('ccv').value == ""){
+        alert('Rellene todos los campos antes de continuar')
+    }
+    else{
+        show();
+    }
 }

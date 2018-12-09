@@ -10,12 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Hotels' Stuff</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style/plantilla.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/results.css" />
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--link para los iconos del footer-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="script/plantilla.js"></script>
+    <script src="script/results.js"></script>
 </head>
 <body>
     <div class="popupNotVisible" id="popup"> <!--Pop up-->
@@ -26,34 +26,33 @@
             <p id="popup-user" class="popText">Usuario</p>
             <input id="usernameLog" class="inputL" type="text" placeholder="Nombre de usuario" required/>
             <p id="popup-pass" class="popText">Contraseña</p>
-            <input id="usernameLog" class="inputL" type="text" placeholder="Contraseña" required/>
-            <button id="loginButton">Login</button>
+            <input id="passwordLog" class="inputL" type="password" placeholder="Contraseña" required/>
+            <button id="loginButton" onclick="login()">Login</button>
 
         </div>
     </div>
 
     <header>
-        <a href=""><img id="logo" src="img/logo.png" alt="logo"></a>
+        <a href="home.html"><img id="logo" src="img/logotransparente.png" alt="logo"></a>
         <img id="menuIcon" src="img/menuicon.jpg" alt="menu">
         <div class="headMenu">
             <a class="headMenuOptions2">Idioma</a>      <!--Español/English-->
                 <ul id="downMenuLanguage" class="downMenu">
-                    <li><a href="#"><h5>Español</h5></a></li>
+                    <li><a href="javascript:;" onclick="clearStorage();"><h5>Español</h5></a></li>
                     <li><a href="#"><h5>English</h5></a></li>
                 </ul>
             <a class="headMenuOptions2">Cuenta</a>      <!--Login/Registro . Info Personal/Anadir Hoteles/Cerrar Sesion-->
                 <ul id="downMenuUnlogged" class="downMenu">
                     <li><a href="javascript:;" onclick="changePopUpStatus(this);"><h5>Login</h5></a></li>
-                    <li><a href="#"><h5>Registro</h5></a></li>
+                    <li><a href="account.html"><h5>Registro</h5></a></li>
                 </ul>
                 <ul id="downMenuLogged" class="downMenu">
-                    <li><a href="#"><h5>Info Personal</h5></a></li>
-                    <li><a href="#"><h5>Cerrar Sesión</h5></a></li>
+                    <li><a href="account.html"><h5>Info Personal</h5></a></li>
+                    <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
                 </ul>
                 <ul id="downMenuHost" class="downMenu">
-                    <li><a href="#"><h5>Info Personal</h5></a></li>
-                    <li><a href="#"><h5>Añadir Hotel</h5></a></li>
-                    <li><a href="#"><h5>Cerrar Sesión</h5></a></li>
+                    <li><a href="account.html"><h5>Mi Cuenta</h5></a></li>
+                    <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
                 </ul>
             <a class="headMenuOptions" href="#">Mis reservas</a>
             <a class="headMenuOptions" href="#">Ayuda</a>        <!--Preguntas frecuentes-->
@@ -61,22 +60,38 @@
     </header>
 
     <div id="box">
-        <button id="popup-button" onclick="changePopUpStatus(this);">Pop-Up</button>
     </div>
 
     <nav id="browser">
-        <input id="location" type="text" placeholder="Ej: Murcia" required/>
-        <input id="arriveDate" class="inputD" type="date" required/>
-        <input id="leftDate" class="inputD" type="date" required/>
-        <input id="guests" class="inputN" type="number" placeholder="Ej: 3" required/>
-        <img class="icon" src="https://image.freepik.com/free-icon/users-group_318-48680.jpg" alt="person icon">
-        <input id="rooms" class="inputN" type="number" placeholder="Ej: 1" required/>
-        <img class="icon" src="https://image.freepik.com/free-icon/closed-door-with-border-silhouette_318-48772.jpg" alt="room icon">
-        <button id="search">Buscar</button>
+            <input id="location" type="text" placeholder="Ej: Murcia" required/>
+            <input id="arriveDate" class="inputD" type="date" required/>
+            <input id="leftDate" class="inputD" type="date" required/>
+            <input id="guests" class="inputN" type="number" placeholder="Ej: 3" required/>
+            <img class="icon" src="https://image.freepik.com/free-icon/users-group_318-48680.jpg" alt="person icon">
+            <input id="rooms" class="inputN" type="number" placeholder="Ej: 1" required/>
+            <img class="icon" src="https://image.freepik.com/free-icon/closed-door-with-border-silhouette_318-48772.jpg" alt="room icon">
+            <button id="search" onclick="redirect('results.html')">Buscar</button>
     </nav>
 
     <div id="mainContent">
-        <p>hola</p>
+        <div id="results-container">
+            <div class="results">
+                <img id="hostImg0" class="result-image" src="img/default.jpg" alt="img host 3">
+                <h3 id="hostName0" class="result-title">Hotel por defecto</h3>
+                <p id="hostPrice0" class="result-price">69€ noche</p>
+            </div>
+            <div class="results">
+                <img id="hostImg1" class="result-image" src="img/default.jpg" alt="img host 1">
+                <h3 id="hostName1" class="result-title">Hotel por defecto</h3>
+                <p id="hostPrice1" class="result-price">69€ noche</p>
+            </div>
+            <div class="results">
+                <img id="hostImg2" class="result-image" src="img/default.jpg" alt="img host 2">
+                <h3 id="hostName2" class="result-title">Hotel por defecto</h3>
+                <p id="hostPrice2" class="result-price">69€ noche</p>
+            </div>
+        </div>
+        <p class="pSecondary">Ver todos los resultados</p>
     </div> 
     
     <footer id="piedepag">
