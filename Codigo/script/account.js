@@ -62,7 +62,7 @@ function choose(){
 /* Login */
 
 function login(){
-    var data = [];
+    var data = [], found = 0;
     data = JSON.parse(localStorage.getItem('users'));
 
     for(var i=0; i < data.length; i++){
@@ -74,11 +74,12 @@ function login(){
                 }
                 localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
                 window.location.href = "home.html";
+                found++;
             }
             i = data.length;
         }
     }
-    alert("Login incorrecto");
+    if(found < 1){alert("Login incorrecto");}
 }
 
 /* Pop-up */

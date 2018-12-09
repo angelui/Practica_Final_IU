@@ -81,6 +81,26 @@ function changePopUpStatus(element, i){
     } 
 }
 
+/* Slide */
+
+window.addEventListener('load', function() {
+
+    var slideIndex = 0;
+    showSlides();
+    function showSlides() {
+       var i;
+       var slides = document.getElementsByClassName("mySlides");
+       for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+       }
+       slideIndex++;
+       if(slideIndex > slides.length) {slideIndex = 1}
+       slides[slideIndex-1].style.display = "block";
+       setTimeout(showSlides,5000);
+    }
+
+});
+
 /* Addicional functions */
 
 function clearStorage(){ // Clear LS
@@ -102,4 +122,13 @@ function endSession(){ // Logout
 
 function redirect(where){ // Redirect
     window.location.href = where;
+}
+
+function pay(){
+    if(JSON.parse(localStorage.getItem('globalVariables')).logged != 0 && document.getElementById('arriveDate').value != "" && document.getElementById('leftDate').value != ""){
+        redirect('pay.html');
+    }
+    else{
+        alert('Debes iniciar sesión o registrarte para poder reservar un alojamiento');
+    }
 }
