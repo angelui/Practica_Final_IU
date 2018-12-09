@@ -157,6 +157,7 @@ function changePopUpStatus(element, i){
 
 function clearStorage(){ // Clear LS
     localStorage.clear();
+    redirect('home.html');
 }
 
 function show(toshow){ // Change MainContent display
