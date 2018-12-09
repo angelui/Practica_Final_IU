@@ -102,6 +102,8 @@ function login(){
     if(found < 1){alert("Login incorrecto");}
 }
 
+/* Pop-up */
+
 var popupVisible = false;
 
 function changePopUpStatus(element, i){
@@ -117,7 +119,9 @@ function changePopUpStatus(element, i){
     } 
 }
 
-function endSession(){
+/* Additional functions */
+
+function endSession(){ // End session
     var globalVariables = {
         logged: 0,
         user: 'none',
@@ -127,6 +131,6 @@ function endSession(){
     window.location.href = "home.html";
 }
 
-function redirect(where){
+function redirect(where){ // Redirect
     window.location.href = where;
 }
