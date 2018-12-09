@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hotels' Stuff</title>
+    <title>Hotels' Stuff: Pago</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style/pay.css" /><!-- añadir style/-->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
@@ -72,10 +72,10 @@
 
                     <fieldset>
                         <h4>Número de Tarjeta</h4>
-                        <input type="number" id="numTarjeta-1" class="inputCardNumber" placeholder="0000" maxlength="4" />
-                        <input type="number" id="numTarjeta-2" class="inputCardNumber" placeholder="0000" maxlength="4" />
-                        <input type="number" id="numTarjeta-3" class="inputCardNumber" placeholder="0000" maxlength="4" />
-                        <input type="number" id="numTarjeta-4" class="inputCardNumber" placeholder="0000" maxlength="4" />
+                        <input type="number" id="numTarjeta-1" class="inputCardNumber" placeholder="0000"/>
+                        <input type="number" id="numTarjeta-2" class="inputCardNumber" placeholder="0000"/>
+                        <input type="number" id="numTarjeta-3" class="inputCardNumber" placeholder="0000"/>
+                        <input type="number" id="numTarjeta-4" class="inputCardNumber" placeholder="0000"/>
                     </fieldset>
                     <fieldset>
                         <h4>Nombre y Apellido</h4>
@@ -116,10 +116,10 @@
                     </fieldset>
                     
                     <fieldset>
-                        <input id="ccv" class="inputAll" type="number" placeholder="CCV" maxlength="3" required/>
+                        <input id="ccv" class="inputAll" type="number" placeholder="CCV" required/>
                     </fieldset>
                     <fieldset>
-                        <button id="reserveButton" type="button" onclick="payButton()">Pagar</button>
+                        <button class="reserveButton" type="button" onclick="payButton()">Pagar</button>
                     </fieldset>
                 </form>
             </div>
@@ -127,7 +127,7 @@
 
         <div id="paid">
             <h2>PAGO REALIZADO CON ÉXITO</h2>
-            <button id="reserveButton" onclick="redirect('home.html')">Aceptar</button>
+            <button class="reserveButton" onclick="redirect('home.html')">Aceptar</button>
         </div>
     </div> 
 
