@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!-----------------------Interfaces de Usuario------------------------->
+<!---------------------Angel Luis Alonso Blazquez---------------------->
+<!---------------------Kevin Santiago Diaz Delgado--------------------->
+<!------------------------Marcos Arroyo Ruiz--------------------------->
+<!--------------------100363923|100363919|100293563-------------------->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hotels' Stuff</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style/pay.css" /><!-- añadir style/-->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--link para los iconos del footer-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script/pay.js"></script><!-- añadir script/-->
+</head>
+<body>
+    <div class="popupNotVisible" id="popup"> <!--Pop up-->
+        <div id="popup-container">
+            <a id="popup-close" href="javascript:;" onclick="changePopUpStatus(this);">X</a>
+
+            <h4 id="popup-name" class="popTitle">Login</h4>
+            <p id="popup-user" class="popText">Usuario</p>
+            <input id="usernameLog" class="inputL" type="text" placeholder="Nombre de usuario" required/>
+            <p id="popup-pass" class="popText">Contraseña</p>
+            <input id="passwordLog" class="inputL" type="password" placeholder="Contraseña" required/>
+            <button id="loginButton" onclick="login()">Login</button>
+
+        </div>
+    </div>
+
+    <header>
+        <a href="home.html"><img id="logo" src="img/logotransparente.png" alt="logo"></a>
+        <img id="menuIcon" src="img/menuicon.jpg" alt="menu">
+        <div class="headMenu">
+            <a class="headMenuOptions2">Idioma</a>      <!--Español/English-->
+                <ul id="downMenuLanguage" class="downMenu">
+                    <li><a href="javascript:;" onclick="clearStorage();"><h5>Español</h5></a></li>
+                    <li><a href="#"><h5>English</h5></a></li>
+                </ul>
+            <a class="headMenuOptions2">Cuenta</a>      <!--Login/Registro . Info Personal/Anadir Hoteles/Cerrar Sesion-->
+                <ul id="downMenuUnlogged" class="downMenu">
+                    <li><a href="javascript:;" onclick="changePopUpStatus(this);"><h5>Login</h5></a></li>
+                    <li><a href="account.html"><h5>Registro</h5></a></li>
+                </ul>
+                <ul id="downMenuLogged" class="downMenu">
+                    <li><a href="account.html"><h5>Info Personal</h5></a></li>
+                    <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
+                </ul>
+                <ul id="downMenuHost" class="downMenu">
+                    <li><a href="account.html"><h5>Mi Cuenta</h5></a></li>
+                    <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
+                </ul>
+            <a class="headMenuOptions" href="myreserves.html">Mis reservas</a>
+            <a class="headMenuOptions" href="#">Ayuda</a>        <!--Preguntas frecuentes-->
+        </div>
+    </header>
+
+    <div id="box">
+    </div>
+
+    <div id="mainContent">
+        <div id="pay">
+            <h1>PseudoPay</h1>
+            <p class="pSecondary">El pago seguro</p>
+            <div id="pagar">
+                <form id="pagarForm">
+                    <h3>Metodo de Pago</h3>
+
+                    <fieldset>
+                        <h4>Número de Tarjeta</h4>
+                        <input type="number" id="numTarjeta-1" class="inputCardNumber" placeholder="0000" maxlength="4" />
+                        <input type="number" id="numTarjeta-2" class="inputCardNumber" placeholder="0000" maxlength="4" />
+                        <input type="number" id="numTarjeta-3" class="inputCardNumber" placeholder="0000" maxlength="4" />
+                        <input type="number" id="numTarjeta-4" class="inputCardNumber" placeholder="0000" maxlength="4" />
+                    </fieldset>
+                    <fieldset>
+                        <h4>Nombre y Apellido</h4>
+                        <input type="text" id="nombreYApellido" class="inputAll" placeholder="Ej: Juan Ruíz">
+                    </fieldset>
+                    <fieldset class="fieldset-fechaExp">
+                        <h4>Fecha de Caducidad</h4>
+                        <div class="select">
+                            <select id="mes-expiracion">
+                                <option>01</option>
+                                <option>02</option>
+                                <option>03</option>
+                                <option>04</option>
+                                <option>05</option>
+                                <option>06</option>
+                                <option>07</option>
+                                <option>08</option>
+                                <option>09</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                            </select>
+                        </div>
+                        <div class="select">
+                            <select id="año-expiracion">
+                                <option>2019</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                                <option>2022</option>
+                                <option>2023</option>
+                                <option>2024</option>
+                                <option>2025</option>
+                                <option>2026</option>
+                                <option>2027</option>
+                                <option>2028</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <input id="ccv" class="inputAll" type="number" placeholder="CCV" maxlength="3" required/>
+                    </fieldset>
+                    <fieldset>
+                        <button id="reserveButton" type="button" onclick="payButton()">Pagar</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+        <div id="paid">
+            <h2>PAGO REALIZADO CON ÉXITO</h2>
+            <button id="reserveButton" onclick="redirect('home.html')">Aceptar</button>
+        </div>
+    </div> 
+
+    <footer>
+        <div id="iconos">
+            <div class="bright"><a href="https://www.instagram.com/?hl=es"><i class="fa fa-instagram" style="font-size: 38px;color:black"></i></a></div>
+            <div class="bright"><a href="https://www.facebook.com"><i class="fa fa-facebook-square" style="font-size: 38px;color:black"></i></a></div>
+            <div class="bright"><a href="https://twitter.com"><i class="fa fa-twitter-square" style="font-size: 38px;color:black"></i></a></div>
+            <div id="bright"><a href="https://es.linkedin.com"><i class="fa fa-linkedin-square" style="font-size: 38px;color:black"></i></a></div>
+        </div>
+        <p>Copyright ® 2018. Todos los derechos reservados</p>
+    </footer>
+    
+</body>
+</html>
+

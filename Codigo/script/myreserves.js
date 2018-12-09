@@ -7,6 +7,7 @@
 $(document).ready(function(){   //jQuery
 
     glbVars();
+    choose();
     $('.headMenu').hover(showMenu);
 
     function showMenu(){
@@ -26,9 +27,7 @@ $(document).ready(function(){   //jQuery
     
 });
 
-function clearStorage(){
-    localStorage.clear();
-}
+/* Global Variables in Local Storage */
 
 function glbVars(){
     if(localStorage.length == 0){
@@ -100,6 +99,8 @@ function login(){
     if(found < 1){alert("Login incorrecto");}
 }
 
+/* Pop-up */
+
 var popupVisible = false;
 
 function changePopUpStatus(element, i){
@@ -115,7 +116,53 @@ function changePopUpStatus(element, i){
     } 
 }
 
-function endSession(){
+/* Choose main content */
+
+function choose(){
+    var data = [], glbVars = [], hosts = [];
+    glbVars = JSON.parse(localStorage.getItem('globalVariables'));
+    data = JSON.parse(localStorage.getItem('users'));
+    hosts = JSON.parse(localStorage.getItem('hosts'));
+
+    if(glbVars.logged == 0){
+        show('error');
+    }
+    else{
+        show('infoRes');
+        for(var i=0; i < data.length; i++){
+            if(data[i].username == glbVars.user){
+                if(data[i].reserves.length == 0){
+                    $('#infoRes').append("<p class=pSecondary>No tienes reservas aún</p>");
+                }
+                else{
+                    for(var j=0; j<data[i].reserves.length; j++){
+                        $('#infoRes').append("<h4>"+ hosts[data[i].reserves[j]].hostName +"</h4>");
+                        $('#infoRes').append("<img src="+ hosts[data[i].reserves[j]].hostImg1 +">");
+                        $('#infoRes').append("<p>"+ hosts[data[i].reserves[j]].hostAddress +"</p>");
+                        $('#infoRes').append("<p>"+ hosts[data[i].reserves[j]].hostDescription +"</p>");
+                        $('#infoRes').append("<p>"+ hosts[data[i].reserves[j]].hostPrice +"</p>");
+                    }
+                }
+
+                i = data.length;
+            }
+        }
+    }
+}
+
+/* Addicional functions */
+
+function clearStorage(){ // Clear LS
+    localStorage.clear();
+}
+
+function show(toshow){ // Change MainContent display
+    document.getElementById('infoRes').style.display = "none";
+    document.getElementById('error').style.display = "none";
+    document.getElementById(toshow).style.display = "block";
+}
+
+function endSession(){ // Logout
     var globalVariables = {
         logged: 0,
         user: 'none',
@@ -125,6 +172,6 @@ function endSession(){
     window.location.href = "home.html";
 }
 
-function redirect(where){
+function redirect(where){ // Redirect
     window.location.href = where;
 }

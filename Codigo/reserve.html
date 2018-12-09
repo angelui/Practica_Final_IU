@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-----------------------Interfaces de Usuario------------------------->
+<!---------------------Angel Luis Alonso Blazquez---------------------->
+<!---------------------Kevin Santiago Diaz Delgado--------------------->
+<!------------------------Marcos Arroyo Ruiz--------------------------->
+<!--------------------100363923|100363919|100293563-------------------->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hotels' Stuff</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style/reserve.css" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--link para los iconos del footer-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script/reserve.js"></script>
+</head>
+<body>
+    <div class="popupNotVisible" id="popup"> <!--Pop up-->
+        <div id="popup-container">
+            <a id="popup-close" href="javascript:;" onclick="changePopUpStatus(this);">X</a>
+
+            <h4 id="popup-name" class="popTitle">Login</h4>
+            <p id="popup-user" class="popText">Usuario</p>
+            <input id="usernameLog" class="inputL" type="text" placeholder="Nombre de usuario" required/>
+            <p id="popup-pass" class="popText">Contraseña</p>
+            <input id="passwordLog" class="inputL" type="password" placeholder="Contraseña" required/>
+            <button id="loginButton" onclick="login()">Login</button>
+
+        </div>
+    </div>
+
+    <header>
+        <a href="home.html"><img id="logo" src="img/logotransparente.png" alt="logo"></a>
+        <img id="menuIcon" src="img/menuicon.jpg" alt="menu">
+        <div class="headMenu">
+            <a class="headMenuOptions2">Idioma</a>      <!--Español/English-->
+                <ul id="downMenuLanguage" class="downMenu">
+                    <li><a href="javascript:;" onclick="clearStorage();"><h5>Español</h5></a></li>
+                    <li><a href="#"><h5>English</h5></a></li>
+                </ul>
+            <a class="headMenuOptions2">Cuenta</a>      <!--Login/Registro . Info Personal/Anadir Hoteles/Cerrar Sesion-->
+                <ul id="downMenuUnlogged" class="downMenu">
+                    <li><a href="javascript:;" onclick="changePopUpStatus(this);"><h5>Login</h5></a></li>
+                    <li><a href="account.html"><h5>Registro</h5></a></li>
+                </ul>
+                <ul id="downMenuLogged" class="downMenu">
+                    <li><a href="account.html"><h5>Info Personal</h5></a></li>
+                    <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
+                </ul>
+                <ul id="downMenuHost" class="downMenu">
+                    <li><a href="account.html"><h5>Mi Cuenta</h5></a></li>
+                    <li><a href="javascript:;" onclick="endSession();"><h5>Cerrar Sesión</h5></a></li>
+                </ul>
+            <a class="headMenuOptions" href="myreserves.html">Mis reservas</a>
+            <a class="headMenuOptions" href="#">Ayuda</a>        <!--Preguntas frecuentes-->
+        </div>
+    </header>
+
+    <div id="box">
+    </div>
+
+    <nav id="browser">
+            <input id="location" type="text" placeholder="Ej: Murcia" required/>
+            <input id="arriveDate" class="inputD" type="date" required/>
+            <input id="leftDate" class="inputD" type="date" required/>
+            <input id="guests" class="inputN" type="number" placeholder="Ej: 3" required/>
+            <img class="icon" src="https://image.freepik.com/free-icon/users-group_318-48680.jpg" alt="person icon">
+            <input id="rooms" class="inputN" type="number" placeholder="Ej: 1" required/>
+            <img class="icon" src="https://image.freepik.com/free-icon/closed-door-with-border-silhouette_318-48772.jpg" alt="room icon">
+            <button id="search" onclick="redirect('results.html')">Buscar</button>
+    </nav>
+
+    <div id="mainContent">
+        <h1 id="name">Murcialand</h1>
+        <div class="slideshow-container">
+            
+            <div class="mySlides fade">
+                <img id="img1" class="imgSlide" src="img/h1.jpg" alt="Imagen1">
+            </div>
+
+            <div class="mySlides fade">
+                <img id="img2" class="imgSlide" src="img/h2.jpg" alt="Imagen2">
+            </div>
+
+            <div class="mySlides fade">
+                <img id="img3" class="imgSlide" src="img/h3.jpg" alt="Imagen3">
+            </div>
+
+        </div>
+
+        <div id="generalInfo">
+            <div id="description">
+                <h3>Descripción del Alojamiento</h3>
+                <p id="pDescription">El hotel NH Amistad Murcia cuenta, con categoría de 4 estrellas, ofrece una ubicación ideal en una de las áreas de negocios, comerciales y de entretenimiento más importante de la ciudad de Murcia. Está a solo 100m de la avenida principal Gran Vía. El histórico casco antiguo se encuentra a solo cinco minutos a pie. Allí encontrarás una gran variedad de bares, restaurantes y tascas que sirven deliciosas tapas caseras.</p>
+                <h3>Localización</h3>
+                <iframe id="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50317.670317148564!2d-1.1621948949680851!3d37.98052720877252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6381f8d5928c7f%3A0xd627129b38c4ab9a!2sMurcia!5e0!3m2!1ses!2ses!4v1544309449158" width="100%" height="450px" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+
+            <div id="reserve">
+                <h3>Reserva ahora</h3>
+                <p id="price">Precio por noche:</p>
+                <p>Fecha de llegada:</p>
+                <input id="arriveDate2" class="inputAll" type="date" required/>
+                <p>Fecha de salida:</p>
+                <input id="leftDate2" class="inputAll" type="date" required/>
+                <button id="reserveButton" onclick="pay()">Reservar ahora</button>
+            </div>
+        </div>
+    </div> 
+    
+    <footer id="piedepag">
+        <div id="iconos">
+            <div class="bright"><a href="https://www.instagram.com/?hl=es"><i class="fa fa-instagram" style="font-size:48px;color:black"></i></a></div>
+            <div class="bright"><a href="https://www.facebook.com"><i class="fa fa-facebook-square" style="font-size:48px;color:black"></i></a></div>
+            <div class="bright"><a href="https://twitter.com"><i class="fa fa-twitter-square" style="font-size:48px;color:black"></i></a></div>
+            <div id="bright"><a href="https://es.linkedin.com"><i class="fa fa-linkedin-square" style="font-size:48px;color:black"></i></a></div>
+        </div>
+        <p>Copyright ® 2018. Todos los derechos reservados</p>
+    </footer>
+    
+</body>
+</html> 

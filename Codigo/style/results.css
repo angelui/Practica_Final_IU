@@ -4,17 +4,21 @@
 /*------------------------Marcos Arroyo Ruiz---------------------------*/
 /*--------------------100363923|100363919|100293563--------------------*/
 
-a, h4, p{
+a, h4, p, h3, option, select{
     font-family: 'Poppins', sans-serif;
     color: rgb(0, 0, 0);
     text-decoration: none;
+}
+
+h3{
+    margin-bottom: 0%;
 }
 
 h5{
     color: rgb(0, 0, 0);
 }
 
-h5:hover{
+h5:hover, h3:hover{
     color: rgb(85, 85, 85);
 }
 
@@ -46,6 +50,10 @@ button{
 button:hover{
     color: rgb(39, 39, 39);
     background-color: rgb(162, 174, 226);
+}
+
+fieldset{
+    border: none;
 }
 
 /* Header */
@@ -111,18 +119,27 @@ header{
 }
 
 #box{
-        position: fixed;
-        top: 0;
-        height: 150px;
-        width: 100%;
-        z-index: 0;
-        background-color: rgb(255, 255, 255);
-    }
+    position: fixed;
+    top: 0;
+    height: 150px;
+    width: 100%;
+    z-index: 1;
+    background-color: rgb(255, 255, 255);
+}
+
+.pSecondary{
+    color: gray;
+    font-size: 1em;
+    margin-left: 1%;
+    margin-top: 0%;
+    cursor: pointer;
+}
 
 /* Browser */
+
 #browser{
     position: fixed;
-    z-index: 0;
+    z-index: 1;
     top: 100px;
     width: 100%;
     margin-left: 2%;
@@ -153,6 +170,38 @@ header{
 
 #mainContent{
     margin-top: 150px;
+    text-align: center;
+}
+
+/* Result container */
+
+#results-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: 0%;
+}
+
+.results{
+    width: 25%;
+}
+
+.result-title{
+    cursor: pointer;
+}
+
+.result-image, .result-title, .result-price{
+    margin-left: 10%;
+}
+
+.result-image{
+    margin-top: 10%;
+    width: 80%;
+}
+
+.result-price{
+    margin-top: 0%;
+    margin-bottom: 5%;
 }
 
 /*Pie de pagina*/
@@ -184,7 +233,16 @@ header{
 
 @media only screen and (max-width:768px){
 
+    body{
+        min-width: 0;
+    }
+
     /* Header */
+    #browser{
+        position: relative;
+        margin-bottom: 1%;
+        z-index: 0;
+    }
 
     #box{
         position: fixed;
@@ -195,39 +253,46 @@ header{
         background-color: rgb(255, 255, 255);
     }
 
-    #menuIcon{
+    #search, .inputD, .inputN, .inputAll, #location, header, #browser{
+        margin-left: 0%;
+    }
+
+    #menuIcon, .icon{
         display: none;
     }
 
     /* Browser */
 
-    #browser{
-        position: absolute;
+    #results-container{
+        display: block;
+        padding-bottom: 2%;
     }
+    
+    .results{
+        width: 50%;
+        margin: auto;
+    }
+
+    /* Main Content */
 
     button{
-        width: 90%;
+        width: 100%;
+	}
+		
+	.inputD, .inputN, .inputAll, #location{
+		width: 98%;
+		margin-bottom: 3%;
+		float:left;
+    }
+    
+    .optionMenu{
+        width: 100%;
     }
 
-    .inputD, .inputN{
-        width: 40%;
-        margin-top: 1%;
-        margin-bottom: 1%;
-        margin-left: 2%;
-    }
+    /* Main Content */
 
-    #rooms, #leftDate{
-        float: right;
-        margin-right: 8%;
-    }
-
-    #location{
-        width: 88.6%;
-        margin-left: 2%;
-    }
-
-    .icon{
-        display: none;
+    #mainContent{
+        margin-top: 100px;
     }
 
 }
@@ -259,14 +324,6 @@ header{
         cursor: pointer;
     }
 
-}
-
-/***************************Pop-up Button****************************/
-
-#popup-button{
-    position: absolute;
-    right: 50%;
-    top: 40%;
 }
 
 /***************************Pop-up****************************/
