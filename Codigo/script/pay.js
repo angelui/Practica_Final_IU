@@ -177,12 +177,14 @@ function payButton(){ // Save reserve
         glbVars = JSON.parse(localStorage.getItem('globalVariables'));
 
         for(var i=0; i<data.length; i++){
-            if(data[i].username == glbVars.user)
-            reservesArray = data[i].reserves;
-            reservesArray[reservesArray.length] = glbVars.host;
-            data[i].reserves = reservesArray;
+            if(data[i].username == glbVars.user){
+                reservesArray = data[i].reserves;
+                reservesArray[reservesArray.length] = glbVars.host;
+                data[i].reserves = reservesArray;
 
-            localStorage.setItem('users', JSON.stringify(data));
+                localStorage.setItem('users', JSON.stringify(data));
+                i = data.length;
+            }
         }
 
         show();
