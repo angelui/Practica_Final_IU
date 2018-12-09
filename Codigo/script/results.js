@@ -16,11 +16,10 @@ $(document).ready(function(){   //jQuery
         var globalVariables = {
             logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
             user: JSON.parse(localStorage.getItem('globalVariables')).user,
-            host: this.id.substring(8,9)
+            host: $(this).children().attr("id").substring(7,8)
         }
         localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
-        console.log(this);
-        /*redirect('reserve.html');*/
+        redirect('reserve.html');
     });
 
     /* All results */
@@ -31,14 +30,17 @@ $(document).ready(function(){   //jQuery
     });
 
     $('.totalRName').click(function(){
+        console.log(123);
         var globalVariables = {
             logged: JSON.parse(localStorage.getItem('globalVariables')).logged, // 0 = unloggued // 1 = loggued // 2 = host account //
             user: JSON.parse(localStorage.getItem('globalVariables')).user,
-            host: this.id.substring(8,9)
+            host: $(this).children().attr("id").substring(8,9)
         }
         localStorage.setItem('globalVariables', JSON.stringify(globalVariables));
         redirect('reserve.html');
     });
+
+    /* Menu */
 
     function showMenu(){
         $('#downMenuLanguage').slideToggle();
