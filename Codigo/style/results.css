@@ -10,11 +10,15 @@ a, h4, p, h3, option, select{
     text-decoration: none;
 }
 
+h3{
+    margin-bottom: 0%;
+}
+
 h5{
     color: rgb(0, 0, 0);
 }
 
-h5:hover{
+h5:hover, h3:hover{
     color: rgb(85, 85, 85);
 }
 
@@ -125,12 +129,14 @@ header{
 
 .pSecondary{
     color: gray;
-    font-size: 0.75em;
+    font-size: 1em;
     margin-left: 1%;
     margin-top: 0%;
+    cursor: pointer;
 }
 
 /* Browser */
+
 #browser{
     position: fixed;
     z-index: 1;
@@ -164,6 +170,7 @@ header{
 
 #mainContent{
     margin-top: 150px;
+    text-align: center;
 }
 
 /* Result container */
@@ -172,12 +179,15 @@ header{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: rgba(128, 128, 128, 0.05);
     padding-bottom: 0%;
 }
 
 .results{
     width: 25%;
+}
+
+.result-title{
+    cursor: pointer;
 }
 
 .result-image, .result-title, .result-price{
@@ -190,6 +200,7 @@ header{
 }
 
 .result-price{
+    margin-top: 0%;
     margin-bottom: 5%;
 }
 

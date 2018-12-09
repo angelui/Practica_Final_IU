@@ -74,7 +74,7 @@
     </nav>
 
     <div id="mainContent">
-        <h1>Murcialandia</h1>
+        <h1 id="name">Murcialand</h1>
         <div class="slideshow-container">
             
             <div class="mySlides fade">
@@ -94,18 +94,18 @@
         <div id="generalInfo">
             <div id="description">
                 <h3>Descripción del Alojamiento</h3>
-                <p>El hotel NH Amistad Murcia cuenta, con categoría de 4 estrellas, ofrece una ubicación ideal en una de las áreas de negocios, comerciales y de entretenimiento más importante de la ciudad de Murcia. Está a solo 100m de la avenida principal Gran Vía. El histórico casco antiguo se encuentra a solo cinco minutos a pie. Allí encontrarás una gran variedad de bares, restaurantes y tascas que sirven deliciosas tapas caseras.</p>
+                <p id="pDescription">El hotel NH Amistad Murcia cuenta, con categoría de 4 estrellas, ofrece una ubicación ideal en una de las áreas de negocios, comerciales y de entretenimiento más importante de la ciudad de Murcia. Está a solo 100m de la avenida principal Gran Vía. El histórico casco antiguo se encuentra a solo cinco minutos a pie. Allí encontrarás una gran variedad de bares, restaurantes y tascas que sirven deliciosas tapas caseras.</p>
                 <h3>Localización</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50317.670317148564!2d-1.1621948949680851!3d37.98052720877252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6381f8d5928c7f%3A0xd627129b38c4ab9a!2sMurcia!5e0!3m2!1ses!2ses!4v1544309449158" width="100%" height="450px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe id="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50317.670317148564!2d-1.1621948949680851!3d37.98052720877252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6381f8d5928c7f%3A0xd627129b38c4ab9a!2sMurcia!5e0!3m2!1ses!2ses!4v1544309449158" width="100%" height="450px" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
 
             <div id="reserve">
                 <h3>Reserva ahora</h3>
-                <p>Precio por noche:</p>
+                <p id="price">Precio por noche:</p>
                 <p>Fecha de llegada:</p>
-                <input id="arriveDate" class="inputAll" type="date" required/>
+                <input id="arriveDate2" class="inputAll" type="date" required/>
                 <p>Fecha de salida:</p>
-                <input id="leftDate" class="inputAll" type="date" required/>
+                <input id="leftDate2" class="inputAll" type="date" required/>
                 <button id="reserveButton" onclick="pay()">Reservar ahora</button>
             </div>
         </div>

@@ -11,6 +11,7 @@ a, h4, p, h3, h1, option, select{
 }
 
 h1{
+    text-align: center;
     font-size: 2em;
     margin-top: 1%;
     margin-bottom: 1%;
@@ -273,7 +274,7 @@ header{
         background-color: rgb(255, 255, 255);
     }
 
-    #search, .inputD, .inputN, .inputAll, #location, header, #browser{
+    #search, .inputD, .inputN, .inputAll, #location, header, #browser, #reserveButton{
         margin-left: 0%;
     }
 
@@ -295,12 +296,8 @@ header{
 
     /* Main Content */
 
-    button{
+    button, #reserveButton{
         width: 100%;
-    }
-    
-    #reserveButton{
-        width: 99%;
     }
 		
 	.inputD, .inputN, .inputAll, #location{
