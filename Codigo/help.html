@@ -8,14 +8,14 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hotels' Stuff: Mis Reservas</title>
+    <title>Hotels' Stuff: Ayuda</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style/myreserves.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/help.css" />
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--link para los iconos del footer-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="script/myreserves.js"></script>
+    <script src="script/help.js"></script>
 </head>
 <body>
     <div class="popupNotVisible" id="popup"> <!--Pop up-->
@@ -104,12 +104,49 @@
     </nav>
 
     <div id="mainContent">
-        <h3>Mis Reservas</h3>
-        <div id="infoRes">
+        <p class="help-q">¿Qué métodos de pago puedo utilizar con Hotels' Stuff?</p>
+        <div class="help-a">
+            <p>Los métodos de pago disponibles varían en función del país en el que se encuentre tu cuenta de pago.
+                    Verás todos aquellos a los que puedes optar en la página de pago, justo antes de enviar una solicitud 
+                    de reserva.</p>
         </div>
-        
-        <div id="error">
-            <p class="pSecondary">Para poder acceder a esta sección has de iniciar sesión o registrarte</p>
+        <p class="help-q">¿Qué sucede si tengo que cancelar una reserva debido
+                a una emergencia o circunstancia inevitable?</p>
+        <div class="help-a">
+            <p>Es posible que procesemos un reembolso y te dispensemos de las
+                    penalizaciones que aplicamos en caso de
+                    cancelación si tienes que cancelar una reserva por motivo de un imprevisto
+                        que está fuera de tu control.</p>
+        </div>
+        <p class="help-q">¿Puedo ver el alojamiento antes de reservarlo?</p>
+        <div class="help-a">
+            <p> Desde Airbnb, animamos a todos los huéspedes y anfitriones a que realicen las 
+                    reservas a través de nuestro sitio antes de conocerse en persona, con el fin de 
+                    garantizar su seguridad y privacidad.
+    
+                    Hay varias formas de obtener más información sobre el anuncio y el anfitrión 
+                    sin tener que visitar el alojamiento:       
+            </p>
+            <ul>
+                <li>Mensajes privados</li>
+                <li>Verificaciones de perfil</li>
+                <li>Evaluaciones</li>
+                <li>Fotografías verificadas</li>
+            </ul>
+        </div>
+        <p class="help-q">¿Cuándo se me cobrará la reserva?</p>
+        <div class="help-a">
+            <p>Cuando envías una solicitud de reserva, tienes que introducir tus datos de pago. Una vez que el anfitrión la acepte,
+                 realizaremos un cargo por el importe total de esta en tu método de pago.
+                  <br>
+                  <br>
+                No importa si la reserva va a tener lugar dentro de dos días o dos meses: siempre retendremos el pago durante las
+                 24 horas posteriores a tu llegada, periodo tras el cual se lo enviaremos al anfitrión. Mediante este sistema, ambos
+                  tendréis un margen de tiempo razonable para comprobar que las cosas van según lo previsto y que todo está en orden.</p>
+        </div>
+        <p class="help-q">¿Cómo puedo limpiar la base de datos?</p>
+        <div class="help-a">
+            <button class="blackButton" onclick="clearStorage();">Borrar datos locales</button>
         </div>
     </div> 
     
